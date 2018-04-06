@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1523025631 source:c:\users\admin\documents\c&c++\alphakrippendorff\main.cpp
+	<iostream>
+	<cstring>
+	<cstdlib>
+	<ctime>
+	<cmath>
+	<cstring>
+	<fstream>
+	<cstdio>
+	<vector>
+	<sstream>
+

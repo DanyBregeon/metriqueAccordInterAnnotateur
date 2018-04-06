@@ -1,0 +1,9 @@
+% Exemple 2 : Kripendorff : 
+% 2 annotateurs, 12 observables, 5 classes notées 0,1,2,3,4
+Nbannotateurs=2
+Nbclasses=5
+Nbobservables=12
+% le tableau : une ligne par annotateur
+% pour éviter les pbs windows/linux, mettre une tabulation en fin de chaque ligne
+0	0	1	1	3	2	2	2	4	3	3	0	
+1	0	1	1	1	2	2	2	4	3	3	3		
