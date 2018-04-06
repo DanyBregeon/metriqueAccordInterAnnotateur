@@ -9,7 +9,7 @@ using namespace std;
 #include <cstdio>
 #include <vector>
 #include <sstream>
-
+#include <iomanip>
 
 const int Max_obs=3000;//nb maximal d'observables
 const int Max_classes=10;//nb maximal de classes
@@ -459,8 +459,8 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,
     for(int i=nba; i>1; i--){
         //cout << i << ": " << erreurVoteMaj[i] << "/" << nbCombinaison[i] << "   ";
         //cout << i << ": " << ((float) erreurVoteMaj[i]/(float) nbCombinaison[i])*100 << "%   ";
-        float pourcentage = ((float) erreurVoteMaj[i]/(float) (nbCombinaison[i]*nblignes))*100;
-        cout << i << ": " << pourcentage << "%   ";
+        double pourcentage = ((double) erreurVoteMaj[i]/(double) (nbCombinaison[i]*nblignes))*100;
+        cout << i << ": " << fixed << setprecision (3) << pourcentage << "%   ";
         //TPourcentageErreur[i] = pourcentage;
     }
     cout << endl;
@@ -486,6 +486,7 @@ int main() {
     for(int i=0; i<24; i++){
       if(i == 12){
         choix=500;
+        cout << endl;
         cout << "5 classes :" << endl;
       }
       choix++;
