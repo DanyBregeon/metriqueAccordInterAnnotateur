@@ -10,6 +10,7 @@ using namespace std;
 #include <vector>
 #include <sstream>
 #include <iomanip>
+#include <map>
 
 const int Max_obs=3000;//nb maximal d'observables
 const int Max_classes=10;//nb maximal de classes
@@ -100,7 +101,57 @@ float delta_car(int i,int j,int nbclasses) {
 }*/
 //bien d'autres distances sont possibles à définir suivant le pb traité
 
+
+//CALCULS Kappa
+//Artmann Poesio
+
+//nb de fois où l'observable i est classé dans la catégorie k
+int xikres(int i,int k,int Nbareel,int T[Max_obs][Max_annot]){
+  int j,res=0;
+  for (j=0;j<Nbareel;j++)
+    if (T[i][j]==k) res++;
+  //if (res!=0) printf("%d, ",res);
+  return res;
+}
+//pkc=probas pour l'annotateur c de choisir la modalité k
+double pkc(int c,int k,int nblignes,int T[Max_obs][Max_annot]){
+  int i,nck=0;
+  double res;
+  for (i=0;i<nblignes;i++)
+    if (T[i][c]==k) nck++;
+  res=(1.0*nck)/nblignes;
+  //printf("pkc(%d,%d)=%f\n",c,k,res);
+  return res;
+}
+
 //II -b : désaccord observé et désaccord attendu
+
+double Aekappa(int nblignes,int nbclasses,int Nbareel, int T[Max_obs][Max_annot]){
+  int comb2Nba=(Nbareel*(Nbareel-1))/2;
+  //printf("comb2Nba=%d\n",comb2Nba);
+  double res=0,den=0;
+  for (int k=0;k<nbclasses;k++) {
+    for (int a1=0;a1<Nbareel-1;a1++)
+      for (int a2=a1+1;a2<Nbareel;a2++)
+	res=res+pkc(a1,k,nblignes,T)*pkc(a2,k,nblignes,T);
+  }
+  return (res*1.0)/comb2Nba;
+}
+
+//on a nbclasses, exprimées dans le tableau T par un entier de 0 à nbclasses-1
+float Aokappa(int nblignes,int nbclasses,int Nbareel, int T[Max_obs][Max_annot]){
+  float res=0;
+  int sum=0,i,nik;
+  for (i=0;i<nblignes;i++) {
+    for (int k=0;k<nbclasses;k++) {
+      nik=xikres(i,k,Nbareel,T);
+      sum=sum+nik*(nik-1);
+    }
+  }
+  //printf("sum=%d\n",sum);
+  res=(sum*1.0)/(nblignes*Nbareel*(Nbareel-1));
+  return res;
+}
 
 // Désaccord observé
 float Do(float nb, float C[Max_classes][Max_classes],int nbclasses){
@@ -134,6 +185,14 @@ float De(float nb,float C[Max_classes][Max_classes],int nbclasses) {
 }
 
 
+float kappaAP(int nblignes,int nbclasses,int Nbareel, int T[Max_obs][Max_annot]){
+   float Ao,Ae;
+   Ao=Aokappa(nblignes,nbclasses,Nbareel,T);
+   //printf("Ao=%f\n",Ao);
+   Ae=Aekappa(nblignes,nbclasses,Nbareel,T);
+   //printf("Aekappa=%f\n",Ae);
+   return (Ao-Ae)/(1.0-Ae);
+}
 
 //nb = nb d'observations effectives = nb_experts*nb_observables si pas de données manquantes
 float alpha(float nb,float C[Max_classes][Max_classes],int nbclasses) {
@@ -294,12 +353,12 @@ void choixTableau(int choix,int T[Max_annot][Max_obs],int & Nbobs,int & Nba,int 
   else if (choix>506 && choix<510) {
     Nba=2;Nbobs=12;
     ss << (choix-507);
-    lire("classe3/TableauOpinion" + ss.str() +".csv",T,Nbobs,Nba,Nbc);
+    lire("classe5/TableauOpinion" + ss.str() +".csv",T,Nbobs,Nba,Nbc);
   }
   else if (choix>509 && choix<513) {
     Nba=2;Nbobs=12;
     ss << (choix-510);
-    lire("classe3/TableauOpinionContexte" + ss.str() +".csv",T,Nbobs,Nba,Nbc);
+    lire("classe5/TableauOpinionContexte" + ss.str() +".csv",T,Nbobs,Nba,Nbc);
   }
 }
 
@@ -322,24 +381,36 @@ void transposeT(int T[Max_annot][Max_obs],int TT[Max_obs][Max_annot],int nbl,int
 //calcul du vote majoritaire et le compare avec celui de référence
 void voteMajoritaire(int T[Max_obs][Max_annot], int nblignes, int nbc, int n,
                      int erreurVoteMaj[Max_annot], int voteMajReference[Max_obs], int nba){
+    //le vote majoritaire pour chaque observable
     int voteMajoritaire[nblignes];
+    //le nombre d'occurence des classes dans les annotations d'un observable
     int tNbOcc[nbc];
-    for(int i=0; i<nbc; i++){
-        tNbOcc[i]=0;
-    }
+    //la moyenne des classes pour chaque observable
+    float tMoyenne[nblignes];
+
     for(int obs=0; obs<nblignes; obs++){
+        float moyenne = 0;
         for(int ann=0; ann<n; ann++){
             tNbOcc[T[obs][ann]]++;
+            moyenne += T[obs][ann];
         }
+        moyenne = moyenne / (float) n;
         int max=tNbOcc[0];
         int voteMaj = 0;
         for(int i=1; i<nbc; i++){
             if(tNbOcc[i]>max){
                 max = tNbOcc[i];
                 voteMaj = i;
+            }else if(tNbOcc[i]==max){
+                //en cas d'égalité pour le vote majoritaire, c'est la classe la plus proche de la moyenne des classes qui l'emporte
+                if(abs((float)i-moyenne) < abs((float)voteMaj-moyenne)){
+                    max = tNbOcc[i];
+                    voteMaj = i;
+                }
             }
         }
         voteMajoritaire[obs]=voteMaj;
+        tMoyenne[obs]=moyenne;
 
         for(int i=0; i<nbc; i++){
             tNbOcc[i]=0;
@@ -362,14 +433,14 @@ void voteMajoritaire(int T[Max_obs][Max_annot], int nblignes, int nbc, int n,
     }
 
     //affichage
-    /*cout << "vote maj: ";
+    /*cout << "vote maj/moyenne: ";
     for(int i=0; i<nblignes; i++){
-        cout << voteMajoritaire[i] << " ";
-    }*/
-    //cout << endl;
+        cout << voteMajoritaire[i] << "/" << tMoyenne[i] << " ";
+    }
+    cout << endl;*/
 }
 
-//nblignes = nbobs, n = 9 ou 8 ou 7 etc
+//nblignes = nbobs, n = 9 ou 8 ou 7 etc annotateurs, effectue des calculs pour chaque combinaison
 void alphaCombinaison( int *p, int n, int T[Max_obs][Max_annot],int nblignes,int nba,
 		  float C[Max_classes][Max_classes],int nbc,float & nb, std::vector<float> *vAlpha,
 		  int erreurVoteMaj[Max_annot], int voteMajReference[Max_obs]) {
@@ -393,6 +464,8 @@ void alphaCombinaison( int *p, int n, int T[Max_obs][Max_annot],int nblignes,int
     //affiche_coincidences(C,nbc);
     float a = alpha(nb,C,nbc);
     //cout << "alpha=" << a << "  ";
+    //float k = kappaAP(nblignes, nbc, n, TT);
+    //cout << "kappa=" << k << "  " << endl;
     voteMajoritaire(TT, nblignes, nbc, n, erreurVoteMaj, voteMajReference, nba);
     vAlpha->push_back(a);
 }
@@ -433,7 +506,7 @@ float ecart_type(std::vector<float> *vAlpha, float moy) {
 }
 
 void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,
-		  float C[Max_classes][Max_classes],int nbc,float & nb/*, int TPourcentageErreur[Max_annot]*/){
+		  float C[Max_classes][Max_classes],int nbc,float & nb, std::vector<float> *vPourcentageErreur){
     int ens[nba];
     for(int i=0; i<nba; i++){
         ens[i] = i;
@@ -449,21 +522,22 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,
         int combi[p];
         std::vector<float> vAlpha;
         combinaisons(ens,combi,nba,p,0,0, T,nblignes,nba,C,nbc,nb, &vAlpha, erreurVoteMaj, voteMajReference, nbCombinaison);
-        float moy = moyenne(&vAlpha);
+        //float moy = moyenne(&vAlpha);
         //cout << "moyenne : " << moy << endl;
         //cout << "ecart-type : " << ecart_type(&vAlpha, moy) << endl;
         //cout << endl;
         //int combi[nba-1];
     }
-    cout << "poucentage d'erreur :  ";
+    //cout << "poucentage d'erreur :  ";
     for(int i=nba; i>1; i--){
         //cout << i << ": " << erreurVoteMaj[i] << "/" << nbCombinaison[i] << "   ";
         //cout << i << ": " << ((float) erreurVoteMaj[i]/(float) nbCombinaison[i])*100 << "%   ";
-        double pourcentage = ((double) erreurVoteMaj[i]/(double) (nbCombinaison[i]*nblignes))*100;
-        cout << i << ": " << fixed << setprecision (3) << pourcentage << "%   ";
+        float pourcentage = ((float) erreurVoteMaj[i]/(float) (nbCombinaison[i]*nblignes))*100;
+        vPourcentageErreur->push_back(pourcentage);
+        //cout << i << ": " << fixed << setprecision (3) << pourcentage << "%   ";
         //TPourcentageErreur[i] = pourcentage;
     }
-    cout << endl;
+    //cout << endl;
     //return vAlpha.at(0);
 }
 
@@ -478,16 +552,16 @@ int main() {
   int nba,nbobs,nbc;//nb d'annotateurs, d'observables, de classes
   float nb;//observation réellement prises en compte
 
+  std::map<std::pair<int, float>, std::vector<float>> mapResultat;
+
   if(choix==0){
-    //int TFinal;
-    //int TPourcentageErreur[Max_annot];
     choix = 300;
-    cout << "3 classes :" << endl;
+    //cout << "3 classes :" << endl;
     for(int i=0; i<24; i++){
       if(i == 12){
         choix=500;
         cout << endl;
-        cout << "5 classes :" << endl;
+        //cout << "5 classes :" << endl;
       }
       choix++;
       choixTableau(choix,T,nbobs,nba,nbc);
@@ -497,10 +571,32 @@ int main() {
       coincidences(T1,nbobs,nba,C,nbc,nb);
       //affiche_coincidences(C,nbc);
       //cout << "nb d'observations prises en compte="<<nb <<endl;
-      cout << "alpha=" << alpha(nb,C,nbc)<< endl;
+      std::vector<float> vPourcentageErreur;
+      /*test.push_back(2.3f);
+      test.push_back(3.0f);
+      map.insert(std::pair<float, std::vector<float>>(0.5f, test));
+      int resultat = map.at(0.5f).size();
+      cout << "test: " << resultat << " ";*/
+      //cout << "alpha=" << alpha(nb,C,nbc);
+      float a = alpha(nb,C,nbc);
+      std::pair<int, float> pairNbcAlpha(nbc, a);
+      //cout << " pairNbcAlpha: " << pairNbcAlpha.first << "/" << pairNbcAlpha.second;
       //cout<< "combinaisons de n-p annotateurs :" <<endl;
-      calculDifference(T1,nbobs,nba,C,nbc,nb);
+      calculDifference(T1,nbobs,nba,C,nbc,nb, &vPourcentageErreur);
+      mapResultat.insert(std::pair<std::pair<int, float>, std::vector<float>>(pairNbcAlpha, vPourcentageErreur));
+      //cout << " taille: " << mapResultat.size() << endl;
     }
+    for (std::map<std::pair<int, float>, std::vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
+        std::pair<int, float> alp = it->first;
+        cout << alp.first <<" classes, alpha=" << fixed << setprecision (3) << alp.second << "   ";
+        for(int i=0; i<nba-1; i++){
+        std::vector<float> valeurs = it->second;
+        cout << nba-i << ": " << valeurs[i] <<"%   ";
+        }
+        cout << endl;
+        cout << endl;
+    }
+
   }else{
 
       choixTableau(choix,T,nbobs,nba,nbc); //on rempli tous les parametres par les valeurs lu dans le fichier
@@ -514,7 +610,14 @@ int main() {
       cout << "alpha=" << alpha(nb,C,nbc)<< endl;
 
       cout<< "combinaisons de n-p annotateurs :" <<endl;
-      calculDifference(T1,nbobs,nba,C,nbc,nb);
+
+      std::vector<float> vPourcentageErreur;
+      calculDifference(T1,nbobs,nba,C,nbc,nb, &vPourcentageErreur);
+      std::pair<int, float> pairNbcAlpha(nbc, alpha(nb,C,nbc));
+      mapResultat.insert(std::pair<std::pair<int, float>, std::vector<float>>(pairNbcAlpha, vPourcentageErreur));
+      for(int i=0; i<nba-1; i++){
+        cout << i << ": " << mapResultat.at(pairNbcAlpha)[i] <<"%   ";
+      }
   }
   return 0;
 }
