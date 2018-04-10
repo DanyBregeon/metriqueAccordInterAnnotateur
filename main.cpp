@@ -96,11 +96,11 @@ float delta_car(int i,int j,int nbclasses) {
   } */
 
   //DISTANCE EUCLIDIENNE :
-/*float delta_car(int i,int j, int classes)  {
+float delta_carEuclidienne(int i,int j, int classes)  {
     float res;
     if (i>j) res=i-j; else res=j-i;//ou bien : res=sqrt((i-j)*(i-j))
     return res;
-}*/
+}
 //bien d'autres distances sont possibles à définir suivant le pb traité
 
 
@@ -156,12 +156,18 @@ float Aokappa(int nblignes,int nbclasses,int Nbareel, int T[Max_obs][Max_annot])
 }
 
 // Désaccord observé
-float Do(float nb, float C[Max_classes][Max_classes],int nbclasses){
+float Do(float nb, float C[Max_classes][Max_classes],int nbclasses, int pondere){
   float res=0;
   int i,j;
   for (i=0;i<nbclasses;i++)
     for (j=0;j<nbclasses;j++)
-      if (i!=j) res=res+delta_car(i,j,nbclasses)*C[i][j];
+        if (i!=j){
+            if(pondere == 0){
+                res=res+delta_car(i,j,nbclasses)*C[i][j];
+            }else{
+                res=res+delta_carEuclidienne(i,j,nbclasses)*C[i][j];
+            }
+        }
   res=res/nb;
   //cout << "Do=" << res << endl;
   return res;
@@ -175,7 +181,7 @@ float n_calc(float C[Max_classes][Max_classes],int l,int nbclasses) {
 }
 
 //Désaccord attendu (expected)
-float De(float nb,float C[Max_classes][Max_classes],int nbclasses) {
+float De(float nb,float C[Max_classes][Max_classes],int nbclasses, int pondere) {
   float res=0;
   int i,j;
    for (i=0;i<nbclasses;i++)
@@ -197,8 +203,8 @@ float kappaAP(int nblignes,int nbclasses,int Nbareel, int T[Max_obs][Max_annot])
 }
 
 //nb = nb d'observations effectives = nb_experts*nb_observables si pas de données manquantes
-float alpha(float nb,float C[Max_classes][Max_classes],int nbclasses) {
-  float res=1-(Do(nb,C,nbclasses)/De(nb,C,nbclasses));
+float alpha(float nb,float C[Max_classes][Max_classes],int nbclasses, int pondere) {
+  float res=1-(Do(nb,C,nbclasses, pondere)/De(nb,C,nbclasses, pondere));
   if (res<0) return 0; else return res;
 }
 
@@ -464,12 +470,12 @@ void alphaCombinaison( int *p, int n, int T[Max_obs][Max_annot],int nblignes,int
     }
     coincidences(TT,nblignes,n,C,nbc,nb);
     //affiche_coincidences(C,nbc);
-    float a = alpha(nb,C,nbc);
+    //float a = alpha(nb,C,nbc);
     //cout << "alpha=" << a << "  ";
     //float k = kappaAP(nblignes, nbc, n, TT);
     //cout << "kappa=" << k << "  " << endl;
     voteMajoritaire(TT, nblignes, nbc, n, erreurVoteMaj, voteMajReference, nba);
-    vAlpha->push_back(a);
+    //vAlpha->push_back(a);
 }
 
 //trouve l'ensemble des combinaisons de p parmi n
@@ -583,6 +589,8 @@ int fichierSortie (string choixMetrique, int nba, std::map<std::pair<int, float>
         string s;
         if(choixMetrique.compare("k")==0){
             s = "kappa";
+        }else if(choixMetrique.compare("ap")==0){
+            s = "alpha(pondéré)";
         }else{
             s = "alpha";
         }
@@ -610,7 +618,7 @@ int main() {
   float nb;//observation réellement prises en compte
 
   string choixMetrique;
-  cout << "Choix ? (a pour alpha, k pour kappa)";
+  cout << "Choix ? (a pour alpha, k pour kappa, ap pour alpha pondéré)";
   cin >> choixMetrique;
 
   std::map<std::pair<int, float>, std::vector<float>> mapResultat;
@@ -642,8 +650,10 @@ int main() {
       float metrique;
       if(choixMetrique.compare("k")==0){
           metrique = kappaAP(nbobs, nbc, nba, T1);
+      }else if(choixMetrique.compare("ap")==0){
+          metrique = alpha(nb,C,nbc, 1);
       }else{
-          metrique = alpha(nb,C,nbc);
+          metrique = alpha(nb,C,nbc, 0);
       }
       std::pair<int, float> pairNbcAlpha(nbc, metrique);
       //cout << " pairNbcAlpha: " << pairNbcAlpha.first << "/" << pairNbcAlpha.second;
@@ -657,6 +667,8 @@ int main() {
         string s;
         if(choixMetrique.compare("k")==0){
             s = "kappa";
+        }else if(choixMetrique.compare("ap")==0){
+            s = "alpha(pondéré)";
         }else{
             s = "alpha";
         }
@@ -679,13 +691,20 @@ int main() {
       coincidences(T1,nbobs,nba,C,nbc,nb);
       affiche_coincidences(C,nbc);
       cout << "nb d'observations prises en compte="<<nb <<endl;
-      cout << "alpha=" << alpha(nb,C,nbc)<< endl;
+
+      if(choixMetrique.compare("k")==0){
+          cout << "kappa=" << kappaAP(nbobs, nbc, nba, T1)<< endl;
+      }else if(choixMetrique.compare("ap")==0){
+          cout << "alpha(pondéré)=" << alpha(nb,C,nbc, 1)<< endl;
+      }else{
+          cout << "alpha=" << alpha(nb,C,nbc, 0)<< endl;
+      }
 
       cout<< "combinaisons de n-p annotateurs :" <<endl;
 
       std::vector<float> vPourcentageErreur;
       calculDifference(T1,nbobs,nba,C,nbc,nb, &vPourcentageErreur);
-      std::pair<int, float> pairNbcAlpha(nbc, alpha(nb,C,nbc));
+      std::pair<int, float> pairNbcAlpha(nbc, alpha(nb,C,nbc, 0));
       mapResultat.insert(std::pair<std::pair<int, float>, std::vector<float>>(pairNbcAlpha, vPourcentageErreur));
       for(int i=0; i<nba-1; i++){
         cout << i << ": " << mapResultat.at(pairNbcAlpha)[i] <<"%   ";
