@@ -4,14 +4,12 @@ using namespace std;
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
-#include <cstring>
 #include <fstream>
 #include <cstdio>
 #include <vector>
 #include <sstream>
 #include <iomanip>
 #include <map>
-#include <ctime>
 #include <time.h>
 
 const int Max_obs=3000;//nb maximal d'observables

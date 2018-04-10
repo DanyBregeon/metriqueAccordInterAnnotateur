@@ -1,0 +1,5541 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<annotations>
+<metadata corpusHashcode="4391-39766023"/>
+<unit id="TXT_IMPORTER_1343424906848">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906848</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="0"/>
+</start>
+<end>
+<singlePosition index="38"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906849">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906849</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="38"/>
+</start>
+<end>
+<singlePosition index="76"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906850">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906850</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="76"/>
+</start>
+<end>
+<singlePosition index="159"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906851">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906851</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="159"/>
+</start>
+<end>
+<singlePosition index="169"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906852">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906852</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="169"/>
+</start>
+<end>
+<singlePosition index="270"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906853">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906853</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="270"/>
+</start>
+<end>
+<singlePosition index="370"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906854">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906854</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="370"/>
+</start>
+<end>
+<singlePosition index="381"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906855">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906855</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="381"/>
+</start>
+<end>
+<singlePosition index="389"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906856">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906856</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="389"/>
+</start>
+<end>
+<singlePosition index="421"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906857">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906857</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="421"/>
+</start>
+<end>
+<singlePosition index="430"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906858">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906858</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="430"/>
+</start>
+<end>
+<singlePosition index="439"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906859">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906859</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="439"/>
+</start>
+<end>
+<singlePosition index="505"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906860">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906860</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="505"/>
+</start>
+<end>
+<singlePosition index="556"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906861">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906861</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="556"/>
+</start>
+<end>
+<singlePosition index="572"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906862">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906862</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="572"/>
+</start>
+<end>
+<singlePosition index="579"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906863">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906863</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="579"/>
+</start>
+<end>
+<singlePosition index="586"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906864">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906864</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="586"/>
+</start>
+<end>
+<singlePosition index="641"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906865">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906865</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="641"/>
+</start>
+<end>
+<singlePosition index="661"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906866">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906866</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="661"/>
+</start>
+<end>
+<singlePosition index="739"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906867">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906867</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="739"/>
+</start>
+<end>
+<singlePosition index="746"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906868">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906868</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="746"/>
+</start>
+<end>
+<singlePosition index="801"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906869">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906869</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="801"/>
+</start>
+<end>
+<singlePosition index="821"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906870">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906870</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="821"/>
+</start>
+<end>
+<singlePosition index="828"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906871">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906871</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="828"/>
+</start>
+<end>
+<singlePosition index="835"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906872">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906872</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="835"/>
+</start>
+<end>
+<singlePosition index="890"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906873">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906873</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="890"/>
+</start>
+<end>
+<singlePosition index="910"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906874">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906874</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="910"/>
+</start>
+<end>
+<singlePosition index="983"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906875">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906875</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="983"/>
+</start>
+<end>
+<singlePosition index="990"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906876">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906876</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="990"/>
+</start>
+<end>
+<singlePosition index="1046"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906877">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906877</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1046"/>
+</start>
+<end>
+<singlePosition index="1066"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906878">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906878</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1066"/>
+</start>
+<end>
+<singlePosition index="1222"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906879">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906879</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1222"/>
+</start>
+<end>
+<singlePosition index="1229"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906880">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906880</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1229"/>
+</start>
+<end>
+<singlePosition index="1286"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906881">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906881</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1286"/>
+</start>
+<end>
+<singlePosition index="1307"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906882">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906882</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1307"/>
+</start>
+<end>
+<singlePosition index="1310"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906883">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906883</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1310"/>
+</start>
+<end>
+<singlePosition index="1317"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906884">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906884</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1317"/>
+</start>
+<end>
+<singlePosition index="1374"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906885">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906885</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1374"/>
+</start>
+<end>
+<singlePosition index="1395"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906886">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906886</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1395"/>
+</start>
+<end>
+<singlePosition index="2386"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906887">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906887</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2386"/>
+</start>
+<end>
+<singlePosition index="2393"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906888">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906888</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2393"/>
+</start>
+<end>
+<singlePosition index="2450"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906889">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906889</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2450"/>
+</start>
+<end>
+<singlePosition index="2471"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906890">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906890</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2471"/>
+</start>
+<end>
+<singlePosition index="2478"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906891">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906891</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2478"/>
+</start>
+<end>
+<singlePosition index="2485"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906892">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906892</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2485"/>
+</start>
+<end>
+<singlePosition index="2542"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906893">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906893</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2542"/>
+</start>
+<end>
+<singlePosition index="2563"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906894">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906894</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2563"/>
+</start>
+<end>
+<singlePosition index="2581"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906895">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906895</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2581"/>
+</start>
+<end>
+<singlePosition index="2588"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906896">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906896</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2588"/>
+</start>
+<end>
+<singlePosition index="2645"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906897">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906897</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2645"/>
+</start>
+<end>
+<singlePosition index="2666"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906898">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906898</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2666"/>
+</start>
+<end>
+<singlePosition index="2678"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906899">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906899</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2678"/>
+</start>
+<end>
+<singlePosition index="2685"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906900">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906900</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2685"/>
+</start>
+<end>
+<singlePosition index="2742"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906901">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906901</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2742"/>
+</start>
+<end>
+<singlePosition index="2763"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906902">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906902</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2763"/>
+</start>
+<end>
+<singlePosition index="2947"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906903">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906903</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2947"/>
+</start>
+<end>
+<singlePosition index="2954"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906904">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906904</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2954"/>
+</start>
+<end>
+<singlePosition index="3016"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906905">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906905</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3016"/>
+</start>
+<end>
+<singlePosition index="3037"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906906">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906906</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3037"/>
+</start>
+<end>
+<singlePosition index="3050"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906907">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906907</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3050"/>
+</start>
+<end>
+<singlePosition index="3053"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906908">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906908</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3053"/>
+</start>
+<end>
+<singlePosition index="3066"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906909">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906909</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3066"/>
+</start>
+<end>
+<singlePosition index="3079"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906910">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906910</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3079"/>
+</start>
+<end>
+<singlePosition index="3086"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906911">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906911</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3086"/>
+</start>
+<end>
+<singlePosition index="3143"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906912">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906912</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3143"/>
+</start>
+<end>
+<singlePosition index="3164"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906913">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906913</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3164"/>
+</start>
+<end>
+<singlePosition index="3185"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906914">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906914</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3185"/>
+</start>
+<end>
+<singlePosition index="3192"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906915">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906915</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3192"/>
+</start>
+<end>
+<singlePosition index="3249"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906916">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906916</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3249"/>
+</start>
+<end>
+<singlePosition index="3270"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906917">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906917</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3270"/>
+</start>
+<end>
+<singlePosition index="3282"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906918">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906918</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3282"/>
+</start>
+<end>
+<singlePosition index="3289"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906919">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906919</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3289"/>
+</start>
+<end>
+<singlePosition index="3346"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906920">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906920</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3346"/>
+</start>
+<end>
+<singlePosition index="3367"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906921">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906921</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3367"/>
+</start>
+<end>
+<singlePosition index="3371"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906922">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906922</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3371"/>
+</start>
+<end>
+<singlePosition index="3378"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906923">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906923</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3378"/>
+</start>
+<end>
+<singlePosition index="3435"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906924">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906924</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3435"/>
+</start>
+<end>
+<singlePosition index="3456"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906925">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906925</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3456"/>
+</start>
+<end>
+<singlePosition index="3486"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906926">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906926</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3486"/>
+</start>
+<end>
+<singlePosition index="3493"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906927">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906927</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3493"/>
+</start>
+<end>
+<singlePosition index="3555"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906928">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906928</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3555"/>
+</start>
+<end>
+<singlePosition index="3576"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906929">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906929</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3576"/>
+</start>
+<end>
+<singlePosition index="3589"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906930">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906930</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3589"/>
+</start>
+<end>
+<singlePosition index="3603"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906931">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906931</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3603"/>
+</start>
+<end>
+<singlePosition index="3616"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906932">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906932</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3616"/>
+</start>
+<end>
+<singlePosition index="3627"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906933">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906933</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3627"/>
+</start>
+<end>
+<singlePosition index="3634"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906934">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906934</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3634"/>
+</start>
+<end>
+<singlePosition index="3691"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906935">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906935</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3691"/>
+</start>
+<end>
+<singlePosition index="3712"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906936">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906936</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3712"/>
+</start>
+<end>
+<singlePosition index="3747"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906937">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906937</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3747"/>
+</start>
+<end>
+<singlePosition index="3754"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906938">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906938</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3754"/>
+</start>
+<end>
+<singlePosition index="3816"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906939">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906939</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3816"/>
+</start>
+<end>
+<singlePosition index="3837"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906940">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906940</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3837"/>
+</start>
+<end>
+<singlePosition index="3850"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906941">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906941</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3850"/>
+</start>
+<end>
+<singlePosition index="3855"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906942">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906942</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3855"/>
+</start>
+<end>
+<singlePosition index="3868"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906943">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906943</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3868"/>
+</start>
+<end>
+<singlePosition index="3872"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906944">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906944</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3872"/>
+</start>
+<end>
+<singlePosition index="3879"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906945">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906945</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3879"/>
+</start>
+<end>
+<singlePosition index="3936"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906946">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906946</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3936"/>
+</start>
+<end>
+<singlePosition index="3957"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906947">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906947</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3957"/>
+</start>
+<end>
+<singlePosition index="3988"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906948">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906948</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3988"/>
+</start>
+<end>
+<singlePosition index="3995"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906949">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906949</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3995"/>
+</start>
+<end>
+<singlePosition index="4052"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906950">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906950</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="4052"/>
+</start>
+<end>
+<singlePosition index="4073"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906951">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906951</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="4073"/>
+</start>
+<end>
+<singlePosition index="4088"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906952">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906952</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="4088"/>
+</start>
+<end>
+<singlePosition index="4095"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906953">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906953</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="4095"/>
+</start>
+<end>
+<singlePosition index="4157"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906954">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906954</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="4157"/>
+</start>
+<end>
+<singlePosition index="4178"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906955">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906955</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="4178"/>
+</start>
+<end>
+<singlePosition index="4191"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906956">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906956</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="4191"/>
+</start>
+<end>
+<singlePosition index="4200"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906957">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906957</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="4200"/>
+</start>
+<end>
+<singlePosition index="4213"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906958">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906958</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="4213"/>
+</start>
+<end>
+<singlePosition index="4217"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906959">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906959</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="4217"/>
+</start>
+<end>
+<singlePosition index="4224"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906960">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906960</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="4224"/>
+</start>
+<end>
+<singlePosition index="4281"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906961">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906961</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="4281"/>
+</start>
+<end>
+<singlePosition index="4302"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906962">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906962</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="4302"/>
+</start>
+<end>
+<singlePosition index="4311"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906963">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906963</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="4311"/>
+</start>
+<end>
+<singlePosition index="4318"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906964">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906964</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="4318"/>
+</start>
+<end>
+<singlePosition index="4328"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906965">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906965</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="4328"/>
+</start>
+<end>
+<singlePosition index="4338"/>
+</end>
+</positioning>
+</unit>
+<unit id="TXT_IMPORTER_1343424906966">
+<metadata>
+<author>TXT_IMPORTER</author>
+<creation-date>1343424906966</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>paragraph</type>
+<featureSet/>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="4338"/>
+</start>
+<end>
+<singlePosition index="4346"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682160488">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682160488</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343682162918</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">PERS</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="667"/>
+</start>
+<end>
+<singlePosition index="668"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682198830">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682198830</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826198642</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">GENE</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="711"/>
+</start>
+<end>
+<singlePosition index="718"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682253392">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682253392</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826213292</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">GENE</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="735"/>
+</start>
+<end>
+<singlePosition index="739"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682276666">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682276666</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343682279096</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">PERS</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="913"/>
+</start>
+<end>
+<singlePosition index="915"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682284229">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682284229</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343682294899</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">GENE</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">UNK</feature>
+<feature name="NB">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="934"/>
+</start>
+<end>
+<singlePosition index="936"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682300386">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682300386</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1370348176871</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">ORG</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">UNK</feature>
+<feature name="NB">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="950"/>
+</start>
+<end>
+<singlePosition index="954"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682325468">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682325468</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343682334049</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="963"/>
+</start>
+<end>
+<singlePosition index="983"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682353401">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682353401</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343682357239</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1078"/>
+</start>
+<end>
+<singlePosition index="1089"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682363577">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682363577</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343682366160</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1096"/>
+</start>
+<end>
+<singlePosition index="1107"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682370475">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682370475</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1369146884496</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1108"/>
+</start>
+<end>
+<singlePosition index="1122"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682405022">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682405022</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826307829</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">ORG</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1137"/>
+</start>
+<end>
+<singlePosition index="1145"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682442934">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682442934</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1369147192942</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1156"/>
+</start>
+<end>
+<singlePosition index="1158"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682463546">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682463546</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1370348217564</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">GENE</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1165"/>
+</start>
+<end>
+<singlePosition index="1181"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682488490">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682488490</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1369147200071</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1182"/>
+</start>
+<end>
+<singlePosition index="1184"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682568213">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682568213</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1369147255294</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1209"/>
+</start>
+<end>
+<singlePosition index="1217"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682603896">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682603896</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826398674</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1454"/>
+</start>
+<end>
+<singlePosition index="1466"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343683423410">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343683423410</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343683436621</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">LOC</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">UNK</feature>
+<feature name="NB">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1511"/>
+</start>
+<end>
+<singlePosition index="1519"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343683447307">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343683447307</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826462159</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">ORG</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1538"/>
+</start>
+<end>
+<singlePosition index="1546"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343683461261">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343683461261</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1369147426458</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">GENE</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1558"/>
+</start>
+<end>
+<singlePosition index="1568"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343683482580">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343683482580</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343683495035</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">GENE</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">UNK</feature>
+<feature name="NB">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1590"/>
+</start>
+<end>
+<singlePosition index="1592"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343683511818">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343683511818</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826508397</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1613"/>
+</start>
+<end>
+<singlePosition index="1625"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343683584976">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343683584976</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343683595518</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1626"/>
+</start>
+<end>
+<singlePosition index="1629"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343683607650">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343683607650</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1370348541457</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1630"/>
+</start>
+<end>
+<singlePosition index="1634"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343683656809">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343683656809</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343683665795</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">AMOUNT</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1641"/>
+</start>
+<end>
+<singlePosition index="1668"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343683672634">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343683672634</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1369147458216</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">GENE</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1671"/>
+</start>
+<end>
+<singlePosition index="1678"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343683689287">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343683689287</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343683695223</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1681"/>
+</start>
+<end>
+<singlePosition index="1684"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343683708693">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343683708693</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1370348572457</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1685"/>
+</start>
+<end>
+<singlePosition index="1689"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343683745849">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343683745849</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826704848</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1719"/>
+</start>
+<end>
+<singlePosition index="1745"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343683760908">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343683760908</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826712775</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">ORG</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1758"/>
+</start>
+<end>
+<singlePosition index="1760"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343683794285">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343683794285</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343683803590</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1763"/>
+</start>
+<end>
+<singlePosition index="1775"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343683816951">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343683816951</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1370348603654</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1800"/>
+</start>
+<end>
+<singlePosition index="1804"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343683859387">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343683859387</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343683870936</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1824"/>
+</start>
+<end>
+<singlePosition index="1841"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343683880321">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343683880321</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826744186</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1867"/>
+</start>
+<end>
+<singlePosition index="1874"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343683892850">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343683892850</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1370348698017</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1899"/>
+</start>
+<end>
+<singlePosition index="1903"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684043232">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684043232</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343684048996</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1926"/>
+</start>
+<end>
+<singlePosition index="1939"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684071264">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684071264</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1370348701519</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1951"/>
+</start>
+<end>
+<singlePosition index="1955"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684091108">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684091108</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1370348713988</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2086"/>
+</start>
+<end>
+<singlePosition index="2090"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684105088">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684105088</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343684145649</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2096"/>
+</start>
+<end>
+<singlePosition index="2110"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684152055">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684152055</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343684162945</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2111"/>
+</start>
+<end>
+<singlePosition index="2124"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684181652">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684181652</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343684216399</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2151"/>
+</start>
+<end>
+<singlePosition index="2173"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684251908">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684251908</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343684257166</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2194"/>
+</start>
+<end>
+<singlePosition index="2203"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684269128">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684269128</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1370348717902</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2211"/>
+</start>
+<end>
+<singlePosition index="2215"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684382847">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684382847</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1370348704174</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1972"/>
+</start>
+<end>
+<singlePosition index="1976"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684395306">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684395306</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826796524</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1982"/>
+</start>
+<end>
+<singlePosition index="2014"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684408994">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684408994</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1370348707733</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2024"/>
+</start>
+<end>
+<singlePosition index="2028"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684438679">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684438679</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343684454900</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2049"/>
+</start>
+<end>
+<singlePosition index="2061"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684459156">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684459156</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1370348710959</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2067"/>
+</start>
+<end>
+<singlePosition index="2071"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684483125">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684483125</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1369147595837</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">GENE</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2224"/>
+</start>
+<end>
+<singlePosition index="2248"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684499366">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684499366</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1370348720870</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2249"/>
+</start>
+<end>
+<singlePosition index="2253"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684550348">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684550348</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1369147612200</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">GENE</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2292"/>
+</start>
+<end>
+<singlePosition index="2310"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684565727">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684565727</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1369147617273</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">GENE</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2315"/>
+</start>
+<end>
+<singlePosition index="2317"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684585389">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684585389</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1369147623642</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">GENE</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2328"/>
+</start>
+<end>
+<singlePosition index="2343"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684616792">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684616792</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1369147627437</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">GENE</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2371"/>
+</start>
+<end>
+<singlePosition index="2386"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684646489">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684646489</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1369147633489</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2763"/>
+</start>
+<end>
+<singlePosition index="2778"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684669347">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684669347</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826958020</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">GENE</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">EXPL</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">UNK</feature>
+<feature name="NB">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2788"/>
+</start>
+<end>
+<singlePosition index="2790"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684687757">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684687757</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826962533</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">ORG</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2806"/>
+</start>
+<end>
+<singlePosition index="2814"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684730281">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684730281</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826968365</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">PERS</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2831"/>
+</start>
+<end>
+<singlePosition index="2835"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684740219">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684740219</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343684746264</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2845"/>
+</start>
+<end>
+<singlePosition index="2861"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684750782">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684750782</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826983698</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">PERS</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2868"/>
+</start>
+<end>
+<singlePosition index="2872"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684770603">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684770603</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826990554</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2888"/>
+</start>
+<end>
+<singlePosition index="2906"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684840161">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684840161</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826998588</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2930"/>
+</start>
+<end>
+<singlePosition index="2934"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684858261">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684858261</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343827004562</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">GENE</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">EXPL</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">UNK</feature>
+<feature name="NB">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3164"/>
+</start>
+<end>
+<singlePosition index="3166"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684870091">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684870091</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343827474841</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3177"/>
+</start>
+<end>
+<singlePosition index="3185"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684883635">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684883635</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343684885866</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">PERS</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3464"/>
+</start>
+<end>
+<singlePosition index="3466"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684893143">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684893143</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343684896109</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">PERS</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3589"/>
+</start>
+<end>
+<singlePosition index="3593"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684900733">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684900733</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1370348496897</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3616"/>
+</start>
+<end>
+<singlePosition index="3627"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684912409">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684912409</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343827028803</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">PERS</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3729"/>
+</start>
+<end>
+<singlePosition index="3733"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684920495">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684920495</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1370348505048</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">ORG</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3743"/>
+</start>
+<end>
+<singlePosition index="3747"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684953505">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684953505</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343684955749</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">PERS</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3972"/>
+</start>
+<end>
+<singlePosition index="3974"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684959173">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684959173</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343827040403</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">PERS</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="3975"/>
+</start>
+<end>
+<singlePosition index="3979"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684968596">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684968596</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343684970865</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">PERS</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="4078"/>
+</start>
+<end>
+<singlePosition index="4080"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684974835">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684974835</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343684977456</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">PERS</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="4081"/>
+</start>
+<end>
+<singlePosition index="4085"/>
+</end>
+</positioning>
+</unit>
+<unit id="jmuzerelle_1343826484204">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1343826484204</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826492801</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="NEW">NO</feature>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1577"/>
+</start>
+<end>
+<singlePosition index="1586"/>
+</end>
+</positioning>
+</unit>
+<unit id="jmuzerelle_1343826749337">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1343826749337</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826754597</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="NEW">YES</feature>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1875"/>
+</start>
+<end>
+<singlePosition index="1884"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684222764">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684222764</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826870618</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2178"/>
+</start>
+<end>
+<singlePosition index="2203"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682384199">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682384199</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826282053</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1123"/>
+</start>
+<end>
+<singlePosition index="1145"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682185573">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682185573</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343682194869</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="698"/>
+</start>
+<end>
+<singlePosition index="718"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682218001">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682218001</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826208481</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="722"/>
+</start>
+<end>
+<singlePosition index="739"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682556418">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682556418</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1369147247360</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1201"/>
+</start>
+<end>
+<singlePosition index="1217"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682589128">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682589128</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343682597812</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1438"/>
+</start>
+<end>
+<singlePosition index="1466"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343683346412">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343683346412</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1369147377204</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1480"/>
+</start>
+<end>
+<singlePosition index="1519"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684170398">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684170398</creation-date>
+<lastModifier>adrouin</lastModifier>
+<lastModificationDate>1343684177296</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2133"/>
+</start>
+<end>
+<singlePosition index="2173"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684419354">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684419354</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1370348400282</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2042"/>
+</start>
+<end>
+<singlePosition index="2061"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343684530249">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343684530249</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1369147606711</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="2267"/>
+</start>
+<end>
+<singlePosition index="2317"/>
+</end>
+</positioning>
+</unit>
+<unit id="adrouin_1343682169711">
+<metadata>
+<author>adrouin</author>
+<creation-date>1343682169711</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1343826181037</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="677"/>
+</start>
+<end>
+<singlePosition index="739"/>
+</end>
+</positioning>
+</unit>
+<unit id="jmuzerelle_1369147166137">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1369147166137</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1369147169972</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_DEM</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1146"/>
+</start>
+<end>
+<singlePosition index="1147"/>
+</end>
+</positioning>
+</unit>
+<unit id="jmuzerelle_1369147383820">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1369147383820</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1369147402954</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">YES</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">YES</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1491"/>
+</start>
+<end>
+<singlePosition index="1519"/>
+</end>
+</positioning>
+</unit>
+<unit id="jmuzerelle_1369147434093">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1369147434093</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1369147437844</lastModificationDate>
+</metadata>
+<characterisation>
+<type>PR</type>
+<featureSet>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="NEW">NO</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">INDEF</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">M</feature>
+<feature name="NB">PL</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1587"/>
+</start>
+<end>
+<singlePosition index="1589"/>
+</end>
+</positioning>
+</unit>
+<unit id="jmuzerelle_1370004329621">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370004329621</creation-date>
+<lastModifier>jmuzerelle</lastModifier>
+<lastModificationDate>1370004339035</lastModificationDate>
+</metadata>
+<characterisation>
+<type>N</type>
+<featureSet>
+<feature name="NEW">NO</feature>
+<feature name="GEN_REF">SPEC</feature>
+<feature name="EN">NO</feature>
+<feature name="DEF">DEF_SPLE</feature>
+<feature name="GP">NO</feature>
+<feature name="GENRE">F</feature>
+<feature name="NB">SG</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<start>
+<singlePosition index="1547"/>
+</start>
+<end>
+<singlePosition index="1557"/>
+</end>
+</positioning>
+</unit>
+<relation id="jmuzerelle_1370532285613">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532285613</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>DIRECTE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343682363577"/>
+<term id="adrouin_1343682353401"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532288436">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532288436</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>INDIRECTE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343682384199"/>
+<term id="adrouin_1343682370475"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532291977">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532291977</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343682300386"/>
+<term id="adrouin_1343682405022"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532294341">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532294341</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="jmuzerelle_1369147166137"/>
+<term id="adrouin_1343682370475"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532298972">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532298972</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343682442934"/>
+<term id="adrouin_1343682405022"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532303498">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532303498</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343682488490"/>
+<term id="adrouin_1343682405022"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532315146">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532315146</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>DIRECTE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343683447307"/>
+<term id="adrouin_1343682405022"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532317588">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532317588</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ASSOC</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="jmuzerelle_1370004329621"/>
+<term id="adrouin_1343683346412"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532322217">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532322217</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>DIRECTE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343683511818"/>
+<term id="adrouin_1343682568213"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532324122">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532324122</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343683584976"/>
+<term id="adrouin_1343683511818"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532327708">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532327708</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343683607650"/>
+<term id="adrouin_1343682169711"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532333400">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532333400</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343683689287"/>
+<term id="adrouin_1343683511818"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532335747">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532335747</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343683708693"/>
+<term id="adrouin_1343683607650"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532340968">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532340968</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>DIRECTE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343683745849"/>
+<term id="adrouin_1343682589128"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532344091">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532344091</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343683760908"/>
+<term id="adrouin_1343682405022"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532347127">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532347127</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343683816951"/>
+<term id="adrouin_1343683607650"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532351243">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532351243</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>DIRECTE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343683859387"/>
+<term id="adrouin_1343682169711"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532361194">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532361194</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343683892850"/>
+<term id="adrouin_1343683607650"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532364213">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532364213</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>DIRECTE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343684043232"/>
+<term id="adrouin_1343682603896"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532368226">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532368226</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343684071264"/>
+<term id="adrouin_1343683607650"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532370970">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532370970</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343684382847"/>
+<term id="adrouin_1343683607650"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532374498">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532374498</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343684408994"/>
+<term id="adrouin_1343683607650"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532378436">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532378436</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343684459156"/>
+<term id="adrouin_1343683607650"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532381023">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532381023</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343684091108"/>
+<term id="adrouin_1343683607650"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532383992">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532383992</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ASSOC</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343684170398"/>
+<term id="adrouin_1343684105088"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532386540">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532386540</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>DIRECTE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343684251908"/>
+<term id="adrouin_1343684181652"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532389276">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532389276</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343684269128"/>
+<term id="adrouin_1343683607650"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532393138">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532393138</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343684499366"/>
+<term id="adrouin_1343683607650"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532401110">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532401110</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ASSOC</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343684585389"/>
+<term id="adrouin_1343684530249"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532402412">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532402412</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ASSOC</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343684616792"/>
+<term id="adrouin_1343684530249"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532408172">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532408172</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>DIRECTE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343684687757"/>
+<term id="adrouin_1343682405022"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532413778">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532413778</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343684750782"/>
+<term id="adrouin_1343683607650"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532417660">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532417660</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ASSOC</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343684770603"/>
+<term id="jmuzerelle_1343826749337"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532423154">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532423154</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343684840161"/>
+<term id="adrouin_1343683607650"/>
+</positioning>
+</relation>
+<relation id="jmuzerelle_1370532438398">
+<metadata>
+<author>jmuzerelle</author>
+<creation-date>1370532438398</creation-date>
+<lastModifier>n/a</lastModifier>
+<lastModificationDate>0</lastModificationDate>
+</metadata>
+<characterisation>
+<type>ANAPHORE</type>
+<featureSet>
+<feature name="NOMBRE">UNK</feature>
+<feature name="GENRE">UNK</feature>
+</featureSet>
+</characterisation>
+<positioning>
+<term id="adrouin_1343684920495"/>
+<term id="adrouin_1343682405022"/>
+</positioning>
+</relation>
+</annotations>
