@@ -544,7 +544,7 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,
 }
 
 
-// Get date actuel, format is YYYY-MM-DD.HH:mm:ss
+// Get date actuel, format: YYYY-MM-DD.HH:mm:ss
 const std::string currentDateTime() {
     time_t now = time(0);
     struct tm tstruct;
@@ -557,8 +557,24 @@ const std::string currentDateTime() {
 
 int fichierSortie (string choixMetrique, int nba, std::map<std::pair<int, float>, std::vector<float>> mapResultat)
 {
+
+    int numeroEperience = 0;
+    ifstream file("resultats/numeroExperience.txt");
+    if (file){
+        string ligne;
+        getline(file,ligne);
+        numeroEperience = ((int)ligne[0])-48;
+    }
+    file.close();
+    ofstream fileNumIncrement;
+    fileNumIncrement.open ("resultats/numeroExperience.txt");
+    fileNumIncrement << (numeroEperience+1);
+    fileNumIncrement.close();
+
+    std::ostringstream ss;
+    ss << numeroEperience;
     ofstream myfile;
-    myfile.open ("resultats/example.txt");
+    myfile.open ("resultats/test"+ss.str()+".txt");
 
     myfile << currentDateTime() << endl << endl;
 
