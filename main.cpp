@@ -11,6 +11,8 @@ using namespace std;
 #include <sstream>
 #include <iomanip>
 #include <map>
+#include <ctime>
+#include <time.h>
 
 const int Max_obs=3000;//nb maximal d'observables
 const int Max_classes=10;//nb maximal de classes
@@ -542,15 +544,58 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,
 }
 
 
+// Get date actuel, format is YYYY-MM-DD.HH:mm:ss
+const std::string currentDateTime() {
+    time_t now = time(0);
+    struct tm tstruct;
+    char buf[80];
+    tstruct = *localtime(&now);
+    strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
+
+    return buf;
+}
+
+int fichierSortie (string choixMetrique, int nba, std::map<std::pair<int, float>, std::vector<float>> mapResultat)
+{
+    ofstream myfile;
+    myfile.open ("resultats/example.txt");
+
+    myfile << currentDateTime() << endl << endl;
+
+    for (std::map<std::pair<int, float>, std::vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
+        std::pair<int, float> m = it->first;
+        string s;
+        if(choixMetrique.compare("k")==0){
+            s = "kappa";
+        }else{
+            s = "alpha";
+        }
+        myfile << m.first <<" classes, "<< s << "=" << fixed << setprecision (3) << m.second << "   ";
+        for(int i=0; i<nba-1; i++){
+        std::vector<float> valeurs = it->second;
+        myfile << nba-i << ": " << valeurs[i] <<"%   ";
+        }
+        myfile << endl;
+        myfile << endl;
+    }
+    myfile.close();
+    return 0;
+}
+
+
 int main() {
   // a priori 9 experts, le nb d'enonces se déduit du fichier
   int T[Max_annot][Max_obs],T1[Max_obs][Max_annot];
   float C[Max_classes][Max_classes];
   int choix;
-  cout << "Choix ? (O pour auto, 1-6 pour les exemples, 301-312 pour emotions/opinions avec 3 classes, 501-512 avec 5 classes)";
+  cout << "Choix ? (0 pour auto, 1-6 pour les exemples, 301-312 pour emotions/opinions avec 3 classes, 501-512 avec 5 classes)";
   cin >> choix ;
   int nba,nbobs,nbc;//nb d'annotateurs, d'observables, de classes
   float nb;//observation réellement prises en compte
+
+  string choixMetrique;
+  cout << "Choix ? (a pour alpha, k pour kappa)";
+  cin >> choixMetrique;
 
   std::map<std::pair<int, float>, std::vector<float>> mapResultat;
 
@@ -578,8 +623,13 @@ int main() {
       int resultat = map.at(0.5f).size();
       cout << "test: " << resultat << " ";*/
       //cout << "alpha=" << alpha(nb,C,nbc);
-      float a = alpha(nb,C,nbc);
-      std::pair<int, float> pairNbcAlpha(nbc, a);
+      float metrique;
+      if(choixMetrique.compare("k")==0){
+          metrique = kappaAP(nbobs, nbc, nba, T1);
+      }else{
+          metrique = alpha(nb,C,nbc);
+      }
+      std::pair<int, float> pairNbcAlpha(nbc, metrique);
       //cout << " pairNbcAlpha: " << pairNbcAlpha.first << "/" << pairNbcAlpha.second;
       //cout<< "combinaisons de n-p annotateurs :" <<endl;
       calculDifference(T1,nbobs,nba,C,nbc,nb, &vPourcentageErreur);
@@ -587,8 +637,14 @@ int main() {
       //cout << " taille: " << mapResultat.size() << endl;
     }
     for (std::map<std::pair<int, float>, std::vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
-        std::pair<int, float> alp = it->first;
-        cout << alp.first <<" classes, alpha=" << fixed << setprecision (3) << alp.second << "   ";
+        std::pair<int, float> m = it->first;
+        string s;
+        if(choixMetrique.compare("k")==0){
+            s = "kappa";
+        }else{
+            s = "alpha";
+        }
+        cout << m.first <<" classes, "<< s << "=" << fixed << setprecision (3) << m.second << "   ";
         for(int i=0; i<nba-1; i++){
         std::vector<float> valeurs = it->second;
         cout << nba-i << ": " << valeurs[i] <<"%   ";
@@ -596,7 +652,7 @@ int main() {
         cout << endl;
         cout << endl;
     }
-
+    fichierSortie(choixMetrique, nba, mapResultat);
   }else{
 
       choixTableau(choix,T,nbobs,nba,nbc); //on rempli tous les parametres par les valeurs lu dans le fichier
