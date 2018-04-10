@@ -96,6 +96,24 @@ void recupDataAnnotateur(string cheminDossier, int T[Max_annot][Max_obs], int nu
     }
 }
 
+void writeTabCsv(int nba, int nbobs, int nbc, int T[Max_annot][Max_obs]){
+
+    ofstream file;
+    file.open("TableauSimilarite.csv");
+
+    file << "Nbannotateurs=" << nba << endl;
+    file << "Nbclasses=" << nbc << endl;
+    file << "Nbobservables=" << nbobs << endl;
+
+    for(int i=0; i<nba; i++){
+        for(int j=0; j<nbobs; j++){
+            file << T[i][j] << "\t";
+        }
+        file << endl;
+    }
+
+
+}
 
 
 int main()
@@ -118,6 +136,8 @@ int main()
         }
         cout << endl;
     }
+
+    writeTabCsv(nba, nbobs, nbc, T);
 
     /*int indexObs = 0;
     std::vector<std::string> f;
