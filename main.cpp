@@ -184,7 +184,13 @@ float De(float nb,float C[Max_classes][Max_classes],int nbclasses, int pondere) 
   int i,j;
    for (i=0;i<nbclasses;i++)
     for (j=0;j<nbclasses;j++)
-      if (i!=j) res=res+delta_car(i,j,nbclasses)*n_calc(C,i,nbclasses)*n_calc(C,j,nbclasses);
+      if (i!=j){
+          if(pondere == 0){
+                res=res+delta_car(i,j,nbclasses)*n_calc(C,i,nbclasses)*n_calc(C,j,nbclasses);
+            }else{
+                res=res+delta_carEuclidienne(i,j,nbclasses)*n_calc(C,i,nbclasses)*n_calc(C,j,nbclasses);
+            }
+      }
    res=res/(nb*(nb-1));
    //cout << "De=" << res << endl;
    return res;
@@ -322,10 +328,10 @@ void lire(string nomfich,int T[Max_annot][Max_obs],int & Nbobs,int & Nba,int & N
 void choixTableau(int choix,int T[Max_annot][Max_obs],int & Nbobs,int & Nba,int & Nbc) {
   std::ostringstream ss;
   if(choix < 10){
-        Nba=2;Nbobs=12;
-        ss << choix;
-        lire("Exemple/Tableau" + ss.str() + ".csv",T,Nbobs,Nba,Nbc);
-    }
+    Nba=2;Nbobs=12;
+    ss << choix;
+    lire("Exemple/Tableau" + ss.str() + ".csv",T,Nbobs,Nba,Nbc);
+  }
   else if (choix>300 && choix<304) {
     Nba=2;Nbobs=12;
     ss << (choix-301);
@@ -365,7 +371,11 @@ void choixTableau(int choix,int T[Max_annot][Max_obs],int & Nbobs,int & Nba,int 
     Nba=2;Nbobs=12;
     ss << (choix-510);
     lire("classe5/TableauOpinionContexte" + ss.str() +".csv",T,Nbobs,Nba,Nbc);
+  }else if (choix==513) {
+    Nba=2;Nbobs=12;
+    lire("classe5/TableauTypageRelation.csv",T,Nbobs,Nba,Nbc);
   }
+
 }
 
 void afficheTableauLu(int T[Max_annot][Max_obs],int Nbobs,int Nba) {
@@ -521,6 +531,10 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,
     int erreurVoteMaj[Max_annot];
     int nbCombinaison[Max_annot];
     int voteMajReference[Max_obs];
+    for(int i=0; i<nba+1; i++){
+        erreurVoteMaj[i]=0;
+        nbCombinaison[i]=0;
+    }
 
     for(int p=nba; p>1; p--){
         //cout << p << " annotateurs / " << nba << endl;
@@ -536,14 +550,14 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,
     }
     //cout << "poucentage d'erreur :  ";
     for(int i=nba; i>1; i--){
-        //cout << i << ": " << erreurVoteMaj[i] << "/" << nbCombinaison[i] << "   ";
+        cout << i << ": " << erreurVoteMaj[i] << "/" << nbCombinaison[i] << "*" << nblignes << "    ";
         //cout << i << ": " << ((float) erreurVoteMaj[i]/(float) nbCombinaison[i])*100 << "%   ";
         float pourcentage = ((float) erreurVoteMaj[i]/(float) (nbCombinaison[i]*nblignes))*100;
         vPourcentageErreur->push_back(pourcentage);
         //cout << i << ": " << fixed << setprecision (3) << pourcentage << "%   ";
         //TPourcentageErreur[i] = pourcentage;
     }
-    //cout << endl;
+    cout << endl;
     //return vAlpha.at(0);
 }
 
@@ -610,13 +624,13 @@ int main() {
   int T[Max_annot][Max_obs],T1[Max_obs][Max_annot];
   float C[Max_classes][Max_classes];
   int choix;
-  cout << "Choix ? (0 pour auto, 1-6 pour les exemples, 301-312 pour emotions/opinions avec 3 classes, 501-512 avec 5 classes)";
+  cout << "Choix ? (0 pour auto, 1-6 pour les exemples, 301-312 pour emotions/opinions avec 3 classes, 501-512 avec 5 classes, 513 pour coreference)";
   cin >> choix ;
   int nba,nbobs,nbc;//nb d'annotateurs, d'observables, de classes
   float nb;//observation réellement prises en compte
 
   string choixMetrique;
-  cout << "Choix ? (a pour alpha, k pour kappa, ap pour alpha pondéré)";
+  cout << "Choix ? (a pour alpha, k pour kappa, ap pour alpha pondere)";
   cin >> choixMetrique;
 
   std::map<std::pair<int, float>, std::vector<float>> mapResultat;
@@ -624,7 +638,7 @@ int main() {
   if(choix==0){
     choix = 300;
     //cout << "3 classes :" << endl;
-    for(int i=0; i<24; i++){
+    for(int i=0; i<25; i++){
       if(i == 12){
         choix=500;
         cout << endl;
@@ -666,7 +680,7 @@ int main() {
         if(choixMetrique.compare("k")==0){
             s = "kappa";
         }else if(choixMetrique.compare("ap")==0){
-            s = "alpha(pondéré)";
+            s = "alpha(pondere)";
         }else{
             s = "alpha";
         }
@@ -690,22 +704,28 @@ int main() {
       affiche_coincidences(C,nbc);
       cout << "nb d'observations prises en compte="<<nb <<endl;
 
+      float metrique;
       if(choixMetrique.compare("k")==0){
-          cout << "kappa=" << kappaAP(nbobs, nbc, nba, T1)<< endl;
+          metrique = kappaAP(nbobs, nbc, nba, T1);
+          cout << "kappa= ";
       }else if(choixMetrique.compare("ap")==0){
-          cout << "alpha(pondéré)=" << alpha(nb,C,nbc, 1)<< endl;
+          metrique = alpha(nb,C,nbc, 1);
+          cout << "alpha(pondere)= ";
       }else{
-          cout << "alpha=" << alpha(nb,C,nbc, 0)<< endl;
+          metrique = alpha(nb,C,nbc, 0);
+          cout << "alpha= ";
       }
+
+      cout << metrique << endl;
 
       cout<< "combinaisons de n-p annotateurs :" <<endl;
 
       std::vector<float> vPourcentageErreur;
       calculDifference(T1,nbobs,nba,C,nbc,nb, &vPourcentageErreur);
-      std::pair<int, float> pairNbcAlpha(nbc, alpha(nb,C,nbc, 0));
+      std::pair<int, float> pairNbcAlpha(nbc, metrique);
       mapResultat.insert(std::pair<std::pair<int, float>, std::vector<float>>(pairNbcAlpha, vPourcentageErreur));
       for(int i=0; i<nba-1; i++){
-        cout << i << ": " << mapResultat.at(pairNbcAlpha)[i] <<"%   ";
+        cout << nba-i << ": " << mapResultat.at(pairNbcAlpha)[i] <<"%   ";
       }
   }
   return 0;

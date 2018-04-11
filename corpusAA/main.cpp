@@ -13,7 +13,7 @@ const int Max_obs=3000;//nb maximal d'observables
 const int Max_classes=10;//nb maximal de classes
 const int Max_annot=30;//nb maximal d'annotateurs
 
-void lire(string nomfich, int T[Max_annot][Max_obs], int an, int *indexObsP){
+void lire(string nomfich, string T[Max_annot][Max_obs], int an, int *indexObsP){
     const char * nom_fichier=nomfich.c_str();
     ifstream file(nom_fichier);
     if (!file){
@@ -39,19 +39,19 @@ void lire(string nomfich, int T[Max_annot][Max_obs], int an, int *indexObsP){
                 }
                 string reponse = ligne.substr(6, pos-6);
                 //directe = 0, indirecte = 1, assoc = 2, assoc pronom = 3, anaphore = 4
-                int classe;
+                string classe;
                 if(reponse.find("DIRECTE")==0){
-                    classe = 0;
+                    classe = "0";
                 }else if(reponse.find("INDIRECTE")==0){
-                    classe = 1;
+                    classe = "1";
                 }else if(reponse.find("ASSOC_PRONOM")==0){
-                    classe = 3;
+                    classe = "3";
                 }else if(reponse.find("ASSOC")==0){
-                    classe = 2;
+                    classe = "2";
                 }else if(reponse.find("ANAPHORE")==0){
-                    classe = 4;
+                    classe = "4";
                 }else{
-                    classe = -1;
+                    classe = ".";
                 }
                 /*cout << ligne.substr(6, pos-6) << " ";
                 cout << indexObs << endl;*/
@@ -82,7 +82,7 @@ std::vector<std::string> open(std::string path = ".") {
 }
 
 
-void recupDataAnnotateur(string cheminDossier, int T[Max_annot][Max_obs], int numAnnot){
+void recupDataAnnotateur(string cheminDossier, string T[Max_annot][Max_obs], int numAnnot){
     int indexObs = 0;
     std::vector<std::string> f;
 
@@ -96,10 +96,10 @@ void recupDataAnnotateur(string cheminDossier, int T[Max_annot][Max_obs], int nu
     }
 }
 
-void writeTabCsv(int nba, int nbobs, int nbc, int T[Max_annot][Max_obs]){
+void writeTabCsv(int nba, int nbobs, int nbc, string T[Max_annot][Max_obs]){
 
     ofstream file;
-    file.open("TableauSimilarite.csv");
+    file.open("TableauTypageRelation.csv");
 
     file << "Nbannotateurs=" << nba << endl;
     file << "Nbclasses=" << nbc << endl;
@@ -119,7 +119,7 @@ void writeTabCsv(int nba, int nbobs, int nbc, int T[Max_annot][Max_obs]){
 int main()
 {
     int nba=9, nbobs=384, nbc=5;
-    int T[Max_annot][Max_obs];
+    string T[Max_annot][Max_obs];
     recupDataAnnotateur("corpusTypageRelations/AL", T, 0);
     recupDataAnnotateur("corpusTypageRelations/AS", T, 1);
     recupDataAnnotateur("corpusTypageRelations/DM", T, 2);
