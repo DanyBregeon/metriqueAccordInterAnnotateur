@@ -13,7 +13,7 @@ const int Max_obs=3000;//nb maximal d'observables
 const int Max_classes=10;//nb maximal de classes
 const int Max_annot=30;//nb maximal d'annotateurs
 
-void lire(string nomfich, string T[Max_annot][Max_obs], int an, int *indexObsP){
+void lire(string nomfich, string T[Max_annot][Max_obs], int an, int &indexObs){
     const char * nom_fichier=nomfich.c_str();
     ifstream file(nom_fichier);
     if (!file){
@@ -21,7 +21,7 @@ void lire(string nomfich, string T[Max_annot][Max_obs], int an, int *indexObsP){
     }else{
         string ligne;
         int lg;
-        int indexObs = *indexObsP;
+        //int indexObs = *indexObsP;
         bool relation = false;
         while ((!file.eof())){
             getline(file,ligne);
@@ -59,7 +59,8 @@ void lire(string nomfich, string T[Max_annot][Max_obs], int an, int *indexObsP){
                 indexObs++;
             }
         }
-        *indexObsP = indexObs;
+        //*indexObsP = indexObs;
+        cout << indexObs << endl;
     }
     file.close();
 }
@@ -91,7 +92,7 @@ void recupDataAnnotateur(string cheminDossier, string T[Max_annot][Max_obs], int
     for(int i=0; i<f.size(); i++){
         //si le fichier commence par une lettre majuscule on le lit
         if(f[i].at(0)>64 && f[i].at(0)<91){
-            lire(cheminDossier + "/" + f[i], T, numAnnot, &indexObs);
+            lire(cheminDossier + "/" + f[i], T, numAnnot, indexObs);
         }
     }
 }

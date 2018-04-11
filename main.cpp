@@ -1,5 +1,4 @@
 #include <iostream>
-using namespace std;
 #include <cstring>
 #include <cstdlib>
 #include <ctime>
@@ -11,6 +10,8 @@ using namespace std;
 #include <iomanip>
 #include <map>
 #include <time.h>
+
+using namespace std;
 
 const int Max_obs=3000;//nb maximal d'observables
 const int Max_classes=10;//nb maximal de classes
@@ -394,6 +395,9 @@ void transposeT(int T[Max_annot][Max_obs],int TT[Max_obs][Max_annot],int nbl,int
 }
 
 
+// IV - génère toutes les annotations par vote majoritaires pour toutes les combinaisons de (n-1),
+//      (n-2), (n-3) ... annotateurs, et donne les % de modifications par rapport à la référence
+
 //calcul du vote majoritaire et le compare avec celui de référence
 void voteMajoritaire(int T[Max_obs][Max_annot], int nblignes, int nbc, int n,
                      int erreurVoteMaj[Max_annot], int voteMajReference[Max_obs], int nba){
@@ -403,6 +407,10 @@ void voteMajoritaire(int T[Max_obs][Max_annot], int nblignes, int nbc, int n,
     int tNbOcc[nbc];
     //la moyenne des classes pour chaque observable
     float tMoyenne[nblignes];
+
+    for(int i=0; i<nbc; i++){
+        tNbOcc[i]=0;
+    }
 
     for(int obs=0; obs<nblignes; obs++){
         float moyenne = 0;
@@ -486,7 +494,7 @@ void alphaCombinaison( int *p, int n, int T[Max_obs][Max_annot],int nblignes,int
     //vAlpha->push_back(a);
 }
 
-//trouve l'ensemble des combinaisons de p parmi n
+//trouve l'ensemble des combinaisons de p parmi n (de manière récursive)
 void combinaisons(int *ens, int *combinaison, int n, int p, int i, int t,
                   int T[Max_obs][Max_annot],int nblignes,int nba,
 		  float C[Max_classes][Max_classes],int nbc,float & nb, std::vector<float> *vAlpha,
@@ -503,7 +511,7 @@ void combinaisons(int *ens, int *combinaison, int n, int p, int i, int t,
     }
 }
 
-//fait la moyenne des alpha
+/*//fait la moyenne des alpha
 float moyenne(std::vector<float> *vAlpha){
     float total = 0;
     for(unsigned int i=0; i<vAlpha->size(); i++){
@@ -519,7 +527,7 @@ float ecart_type(std::vector<float> *vAlpha, float moy) {
         total += (vAlpha->at(i)-moy)*(vAlpha->at(i)-moy);
     }
     return sqrt(total/vAlpha->size());
-}
+}*/
 
 void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,
 		  float C[Max_classes][Max_classes],int nbc,float & nb, std::vector<float> *vPourcentageErreur){
@@ -527,10 +535,13 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,
     for(int i=0; i<nba; i++){
         ens[i] = i;
     }
-
+    //le nombre de votes majoritaires différent de la référence par nombre d'annotateurs
     int erreurVoteMaj[Max_annot];
+    //le nombre de combinaisons par nombre d'annotateurs
     int nbCombinaison[Max_annot];
+    //les votes majoritaires de la référence pour chaque observable
     int voteMajReference[Max_obs];
+
     for(int i=0; i<nba+1; i++){
         erreurVoteMaj[i]=0;
         nbCombinaison[i]=0;
@@ -561,8 +572,9 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,
     //return vAlpha.at(0);
 }
 
+// V - CREATION FICHIER DE SORTIE
 
-// Get date actuel, format: YYYY-MM-DD.HH:mm:ss
+// retourne la date actuelle, format: YYYY-MM-DD.HH:mm:ss
 const std::string currentDateTime() {
     time_t now = time(0);
     struct tm tstruct;
@@ -575,13 +587,17 @@ const std::string currentDateTime() {
 
 int fichierSortie (string choixMetrique, int nba, std::map<std::pair<int, float>, std::vector<float>> mapResultat)
 {
-
+    //lit le fichier numeroExperience.txt et incrémente son contenu pour savoir le numéro du test
     int numeroEperience = 0;
+    int tailleLigne = 0;
     ifstream file("resultats/numeroExperience.txt");
     if (file){
         string ligne;
         getline(file,ligne);
-        numeroEperience = ((int)ligne[0])-48;
+        tailleLigne = ligne.size();
+        for(int i=0; i<tailleLigne; i++){
+            numeroEperience = 10*numeroEperience + ((int)ligne[i])-48;
+        }
     }
     file.close();
     ofstream fileNumIncrement;
@@ -589,6 +605,7 @@ int fichierSortie (string choixMetrique, int nba, std::map<std::pair<int, float>
     fileNumIncrement << (numeroEperience+1);
     fileNumIncrement.close();
 
+    //création fichier de sortie
     std::ostringstream ss;
     ss << numeroEperience;
     ofstream myfile;
@@ -620,115 +637,112 @@ int fichierSortie (string choixMetrique, int nba, std::map<std::pair<int, float>
 
 
 int main() {
-  // a priori 9 experts, le nb d'enonces se déduit du fichier
-  int T[Max_annot][Max_obs],T1[Max_obs][Max_annot];
-  float C[Max_classes][Max_classes];
-  int choix;
-  cout << "Choix ? (0 pour auto, 1-6 pour les exemples, 301-312 pour emotions/opinions avec 3 classes, 501-512 avec 5 classes, 513 pour coreference)";
-  cin >> choix ;
-  int nba,nbobs,nbc;//nb d'annotateurs, d'observables, de classes
-  float nb;//observation réellement prises en compte
+    // a priori 9 experts, le nb d'enonces se déduit du fichier
+    int T[Max_annot][Max_obs],T1[Max_obs][Max_annot];
+    float C[Max_classes][Max_classes];
+    int choix;
+    cout << "Choix ? (0 pour auto, 1-6 pour les exemples, 301-312 pour emotions/opinions avec 3 classes, 501-512 avec 5 classes, 513 pour coreference)";
+    cin >> choix ;
+    int nba,nbobs,nbc;//nb d'annotateurs, d'observables, de classes
+    float nb;//observation réellement prises en compte
 
-  string choixMetrique;
-  cout << "Choix ? (a pour alpha, k pour kappa, ap pour alpha pondere)";
-  cin >> choixMetrique;
+    string choixMetrique;
+    cout << "Choix ? (a pour alpha, k pour kappa, ap pour alpha pondere)";
+    cin >> choixMetrique;
 
-  std::map<std::pair<int, float>, std::vector<float>> mapResultat;
+    //tableau final avec les pourcentages de différences de votes majoritaires par rapport à la référence (9 annotateurs)
+    //en fonction du nombre de classes et de la valeur de la métrique
+    std::map<std::pair<int, float>, std::vector<float>> mapResultat;
 
-  if(choix==0){
-    choix = 300;
-    //cout << "3 classes :" << endl;
-    for(int i=0; i<25; i++){
-      if(i == 12){
-        choix=500;
-        cout << endl;
-        //cout << "5 classes :" << endl;
-      }
-      choix++;
-      choixTableau(choix,T,nbobs,nba,nbc);
-      //afficheTableauLu(T,nbobs,nba);
-      transposeT(T,T1,nba,nbobs);
-      //cout << "Tableau des coincidences :\n";
-      coincidences(T1,nbobs,nba,C,nbc,nb);
-      //affiche_coincidences(C,nbc);
-      //cout << "nb d'observations prises en compte="<<nb <<endl;
-      std::vector<float> vPourcentageErreur;
-      /*test.push_back(2.3f);
-      test.push_back(3.0f);
-      map.insert(std::pair<float, std::vector<float>>(0.5f, test));
-      int resultat = map.at(0.5f).size();
-      cout << "test: " << resultat << " ";*/
-      //cout << "alpha=" << alpha(nb,C,nbc);
-      float metrique;
-      if(choixMetrique.compare("k")==0){
-          metrique = kappaAP(nbobs, nbc, nba, T1);
-      }else if(choixMetrique.compare("ap")==0){
-          metrique = alpha(nb,C,nbc, 1);
-      }else{
-          metrique = alpha(nb,C,nbc, 0);
-      }
-      std::pair<int, float> pairNbcAlpha(nbc, metrique);
-      //cout << " pairNbcAlpha: " << pairNbcAlpha.first << "/" << pairNbcAlpha.second;
-      //cout<< "combinaisons de n-p annotateurs :" <<endl;
-      calculDifference(T1,nbobs,nba,C,nbc,nb, &vPourcentageErreur);
-      mapResultat.insert(std::pair<std::pair<int, float>, std::vector<float>>(pairNbcAlpha, vPourcentageErreur));
-      //cout << " taille: " << mapResultat.size() << endl;
-    }
-    for (std::map<std::pair<int, float>, std::vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
-        std::pair<int, float> m = it->first;
-        string s;
+    //on fait tous les fichiers d'un coup
+    if(choix==0){
+        choix = 300;
+        for(int i=0; i<25; i++){
+            if(i == 12){
+                choix=500;
+                cout << endl;
+            }
+            choix++;
+            choixTableau(choix,T,nbobs,nba,nbc);
+            //afficheTableauLu(T,nbobs,nba);
+            transposeT(T,T1,nba,nbobs);
+            //cout << "Tableau des coincidences :\n";
+            coincidences(T1,nbobs,nba,C,nbc,nb);
+            //affiche_coincidences(C,nbc);
+            //cout << "nb d'observations prises en compte="<<nb <<endl;
+            std::vector<float> vPourcentageErreur;
+            //cout << "alpha=" << alpha(nb,C,nbc);
+            float metrique;
+            if(choixMetrique.compare("k")==0){
+                metrique = kappaAP(nbobs, nbc, nba, T1);
+            }else if(choixMetrique.compare("ap")==0){
+                metrique = alpha(nb,C,nbc, 1);
+            }else{
+                metrique = alpha(nb,C,nbc, 0);
+            }
+            std::pair<int, float> pairNbcAlpha(nbc, metrique);
+            //cout << " pairNbcAlpha: " << pairNbcAlpha.first << "/" << pairNbcAlpha.second;
+            //cout<< "combinaisons de n-p annotateurs :" <<endl;
+            calculDifference(T1,nbobs,nba,C,nbc,nb, &vPourcentageErreur);
+            mapResultat.insert(std::pair<std::pair<int, float>, std::vector<float>>(pairNbcAlpha, vPourcentageErreur));
+        }
+        //affichage résultats
+        for (std::map<std::pair<int, float>, std::vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
+            std::pair<int, float> m = it->first;
+            string s;
+            if(choixMetrique.compare("k")==0){
+                s = "kappa";
+            }else if(choixMetrique.compare("ap")==0){
+                s = "alpha(pondere)";
+            }else{
+                s = "alpha";
+            }
+            cout << m.first <<" classes, "<< s << "=" << fixed << setprecision (3) << m.second << "   ";
+            for(int i=0; i<nba-1; i++){
+            std::vector<float> valeurs = it->second;
+            cout << nba-i << ": " << valeurs[i] <<"%   ";
+            }
+            cout << endl;
+            cout << endl;
+        }
+        fichierSortie(choixMetrique, nba, mapResultat);
+    }else{
+
+        choixTableau(choix,T,nbobs,nba,nbc); //on rempli tous les parametres par les valeurs lu dans le fichier
+        afficheTableauLu(T,nbobs,nba); //on affiche le tableau d'annotations
+        //coincidences
+        transposeT(T,T1,nba,nbobs); //on inverse les i et j du tableau
+        cout << "Tableau des coincidences :\n";
+        coincidences(T1,nbobs,nba,C,nbc,nb);
+        affiche_coincidences(C,nbc);
+        cout << "nb d'observations prises en compte="<<nb <<endl;
+
+        float metrique;
         if(choixMetrique.compare("k")==0){
-            s = "kappa";
+            metrique = kappaAP(nbobs, nbc, nba, T1);
+            cout << "kappa= ";
         }else if(choixMetrique.compare("ap")==0){
-            s = "alpha(pondere)";
+            metrique = alpha(nb,C,nbc, 1);
+            cout << "alpha(pondere)= ";
         }else{
-            s = "alpha";
+            metrique = alpha(nb,C,nbc, 0);
+            cout << "alpha= ";
         }
-        cout << m.first <<" classes, "<< s << "=" << fixed << setprecision (3) << m.second << "   ";
+
+        cout << metrique << endl;
+
+        cout << "combinaisons de n-p annotateurs :" <<endl;
+
+        std::vector<float> vPourcentageErreur;
+        calculDifference(T1,nbobs,nba,C,nbc,nb, &vPourcentageErreur);
+        std::pair<int, float> pairNbcAlpha(nbc, metrique);
+        mapResultat.insert(std::pair<std::pair<int, float>, std::vector<float>>(pairNbcAlpha, vPourcentageErreur));
+        //affichage résultats
         for(int i=0; i<nba-1; i++){
-        std::vector<float> valeurs = it->second;
-        cout << nba-i << ": " << valeurs[i] <<"%   ";
+            cout << nba-i << ": " << mapResultat.at(pairNbcAlpha)[i] <<"%   ";
         }
-        cout << endl;
-        cout << endl;
     }
-    fichierSortie(choixMetrique, nba, mapResultat);
-  }else{
-
-      choixTableau(choix,T,nbobs,nba,nbc); //on rempli tous les parametres par les valeurs lu dans le fichier
-      afficheTableauLu(T,nbobs,nba); //on affiche le tableau d'annotations
-      //coincidences
-      transposeT(T,T1,nba,nbobs); //on inverse les i et j du tableau
-      cout << "Tableau des coincidences :\n";
-      coincidences(T1,nbobs,nba,C,nbc,nb);
-      affiche_coincidences(C,nbc);
-      cout << "nb d'observations prises en compte="<<nb <<endl;
-
-      float metrique;
-      if(choixMetrique.compare("k")==0){
-          metrique = kappaAP(nbobs, nbc, nba, T1);
-          cout << "kappa= ";
-      }else if(choixMetrique.compare("ap")==0){
-          metrique = alpha(nb,C,nbc, 1);
-          cout << "alpha(pondere)= ";
-      }else{
-          metrique = alpha(nb,C,nbc, 0);
-          cout << "alpha= ";
-      }
-
-      cout << metrique << endl;
-
-      cout<< "combinaisons de n-p annotateurs :" <<endl;
-
-      std::vector<float> vPourcentageErreur;
-      calculDifference(T1,nbobs,nba,C,nbc,nb, &vPourcentageErreur);
-      std::pair<int, float> pairNbcAlpha(nbc, metrique);
-      mapResultat.insert(std::pair<std::pair<int, float>, std::vector<float>>(pairNbcAlpha, vPourcentageErreur));
-      for(int i=0; i<nba-1; i++){
-        cout << nba-i << ": " << mapResultat.at(pairNbcAlpha)[i] <<"%   ";
-      }
-  }
-  return 0;
+    return 0;
 }
 
 
