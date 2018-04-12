@@ -562,7 +562,7 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,
     }
     //cout << "poucentage d'erreur :  ";
     for(int i=nba; i>1; i--){
-        cout << i << ": " << erreurVoteMaj[i] << "/" << nbCombinaison[i] << "*" << nblignes << "    ";
+        cout << i << ": " << erreurVoteMaj[i] << "/(" << nbCombinaison[i] << "*" << nblignes << ")    ";
         //cout << i << ": " << ((float) erreurVoteMaj[i]/(float) nbCombinaison[i])*100 << "%   ";
         float pourcentage = ((float) erreurVoteMaj[i]/(float) (nbCombinaison[i]*nblignes))*100;
         vPourcentageErreur->push_back(pourcentage);
@@ -675,8 +675,12 @@ int main() {
     //cout << "Choix ? (0 pour auto, 1-6 pour les exemples, 301-312 pour emotions/opinions avec 3 classes, 501-512 avec 5 classes, 513 pour coreference)";
     cout << "Choix ? (1 pour tous les corpus, 2 pour emotion, 3 pour opinion, 4 pour coreference)";
     cin >> choix ;
-    cout << "Choix ? (1 pour toutes les classes, 3 pour 3 classes, 5 pour 5 classes)";
-    cin >> choixNbClasse ;
+    //si >= 100, on test sur un seul fichier: on a plus de détail mais pas de fichier de sortie
+    if(choix < 100){
+        cout << "Choix ? (1 pour toutes les classes, 3 pour 3 classes, 5 pour 5 classes)";
+        cin >> choixNbClasse ;
+    }
+
 
     int nba,nbobs,nbc;//nb d'annotateurs, d'observables, de classes
     float nb;//observation réellement prises en compte
@@ -689,37 +693,36 @@ int main() {
     //en fonction du nombre de classes et de la valeur de la métrique
     std::map<std::pair<int, float>, std::vector<float>> mapResultat;
 
-    std::vector<int> lesChoix;
-
-    if(choixNbClasse==1 || choixNbClasse==3){
-        if(choix==1 || choix==2){
-            for(int i=301; i<307; i++){
-                lesChoix.push_back(i);
+    if(choix<100){
+        std::vector<int> lesChoix;
+        if(choixNbClasse==1 || choixNbClasse==3){
+            if(choix==1 || choix==2){
+                for(int i=301; i<307; i++){
+                    lesChoix.push_back(i);
+                }
+            }
+            if(choix==1 || choix==3){
+                for(int i=307; i<313; i++){
+                    lesChoix.push_back(i);
+                }
             }
         }
-        if(choix==1 || choix==3){
-            for(int i=307; i<313; i++){
-                lesChoix.push_back(i);
+        if(choixNbClasse==1 || choixNbClasse==5){
+            if(choix==1 || choix==2){
+                for(int i=501; i<507; i++){
+                    lesChoix.push_back(i);
+                }
+            }
+            if(choix==1 || choix==3){
+                for(int i=507; i<513; i++){
+                    lesChoix.push_back(i);
+                }
+            }
+            if(choix==1 || choix==4){
+                lesChoix.push_back(513);
             }
         }
-    }
-    if(choixNbClasse==1 || choixNbClasse==5){
-        if(choix==1 || choix==2){
-            for(int i=501; i<507; i++){
-                lesChoix.push_back(i);
-            }
-        }
-        if(choix==1 || choix==3){
-            for(int i=507; i<513; i++){
-                lesChoix.push_back(i);
-            }
-        }
-        if(choix==1 || choix==4){
-            lesChoix.push_back(513);
-        }
-    }
-
-    for(int i=0; i<lesChoix.size(); i++){
+        for(int i=0; i<lesChoix.size(); i++){
             choixTableau(lesChoix[i],T,nbobs,nba,nbc);
             //afficheTableauLu(T,nbobs,nba);
             transposeT(T,T1,nba,nbobs);
@@ -742,8 +745,8 @@ int main() {
             //cout<< "combinaisons de n-p annotateurs :" <<endl;
             calculDifference(T1,nbobs,nba,C,nbc,nb, &vPourcentageErreur);
             mapResultat.insert(std::pair<std::pair<int, float>, std::vector<float>>(pairNbcAlpha, vPourcentageErreur));
-    }
-    //affichage résultats
+        }
+        //affichage résultats
         for (std::map<std::pair<int, float>, std::vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
             std::pair<int, float> m = it->first;
             string s;
@@ -763,6 +766,41 @@ int main() {
             cout << endl;
         }
         fichierSortie(choix, choixNbClasse, choixMetrique, nba, mapResultat);
+    }else{
+        choixTableau(choix,T,nbobs,nba,nbc); //on rempli tous les parametres par les valeurs lu dans le fichier
+        afficheTableauLu(T,nbobs,nba); //on affiche le tableau d'annotations
+        //coincidences
+        transposeT(T,T1,nba,nbobs); //on inverse les i et j du tableau
+        cout << "Tableau des coincidences :\n";
+        coincidences(T1,nbobs,nba,C,nbc,nb);
+        affiche_coincidences(C,nbc);
+        cout << "nb d'observations prises en compte="<<nb <<endl;
+
+        float metrique;
+        if(choixMetrique.compare("k")==0){
+            metrique = kappaAP(nbobs, nbc, nba, T1);
+            cout << "kappa= ";
+        }else if(choixMetrique.compare("ap")==0){
+            metrique = alpha(nb,C,nbc, 1);
+            cout << "alpha(pondere)= ";
+        }else{
+            metrique = alpha(nb,C,nbc, 0);
+            cout << "alpha= ";
+        }
+
+        cout << metrique << endl;
+
+        cout << "combinaisons de n-p annotateurs :" <<endl;
+
+        std::vector<float> vPourcentageErreur;
+        calculDifference(T1,nbobs,nba,C,nbc,nb, &vPourcentageErreur);
+        std::pair<int, float> pairNbcAlpha(nbc, metrique);
+        mapResultat.insert(std::pair<std::pair<int, float>, std::vector<float>>(pairNbcAlpha, vPourcentageErreur));
+        //affichage résultats
+        for(int i=0; i<nba-1; i++){
+            cout << nba-i << ": " << mapResultat.at(pairNbcAlpha)[i] <<"%   ";
+        }
+    }
 
     /*//on fait tous les fichiers d'un coup
     if(choix==1 && choixNbClasse==1){
