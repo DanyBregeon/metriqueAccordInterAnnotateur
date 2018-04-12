@@ -655,8 +655,12 @@ int fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, int
         }
         myfile << m.first <<" classes, "<< s << "=" << fixed << setprecision (3) << m.second << "   ";
         for(int i=0; i<nba-1; i++){
-        std::vector<float> valeurs = it->second;
-        myfile << nba-i << ": " << valeurs[i] <<"%   ";
+            std::vector<float> valeurs = it->second;
+            if(valeurs[i]<10){
+                myfile << nba-i << ":  " << valeurs[i] <<"%   ";
+            }else{
+                myfile << nba-i << ": " << valeurs[i] <<"%   ";
+            }
         }
         myfile << endl;
         myfile << endl;
