@@ -446,6 +446,7 @@ void voteMajoritaire(int T[Max_obs][Max_annot], int nblignes, int nbc, int n,
             voteMajReference[i] = voteMajoritaire[i];
         }
     }else{
+        int test = erreurVoteMaj[n];
         for(int i=0; i<nblignes; i++){
             if(voteMajoritaire[i] != voteMajReference[i]){
                 erreurVoteMaj[n]++;
@@ -453,7 +454,7 @@ void voteMajoritaire(int T[Max_obs][Max_annot], int nblignes, int nbc, int n,
                 //break;
             }
         }
-
+        //cout << "nbErreur " << n << ": " << erreurVoteMaj[n]-test << endl;
     }
 
     //affichage
@@ -585,7 +586,7 @@ const std::string currentDateTime() {
     return buf;
 }
 
-int fichierSortie (string choixMetrique, int nba, std::map<std::pair<int, float>, std::vector<float>> mapResultat)
+int fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, int nba, std::map<std::pair<int, float>, std::vector<float>> mapResultat)
 {
     //lit le fichier numeroExperience.txt et incrémente son contenu pour savoir le numéro du test
     int numeroEperience = 0;
@@ -607,9 +608,38 @@ int fichierSortie (string choixMetrique, int nba, std::map<std::pair<int, float>
 
     //création fichier de sortie
     std::ostringstream ss;
-    ss << numeroEperience;
+
+    switch (choixCorpus)
+    {
+        case 2:
+            ss<<"Emotion_";
+            break;
+        case 3:
+             ss<<"Opinion_";
+            break;
+        case 4:
+             ss<<"Coreference_";
+            break;
+        default:
+            ss<<"All_";
+    }
+    if(choixNbClasse==1){
+        ss << "Allclasses_";
+    }else{
+        ss << choixNbClasse << "classes_";
+    }
+
+    if(choixMetrique=="a"){
+        ss<<"alpha";
+    }else if(choixMetrique=="k"){
+        ss<<"kappa";
+    }else if(choixMetrique=="ap"){
+        ss<<"alphaPondéré";
+    }
+
+    //ss << numeroEperience;
     ofstream myfile;
-    myfile.open ("resultats/test"+ss.str()+".txt");
+    myfile.open ("resultats/"+ss.str()+".txt");
 
     myfile << currentDateTime() << endl << endl;
 
@@ -641,8 +671,13 @@ int main() {
     int T[Max_annot][Max_obs],T1[Max_obs][Max_annot];
     float C[Max_classes][Max_classes];
     int choix;
-    cout << "Choix ? (0 pour auto, 1-6 pour les exemples, 301-312 pour emotions/opinions avec 3 classes, 501-512 avec 5 classes, 513 pour coreference)";
+    int choixNbClasse;
+    //cout << "Choix ? (0 pour auto, 1-6 pour les exemples, 301-312 pour emotions/opinions avec 3 classes, 501-512 avec 5 classes, 513 pour coreference)";
+    cout << "Choix ? (1 pour tous les corpus, 2 pour emotion, 3 pour opinion, 4 pour coreference)";
     cin >> choix ;
+    cout << "Choix ? (1 pour toutes les classes, 3 pour 3 classes, 5 pour 5 classes)";
+    cin >> choixNbClasse ;
+
     int nba,nbobs,nbc;//nb d'annotateurs, d'observables, de classes
     float nb;//observation réellement prises en compte
 
@@ -654,8 +689,83 @@ int main() {
     //en fonction du nombre de classes et de la valeur de la métrique
     std::map<std::pair<int, float>, std::vector<float>> mapResultat;
 
-    //on fait tous les fichiers d'un coup
-    if(choix==0){
+    std::vector<int> lesChoix;
+
+    if(choixNbClasse==1 || choixNbClasse==3){
+        if(choix==1 || choix==2){
+            for(int i=301; i<307; i++){
+                lesChoix.push_back(i);
+            }
+        }
+        if(choix==1 || choix==3){
+            for(int i=307; i<313; i++){
+                lesChoix.push_back(i);
+            }
+        }
+    }
+    if(choixNbClasse==1 || choixNbClasse==5){
+        if(choix==1 || choix==2){
+            for(int i=501; i<507; i++){
+                lesChoix.push_back(i);
+            }
+        }
+        if(choix==1 || choix==3){
+            for(int i=507; i<513; i++){
+                lesChoix.push_back(i);
+            }
+        }
+        if(choix==1 || choix==4){
+            lesChoix.push_back(513);
+        }
+    }
+
+    for(int i=0; i<lesChoix.size(); i++){
+            choixTableau(lesChoix[i],T,nbobs,nba,nbc);
+            //afficheTableauLu(T,nbobs,nba);
+            transposeT(T,T1,nba,nbobs);
+            //cout << "Tableau des coincidences :\n";
+            coincidences(T1,nbobs,nba,C,nbc,nb);
+            //affiche_coincidences(C,nbc);
+            //cout << "nb d'observations prises en compte="<<nb <<endl;
+            std::vector<float> vPourcentageErreur;
+            //cout << "alpha=" << alpha(nb,C,nbc);
+            float metrique;
+            if(choixMetrique.compare("k")==0){
+                metrique = kappaAP(nbobs, nbc, nba, T1);
+            }else if(choixMetrique.compare("ap")==0){
+                metrique = alpha(nb,C,nbc, 1);
+            }else{
+                metrique = alpha(nb,C,nbc, 0);
+            }
+            std::pair<int, float> pairNbcAlpha(nbc, metrique);
+            //cout << " pairNbcAlpha: " << pairNbcAlpha.first << "/" << pairNbcAlpha.second;
+            //cout<< "combinaisons de n-p annotateurs :" <<endl;
+            calculDifference(T1,nbobs,nba,C,nbc,nb, &vPourcentageErreur);
+            mapResultat.insert(std::pair<std::pair<int, float>, std::vector<float>>(pairNbcAlpha, vPourcentageErreur));
+    }
+    //affichage résultats
+        for (std::map<std::pair<int, float>, std::vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
+            std::pair<int, float> m = it->first;
+            string s;
+            if(choixMetrique.compare("k")==0){
+                s = "kappa";
+            }else if(choixMetrique.compare("ap")==0){
+                s = "alpha(pondere)";
+            }else{
+                s = "alpha";
+            }
+            cout << m.first <<" classes, "<< s << "=" << fixed << setprecision (3) << m.second << "   ";
+            for(int i=0; i<nba-1; i++){
+            std::vector<float> valeurs = it->second;
+            cout << nba-i << ": " << valeurs[i] <<"%   ";
+            }
+            cout << endl;
+            cout << endl;
+        }
+        fichierSortie(choix, choixNbClasse, choixMetrique, nba, mapResultat);
+
+    /*//on fait tous les fichiers d'un coup
+    if(choix==1 && choixNbClasse==1){
         choix = 300;
         for(int i=0; i<25; i++){
             if(i == 12){
@@ -741,7 +851,7 @@ int main() {
         for(int i=0; i<nba-1; i++){
             cout << nba-i << ": " << mapResultat.at(pairNbcAlpha)[i] <<"%   ";
         }
-    }
+    }*/
     return 0;
 }
 
