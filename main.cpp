@@ -421,97 +421,14 @@ void transposeT(int T[Max_annot][Max_obs],int TT[Max_obs][Max_annot],int nbl,int
       TT[j][i]=T[i][j];
 }
 
-
 // IV - génère toutes les annotations par vote majoritaires pour toutes les combinaisons de (n-1),
 //      (n-2), (n-3) ... annotateurs, et donne les % de modifications par rapport à la référence
 
 //calcul du vote majoritaire et le compare avec celui de référence
-void voteMajoritaire(int T[Max_obs][Max_annot], int nblignes, int nbc, int n,
-                     int erreurVoteMaj[Max_annot], int voteMajReference[Max_obs], int nba, /*float moyenneReference[Max_obs],*/ string egalite){
-    //le vote majoritaire pour chaque observable
-    int voteMajoritaire[nblignes];
-    //le nombre d'occurence des classes dans les annotations d'un observable
-    int tNbOcc[nbc];
-    //la moyenne des classes pour chaque observable
-    float tMoyenne[nblignes];
-
-    for(int i=0; i<nbc; i++){
-        tNbOcc[i]=0;
-    }
-
-    for(int obs=0; obs<nblignes; obs++){
-        float moyenne = 0;
-        for(int ann=0; ann<n; ann++){
-            tNbOcc[T[obs][ann]]++;
-            moyenne += T[obs][ann];
-        }
-        moyenne = moyenne / (float) n;
-        int max=tNbOcc[0];
-        int voteMaj = 0;
-        for(int i=1; i<nbc; i++){
-            if(tNbOcc[i]>max){
-                max = tNbOcc[i];
-                voteMaj = i;
-            }else if(tNbOcc[i]==max){
-                if(egalite.compare("a")==0){
-                    int rng = rand() % 2;
-                    if(rng == 0){
-                        max = tNbOcc[i];
-                        voteMaj = i;
-                    }
-                }else{
-                    //en cas d'égalité pour le vote majoritaire, c'est la classe la plus proche de la moyenne des classes qui l'emporte
-                    if(abs((float)i-moyenne) < abs((float)voteMaj-moyenne)){
-                        max = tNbOcc[i];
-                        voteMaj = i;
-                    }
-                }
-                /*//en cas d'égalité pour le vote majoritaire, c'est la classe la plus proche de la moyenne de référence des classes qui l'emporte
-                if(abs((float)i-moyenneReference[obs]) < abs((float)voteMaj-moyenneReference[obs])){
-                    max = tNbOcc[i];
-                    voteMaj = i;
-                }*/
-
-            }
-        }
-        voteMajoritaire[obs]=voteMaj;
-        tMoyenne[obs]=moyenne;
-
-        /*for(int i=0; i<nbc; i++){
-            tNbOcc[i]=0;
-        }*/
-    }
-    //si c'est a référence
-    if(n == nba){
-        erreurVoteMaj[n]=0;
-        for(int i=0; i<nblignes; i++){
-            voteMajReference[i] = voteMajoritaire[i];
-            //moyenneReference[i] = tMoyenne[i];
-        }
-    //sinon on compare avec la référence
-    }else{
-        int test = erreurVoteMaj[n];
-        for(int i=0; i<nblignes; i++){
-            if(voteMajoritaire[i] != voteMajReference[i]){
-                erreurVoteMaj[n]++;
-                //"% de modifications par rapport à la référence" par nombre d'annotateur ou pour chaque vote majoritaire ?
-                //break;
-            }
-        }
-        //cout << "nbErreur " << n << ": " << erreurVoteMaj[n]-test << endl;
-    }
-
-    //affichage
-    /*cout << "vote maj/moyenne: ";
-    for(int i=0; i<nblignes; i++){
-        cout << voteMajoritaire[i] << "/" << tMoyenne[i] << " ";
-    }
-    cout << endl;*/
-}
 
 //nblignes = nbobs, n = 9 ou 8 ou 7 etc annotateurs, effectue des calculs pour chaque combinaison
-void alphaCombinaison( int *p, int n, int T[Max_obs][Max_annot],int nblignes,int nba, int nbc, /*std::vector<float> *vAlpha,*/
-		  int erreurVoteMaj[Max_annot], int voteMajReference[Max_obs], /*float moyenneReference[Max_obs],*/ int egalite) {
+void voteMajoritaire( int *p, int n, int T[Max_obs][Max_annot],int nblignes,int nba, int nbc,
+		  int erreurVoteMaj[Max_annot], int voteMajReference[Max_obs], int egalite) {
     /*int i;
     for (i = 0; i < n; i++){
         cout << p[i];
@@ -521,16 +438,7 @@ void alphaCombinaison( int *p, int n, int T[Max_obs][Max_annot],int nblignes,int
 
     //tableau contenant les annotateurs choisi par la combinaison
     //int TT[Max_obs][Max_annot];
-    /*int l = 0;
-    //récupère les lignes (les annotateurs) qui correspondent à la combinaison
-    for(int y=0; y<n; y++){
-        for(int x=0; x<nblignes; x++){
-            TT[x][l] = T[x][p[y]];
-            //cout << TT[x][l] << " ";
-        }
-        l++;
-        //cout << endl;
-    }*/
+
     //le vote majoritaire pour chaque observable
     int voteMajoritaire[nblignes];
     //le nombre d'occurence des classes dans les annotations d'un observable
@@ -622,41 +530,77 @@ void alphaCombinaison( int *p, int n, int T[Max_obs][Max_annot],int nblignes,int
     //vAlpha->push_back(a);
 }
 
+void voteMajoritaire2( int *p, int n, int T[Max_obs][Max_annot],int nblignes,int nba, int nbc,
+		  int erreurVoteMaj[Max_annot], int voteMajReference[Max_obs], int egalite, vector<vector<vector<int> > > &voteMajOcc) {
+
+    //le vote majoritaire pour chaque observable
+    //int voteMajoritaire[nblignes];
+    //le nombre d'occurence des classes dans les annotations d'un observable
+    int tNbOcc[nbc];
+    //la moyenne des classes pour chaque observable
+    //float tMoyenne[nblignes];
+
+    for(int obs=0; obs<nblignes; obs++){
+        float moyenne = 0;
+        for(int ann=0; ann<n; ann++){
+            //p[ann] nous donne un annotateur de la combinaison actuelle, T[obs][p[ann]] nous donne la classe qu'à attribué cet annotateur à l'observable obs
+            tNbOcc[T[obs][p[ann]]]++;
+            moyenne += T[obs][p[ann]];
+        }
+        moyenne = moyenne / (float) n;
+        int max=tNbOcc[0];
+        int voteMaj = 0;
+        tNbOcc[0] = 0;
+        for(int i=1; i<nbc; i++){
+            if(tNbOcc[i]>max){
+                max = tNbOcc[i];
+                voteMaj = i;
+            }else if(tNbOcc[i]==max){
+                if(egalite==1){
+                    int rng = rand() % 2;
+                    if(rng == 0){
+                        max = tNbOcc[i];
+                        voteMaj = i;
+                    }
+                }else{
+                    //en cas d'égalité pour le vote majoritaire, c'est la classe la plus proche de la moyenne des classes qui l'emporte
+                    if(abs((float)i-moyenne) < abs((float)voteMaj-moyenne)){
+                        max = tNbOcc[i];
+                        voteMaj = i;
+                    }
+                }
+            }
+            tNbOcc[i]=0;
+        }
+        //voteMajoritaire[obs]=voteMaj;
+        voteMajOcc[n][obs][voteMaj]++;
+    }
+}
+
+
 //trouve l'ensemble des combinaisons de p parmi n (de manière récursive)
 void combinaisons(int *ens, int *combinaison, int n, int p, int i, int t,
                   int T[Max_obs][Max_annot],int nblignes,int nba,int nbc, /*std::vector<float> *vAlpha,*/
-		  int erreurVoteMaj[Max_annot], int voteMajReference[Max_obs], int nbCombinaison[Max_annot], /*float moyenneReference[Max_obs],*/ int egalite) {
+		  int erreurVoteMaj[Max_annot], int voteMajReference[Max_obs], int nbCombinaison[Max_annot], /*float moyenneReference[Max_obs],*/ int egalite,
+		  int choixGold, vector<vector<vector<int> > > &voteMajOcc) {
     if (i<p) {
         for (int k=t; k<n; k++) {
             combinaison[i] = ens[k];
-            combinaisons(ens,combinaison,n,p,i+1,k+1, T,nblignes,nba,nbc, /*&vAlpha,*/ erreurVoteMaj, voteMajReference, nbCombinaison, /*moyenneReference,*/ egalite);
+            combinaisons(ens,combinaison,n,p,i+1,k+1, T,nblignes,nba,nbc, /*&vAlpha,*/ erreurVoteMaj, voteMajReference, nbCombinaison, /*moyenneReference,*/ egalite, choixGold, voteMajOcc);
         }
     }
     else {
-        alphaCombinaison(combinaison,p, T,nblignes,nba,nbc, /*&vAlpha,*/ erreurVoteMaj, voteMajReference, /*moyenneReference,*/ egalite);
+        if(choixGold==0){
+            voteMajoritaire(combinaison,p, T,nblignes,nba,nbc, /*&vAlpha,*/ erreurVoteMaj, voteMajReference, /*moyenneReference,*/ egalite);
+        }else{
+            voteMajoritaire2(combinaison,p, T,nblignes,nba,nbc, /*&vAlpha,*/ erreurVoteMaj, voteMajReference, /*moyenneReference,*/ egalite, voteMajOcc);
+        }
         nbCombinaison[p]++;
     }
 }
 
-/*//fait la moyenne des alpha
-float moyenne(std::vector<float> *vAlpha){
-    float total = 0;
-    for(unsigned int i=0; i<vAlpha->size(); i++){
-        total += vAlpha->at(i);
-    }
-    return total/vAlpha->size();
-}
 
-//fait l'ecart-type des alpha
-float ecart_type(std::vector<float> *vAlpha, float moy) {
-    float total = 0;
-    for(unsigned int i=0; i<vAlpha->size(); i++){
-        total += (vAlpha->at(i)-moy)*(vAlpha->at(i)-moy);
-    }
-    return sqrt(total/vAlpha->size());
-}*/
-
-void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,int nbc, std::vector<float> *vPourcentageErreur, int egalite){
+void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,int nbc, std::vector<float> *vPourcentageErreur, int egalite, int choixGold){
     int ens[nba];
     for(int i=0; i<nba; i++){
         ens[i] = i;
@@ -675,29 +619,80 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,int nbc, st
         nbCombinaison[i]=0;
     }
 
+    vector<vector<vector<int> > > voteMajOcc;
+
+    // Set up sizes. (HEIGHT x WIDTH)
+    voteMajOcc.resize(Max_annot);
+    for (int i = 0; i < Max_annot; ++i) {
+        voteMajOcc[i].resize(Max_obs);
+
+        for (int j = 0; j < Max_obs; ++j)
+            voteMajOcc[i][j].resize(Max_classes);
+    }
+
     for(int p=nba; p>1; p--){
         //cout << p << " annotateurs / " << nba << endl;
         //cout << endl;
         int combi[p];
         //std::vector<float> vAlpha;
-        combinaisons(ens,combi,nba,p,0,0, T,nblignes,nba,nbc, /*&vAlpha,*/ erreurVoteMaj, voteMajReference, nbCombinaison, /*moyenneReference,*/ egalite);
+        combinaisons(ens,combi,nba,p,0,0, T,nblignes,nba,nbc, /*&vAlpha,*/ erreurVoteMaj, voteMajReference, nbCombinaison, /*moyenneReference,*/ egalite, choixGold, voteMajOcc);
         //float moy = moyenne(&vAlpha);
         //cout << "moyenne : " << moy << endl;
         //cout << "ecart-type : " << ecart_type(&vAlpha, moy) << endl;
         //cout << endl;
         //int combi[nba-1];
     }
-    //cout << "poucentage d'erreur :  ";
-    for(int i=nba; i>1; i--){
-        cout << i << ": " << erreurVoteMaj[i] << "/(" << nbCombinaison[i] << "*" << nblignes << ")    ";
-        //cout << i << ": " << ((float) erreurVoteMaj[i]/(float) nbCombinaison[i])*100 << "%   ";
-        float pourcentage = ((float) erreurVoteMaj[i]/(float) (nbCombinaison[i]*nblignes))*100;
-        vPourcentageErreur->push_back(pourcentage);
-        //cout << i << ": " << fixed << setprecision (3) << pourcentage << "%   ";
-        //TPourcentageErreur[i] = pourcentage;
+
+    if(choixGold==1){
+        for(int i=nba; i>1; i--){
+            int nbErreur = 0;
+            for(int obs=0; obs<nblignes; obs++){
+                int max = voteMajOcc[i][obs][0];
+                int voteMaj = 0;
+                for(int c=1; c<nbc; c++){
+                    if(voteMajOcc[i][obs][c]>max){
+                        max = voteMajOcc[i][obs][c];
+                        voteMaj = c;
+                    }/*else if(voteMajOcc[i][obs][c]==max){
+                        if(egalite==1){
+                            int rng = rand() % 2;
+                            if(rng == 0){
+                                max = voteMajOcc[i][obs][c];
+                                voteMaj = c;
+                            }
+                        }else{
+                            if(abs((float)i-moyenne) < abs((float)voteMaj-moyenne)){
+                                max = voteMajOcc[i][obs][c];
+                                voteMaj = c;
+                            }
+                        }
+                    }*/
+                }
+                for(int c=0; c<nbc; c++){
+                    if(c != voteMaj){
+                        nbErreur += voteMajOcc[i][obs][c];
+                    }
+                }
+            }
+            //cout << nbErreur << "/(" << nbCombinaison[i] << "*" << nblignes << ")    ";
+            float pourcentage = ((float) nbErreur/(float) (nbCombinaison[i]*nblignes))*100;
+            //cout << i << ": " << fixed << setprecision (3) << pourcentage << "%   ";
+            vPourcentageErreur->push_back(pourcentage);
+        }
+
+    }else{
+        //cout << "poucentage d'erreur :  ";
+        for(int i=nba; i>1; i--){
+            cout << i << ": " << erreurVoteMaj[i] << "/(" << nbCombinaison[i] << "*" << nblignes << ")    ";
+            //cout << i << ": " << ((float) erreurVoteMaj[i]/(float) nbCombinaison[i])*100 << "%   ";
+            float pourcentage = ((float) erreurVoteMaj[i]/(float) (nbCombinaison[i]*nblignes))*100;
+            vPourcentageErreur->push_back(pourcentage);
+            //cout << i << ": " << fixed << setprecision (3) << pourcentage << "%   ";
+            //TPourcentageErreur[i] = pourcentage;
+        }
+        cout << endl;
+        //return vAlpha.at(0);
     }
-    cout << endl;
-    //return vAlpha.at(0);
 }
 
 // V - CREATION FICHIER DE SORTIE
@@ -713,7 +708,8 @@ const std::string currentDateTime() {
     return buf;
 }
 
-int fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, string egalite, int nba, std::map<std::pair<int, float>, std::vector<float>> mapResultat)
+int fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, string egalite, int choixGold,
+                   int nba, std::map<std::pair<int, float>, std::vector<float>> mapResultat)
 {
     //lit le fichier numeroExperience.txt et incrémente son contenu pour savoir le numéro du test
     int numeroEperience = 0;
@@ -774,6 +770,11 @@ int fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, str
         ss<<"M";
     }
 
+    if(choixGold==1){
+        ss<<"goldParAnnot";
+    }
+
+    ss << nba;
     //ss << numeroEperience;
     ofstream myfile;
     myfile.open ("resultats/"+ss.str()+".txt");
@@ -852,6 +853,11 @@ int main() {
     cin >> choixMetrique;
     //choixMetrique = "k";
 
+    int choixGold;
+    cout << "Choix ? (gold: 0 pour verite ideale, 1 pour en fonction du nombre d'annotateurs retenus)";
+    cin >> choixGold;
+
+
     //tableau final avec les pourcentages de différences de votes majoritaires par rapport à la référence (9 annotateurs)
     //en fonction du nombre de classes et de la valeur de la métrique
     std::map<std::pair<int, float>, std::vector<float>> mapResultat;
@@ -908,7 +914,7 @@ int main() {
             std::pair<int, float> pairNbcAlpha(nbc, metrique);
             //cout << " pairNbcAlpha: " << pairNbcAlpha.first << "/" << pairNbcAlpha.second;
             //cout<< "combinaisons de n-p annotateurs :" <<endl;
-            calculDifference(T1,nbobs,nba,nbc, &vPourcentageErreur, egaliteInt);
+            calculDifference(T1,nbobs,nba,nbc, &vPourcentageErreur, egaliteInt, choixGold);
             mapResultat.insert(std::pair<std::pair<int, float>, std::vector<float>>(pairNbcAlpha, vPourcentageErreur));
         }
         //affichage résultats
@@ -932,7 +938,7 @@ int main() {
             cout << endl;
             cout << endl;
         }
-        fichierSortie(choix, choixNbClasse, choixMetrique, egalite, nba, mapResultat);
+        fichierSortie(choix, choixNbClasse, choixMetrique, egalite, choixGold, nba, mapResultat);
     }else{
         choixTableau(choix,T,nbobs,nba,nbc); //on rempli tous les parametres par les valeurs lu dans le fichier
         afficheTableauLu(T,nbobs,nba); //on affiche le tableau d'annotations
@@ -962,104 +968,17 @@ int main() {
         cout << "combinaisons de n-p annotateurs :" <<endl;
 
         std::vector<float> vPourcentageErreur;
-        calculDifference(T1,nbobs,nba,nbc, &vPourcentageErreur, egaliteInt);
+        calculDifference(T1,nbobs,nba,nbc, &vPourcentageErreur, egaliteInt, choixGold);
+
         std::pair<int, float> pairNbcAlpha(nbc, metrique);
         mapResultat.insert(std::pair<std::pair<int, float>, std::vector<float>>(pairNbcAlpha, vPourcentageErreur));
         //affichage résultats
         for(int i=0; i<nba-1; i++){
             cout << nba-i << ": " << mapResultat.at(pairNbcAlpha)[i] <<"%   ";
         }
-        //fichierSortie(choix, choixNbClasse, choixMetrique, egalite, nba, mapResultat);
+        //fichierSortie(choix, choixNbClasse, choixMetrique, egalite, choixGold, nba, mapResultat);
+
     }
-
-    /*//on fait tous les fichiers d'un coup
-    if(choix==1 && choixNbClasse==1){
-        choix = 300;
-        for(int i=0; i<25; i++){
-            if(i == 12){
-                choix=500;
-                cout << endl;
-            }
-            choix++;
-            choixTableau(choix,T,nbobs,nba,nbc);
-            //afficheTableauLu(T,nbobs,nba);
-            transposeT(T,T1,nba,nbobs);
-            //cout << "Tableau des coincidences :\n";
-            coincidences(T1,nbobs,nba,C,nbc,nb);
-            //affiche_coincidences(C,nbc);
-            //cout << "nb d'observations prises en compte="<<nb <<endl;
-            std::vector<float> vPourcentageErreur;
-            //cout << "alpha=" << alpha(nb,C,nbc);
-            float metrique;
-            if(choixMetrique.compare("k")==0){
-                metrique = kappaAP(nbobs, nbc, nba, T1);
-            }else if(choixMetrique.compare("ap")==0){
-                metrique = alpha(nb,C,nbc, 1);
-            }else{
-                metrique = alpha(nb,C,nbc, 0);
-            }
-            std::pair<int, float> pairNbcAlpha(nbc, metrique);
-            //cout << " pairNbcAlpha: " << pairNbcAlpha.first << "/" << pairNbcAlpha.second;
-            //cout<< "combinaisons de n-p annotateurs :" <<endl;
-            calculDifference(T1,nbobs,nba,C,nbc,nb, &vPourcentageErreur);
-            mapResultat.insert(std::pair<std::pair<int, float>, std::vector<float>>(pairNbcAlpha, vPourcentageErreur));
-        }
-        //affichage résultats
-        for (std::map<std::pair<int, float>, std::vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
-            std::pair<int, float> m = it->first;
-            string s;
-            if(choixMetrique.compare("k")==0){
-                s = "kappa";
-            }else if(choixMetrique.compare("ap")==0){
-                s = "alpha(pondere)";
-            }else{
-                s = "alpha";
-            }
-            cout << m.first <<" classes, "<< s << "=" << fixed << setprecision (3) << m.second << "   ";
-            for(int i=0; i<nba-1; i++){
-            std::vector<float> valeurs = it->second;
-            cout << nba-i << ": " << valeurs[i] <<"%   ";
-            }
-            cout << endl;
-            cout << endl;
-        }
-        fichierSortie(choixMetrique, nba, mapResultat);
-    }else{
-
-        choixTableau(choix,T,nbobs,nba,nbc); //on rempli tous les parametres par les valeurs lu dans le fichier
-        afficheTableauLu(T,nbobs,nba); //on affiche le tableau d'annotations
-        //coincidences
-        transposeT(T,T1,nba,nbobs); //on inverse les i et j du tableau
-        cout << "Tableau des coincidences :\n";
-        coincidences(T1,nbobs,nba,C,nbc,nb);
-        affiche_coincidences(C,nbc);
-        cout << "nb d'observations prises en compte="<<nb <<endl;
-
-        float metrique;
-        if(choixMetrique.compare("k")==0){
-            metrique = kappaAP(nbobs, nbc, nba, T1);
-            cout << "kappa= ";
-        }else if(choixMetrique.compare("ap")==0){
-            metrique = alpha(nb,C,nbc, 1);
-            cout << "alpha(pondere)= ";
-        }else{
-            metrique = alpha(nb,C,nbc, 0);
-            cout << "alpha= ";
-        }
-
-        cout << metrique << endl;
-
-        cout << "combinaisons de n-p annotateurs :" <<endl;
-
-        std::vector<float> vPourcentageErreur;
-        calculDifference(T1,nbobs,nba,C,nbc,nb, &vPourcentageErreur);
-        std::pair<int, float> pairNbcAlpha(nbc, metrique);
-        mapResultat.insert(std::pair<std::pair<int, float>, std::vector<float>>(pairNbcAlpha, vPourcentageErreur));
-        //affichage résultats
-        for(int i=0; i<nba-1; i++){
-            cout << nba-i << ": " << mapResultat.at(pairNbcAlpha)[i] <<"%   ";
-        }
-    }*/
     return 0;
 }
 
