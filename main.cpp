@@ -402,6 +402,27 @@ void choixTableau(int choix,int T[Max_annot][Max_obs],int & Nbobs,int & Nba,int 
   }else if(choix==514) {
     Nba=2;Nbobs=12;
     lire("classe5/TableauOpinion250.csv",T,Nbobs,Nba,Nbc);
+  }else if(choix==314) {
+    Nba=2;Nbobs=12;
+    lire("classe3/TableauOpinion250.csv",T,Nbobs,Nba,Nbc);
+  }else if(choix==515) {
+    Nba=2;Nbobs=12;
+    lire("classe5/TableauOpinionContexte250.csv",T,Nbobs,Nba,Nbc);
+  }else if(choix==315) {
+    Nba=2;Nbobs=12;
+    lire("classe3/TableauOpinionContexte250.csv",T,Nbobs,Nba,Nbc);
+  }else if(choix==516) {
+    Nba=2;Nbobs=12;
+    lire("classe5/TableauEmotion250.csv",T,Nbobs,Nba,Nbc);
+  }else if(choix==316) {
+    Nba=2;Nbobs=12;
+    lire("classe3/TableauEmotion250.csv",T,Nbobs,Nba,Nbc);
+  }else if(choix==517) {
+    Nba=2;Nbobs=12;
+    lire("classe5/TableauEmotionContexte250.csv",T,Nbobs,Nba,Nbc);
+  }else if(choix==317) {
+    Nba=2;Nbobs=12;
+    lire("classe3/TableauEmotionContexte250.csv",T,Nbobs,Nba,Nbc);
   }
 
 }
@@ -746,7 +767,7 @@ int fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, str
              ss<<"Coreference_";
             break;
         default:
-            ss<<"All_";
+            ss<< choixCorpus << "_";
     }
     if(choixNbClasse==1){
         ss << "Allclasses_";
@@ -824,19 +845,19 @@ int main() {
         cout << "Choix ? (1 pour toutes les classes, 3 pour 3 classes, 5 pour 5 classes)";
         cin >> choixNbClasse ;
     }else{
-        /*if(choix>=500){
+        if(choix>=500){
             choixNbClasse = 5;
         }else{
             choixNbClasse = 3;
-        }*/
+        }
     }
-    //choix = 514;
+    //choix = 516;
     //choixNbClasse = 5;
 
     string egalite;
     cout << "Choix ? (en cas d'egalite au vote majoritaire on departage par: m pour le plus proche de la moyenne des classes, a pour aleatoire)";
     cin >> egalite;
-    //egalite = "m";
+    //egalite = "a";
 
     int egaliteInt;
     if(egalite.compare("m")==0){
@@ -856,7 +877,7 @@ int main() {
     int choixGold;
     cout << "Choix ? (gold: 0 pour verite ideale, 1 pour en fonction du nombre d'annotateurs retenus)";
     cin >> choixGold;
-
+    //choixGold  = 0;
 
     //tableau final avec les pourcentages de différences de votes majoritaires par rapport à la référence (9 annotateurs)
     //en fonction du nombre de classes et de la valeur de la métrique
@@ -976,7 +997,7 @@ int main() {
         for(int i=0; i<nba-1; i++){
             cout << nba-i << ": " << mapResultat.at(pairNbcAlpha)[i] <<"%   ";
         }
-        //fichierSortie(choix, choixNbClasse, choixMetrique, egalite, choixGold, nba, mapResultat);
+        fichierSortie(choix, choixNbClasse, choixMetrique, egalite, choixGold, nba, mapResultat);
 
     }
     return 0;
