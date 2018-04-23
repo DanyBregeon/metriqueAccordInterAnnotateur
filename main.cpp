@@ -513,7 +513,7 @@ void voteMajoritaire( int *p, int n, int T[Max_obs][Max_annot],int nblignes,int 
         }*/
     }
 
-    //si c'est a référence
+    //si c'est la référence
     if(n == nba){
         erreurVoteMaj[n]=0;
         //cout << "voteMajRef : ";
@@ -551,6 +551,7 @@ void voteMajoritaire( int *p, int n, int T[Max_obs][Max_annot],int nblignes,int 
     //vAlpha->push_back(a);
 }
 
+//vote maj pour le gold en fonction du nombre d'annotateur de la combinaison
 void voteMajoritaire2( int *p, int n, int T[Max_obs][Max_annot],int nblignes,int nba, int nbc,
 		  int erreurVoteMaj[Max_annot], int voteMajReference[Max_obs], int egalite, vector<vector<vector<int> > > &voteMajOcc) {
 
@@ -598,6 +599,70 @@ void voteMajoritaire2( int *p, int n, int T[Max_obs][Max_annot],int nblignes,int
     }
 }
 
+//cas comparaison vote maj sans annotateurs communs
+void combinaisons2(vector<int> & ens, int *combinaison, int n, int p, int i, int t,
+                int T[Max_obs][Max_annot],int nblignes,int nba, int nbc,
+                int erreurVoteMaj[Max_annot], int voteMajReference[Max_obs], int egalite, int nbCombinaison[Max_annot]){
+    if (i<p) {
+        for (int k=t; k<n; k++) {
+            combinaison[i] = ens[k];
+            combinaisons2(ens,combinaison,n,p,i+1,k+1, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, egalite, nbCombinaison);
+        }
+    }
+    else {
+        voteMajoritaire(combinaison,p, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, egalite);
+        nbCombinaison[p]++;
+    }
+}
+
+
+void calculCombiSansAnnotCommun(int *ens, int *combinaison, int p, int n,
+                int T[Max_obs][Max_annot],int nblignes,int nba, int nbc,
+                int erreurVoteMaj[Max_annot], int voteMajReference[Max_obs], int egalite, int nbCombinaison[Max_annot]){
+
+    vector<int> ens2;
+    bool b;
+    for (int i = 0; i < n; i++){
+        b = false;
+        for (int j = 0; j < p; j++){
+            if(ens[i]==combinaison[j]){
+                b = true;
+                break;
+            }
+        }
+        if(!b){
+            ens2.push_back(ens[i]);
+        }
+    }
+    // du vote maj de reference
+    int tNbOcc[nbc];
+    for(int obs=0; obs<nblignes; obs++){
+        float moyenne = 0;
+        for(int ann=0; ann<p; ann++){
+            tNbOcc[T[obs][ens[ann]]]++;
+        }
+        int max=tNbOcc[0];
+        int voteMaj = 0;
+        tNbOcc[0] = 0;
+        for(int i=1; i<nbc; i++){
+            if(tNbOcc[i]>max){
+                max = tNbOcc[i];
+                voteMaj = i;
+            }else if(tNbOcc[i]==max){
+                int rng = rand() % 2;
+                if(rng == 0){
+                    max = tNbOcc[i];
+                    voteMaj = i;
+                }
+            }
+            tNbOcc[i]=0;
+        }
+        voteMajReference[obs]=voteMaj;
+    }
+    int combi[p];
+    combinaisons2(ens2, combi, n-p, p, 0, 0, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, egalite, nbCombinaison);
+}
+
 
 //trouve l'ensemble des combinaisons de p parmi n (de manière récursive)
 void combinaisons(int *ens, int *combinaison, int n, int p, int i, int t,
@@ -613,10 +678,14 @@ void combinaisons(int *ens, int *combinaison, int n, int p, int i, int t,
     else {
         if(choixGold==0){
             voteMajoritaire(combinaison,p, T,nblignes,nba,nbc, /*&vAlpha,*/ erreurVoteMaj, voteMajReference, /*moyenneReference,*/ egalite);
-        }else{
+            nbCombinaison[p]++;
+        }else if(choixGold==1){
             voteMajoritaire2(combinaison,p, T,nblignes,nba,nbc, /*&vAlpha,*/ erreurVoteMaj, voteMajReference, /*moyenneReference,*/ egalite, voteMajOcc);
+            nbCombinaison[p]++;
+        }else{
+            calculCombiSansAnnotCommun(ens, combinaison,p, n, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, egalite, nbCombinaison);
         }
-        nbCombinaison[p]++;
+        //nbCombinaison[p]++;
     }
 }
 
@@ -651,17 +720,24 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,int nbc, st
             voteMajOcc[i][j].resize(Max_classes);
     }
 
-    for(int p=nba; p>1; p--){
-        //cout << p << " annotateurs / " << nba << endl;
-        //cout << endl;
-        int combi[p];
-        //std::vector<float> vAlpha;
-        combinaisons(ens,combi,nba,p,0,0, T,nblignes,nba,nbc, /*&vAlpha,*/ erreurVoteMaj, voteMajReference, nbCombinaison, /*moyenneReference,*/ egalite, choixGold, voteMajOcc);
-        //float moy = moyenne(&vAlpha);
-        //cout << "moyenne : " << moy << endl;
-        //cout << "ecart-type : " << ecart_type(&vAlpha, moy) << endl;
-        //cout << endl;
-        //int combi[nba-1];
+    if(choixGold==2){
+        for(int p=nba/2; p>1; p--){
+            int combi[p];
+            combinaisons(ens,combi,nba,p,0,0, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, nbCombinaison, egalite, choixGold, voteMajOcc);
+        }
+    }else{
+        for(int p=nba; p>1; p--){
+            //cout << p << " annotateurs / " << nba << endl;
+            //cout << endl;
+            int combi[p];
+            //std::vector<float> vAlpha;
+            combinaisons(ens,combi,nba,p,0,0, T,nblignes,nba,nbc, /*&vAlpha,*/ erreurVoteMaj, voteMajReference, nbCombinaison, /*moyenneReference,*/ egalite, choixGold, voteMajOcc);
+            //float moy = moyenne(&vAlpha);
+            //cout << "moyenne : " << moy << endl;
+            //cout << "ecart-type : " << ecart_type(&vAlpha, moy) << endl;
+            //cout << endl;
+            //int combi[nba-1];
+        }
     }
 
     if(choixGold==1){
@@ -674,20 +750,13 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,int nbc, st
                     if(voteMajOcc[i][obs][c]>max){
                         max = voteMajOcc[i][obs][c];
                         voteMaj = c;
-                    }/*else if(voteMajOcc[i][obs][c]==max){
-                        if(egalite==1){
-                            int rng = rand() % 2;
-                            if(rng == 0){
-                                max = voteMajOcc[i][obs][c];
-                                voteMaj = c;
-                            }
-                        }else{
-                            if(abs((float)i-moyenne) < abs((float)voteMaj-moyenne)){
-                                max = voteMajOcc[i][obs][c];
-                                voteMaj = c;
-                            }
+                    }else if(voteMajOcc[i][obs][c]==max){
+                        int rng = rand() % 2;
+                        if(rng == 0){
+                            max = voteMajOcc[i][obs][c];
+                            voteMaj = c;
                         }
-                    }*/
+                    }
                 }
                 for(int c=0; c<nbc; c++){
                     if(c != voteMaj){
@@ -701,6 +770,16 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,int nbc, st
             vPourcentageErreur->push_back(pourcentage);
         }
 
+    }else if(choixGold==2){
+        for(int i=nba; i>1; i--){
+            if(i>nba/2){
+                vPourcentageErreur->push_back(0);
+            }else{
+                cout << i << ": " << erreurVoteMaj[i] << "/(" << nbCombinaison[i] << "*" << nblignes << ")    ";
+                float pourcentage = ((float) erreurVoteMaj[i]/(float) (nbCombinaison[i]*nblignes))*100;
+                vPourcentageErreur->push_back(pourcentage);
+            }
+        }
     }else{
         //cout << "poucentage d'erreur :  ";
         for(int i=nba; i>1; i--){
@@ -815,8 +894,10 @@ int fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, str
             s = "alpha";
         }
         myfile << m.first <<" classes, "<< s << "=" << fixed << setprecision (3) << m.second << "   ";
+        myfile << fixed << setprecision (3);
         for(int i=0; i<nba-1; i++){
             std::vector<float> valeurs = it->second;
+             //myfile << valeurs[i] <<"\t";
             if(valeurs[i]<10){
                 myfile << nba-i << ":  " << valeurs[i] <<"%   ";
             }else{
@@ -824,7 +905,7 @@ int fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, str
             }
         }
         myfile << endl;
-        myfile << endl;
+        //myfile << endl;
     }
     myfile.close();
     return 0;
@@ -875,7 +956,7 @@ int main() {
     //choixMetrique = "k";
 
     int choixGold;
-    cout << "Choix ? (gold: 0 pour verite ideale, 1 pour en fonction du nombre d'annotateurs retenus)";
+    cout << "Choix ? (gold: 0 pour verite ideale, 1 pour en fonction du nombre d'annotateurs retenus, 2 pareil mais sans annotateur commun)";
     cin >> choixGold;
     //choixGold  = 0;
 
