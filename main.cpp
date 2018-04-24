@@ -599,27 +599,44 @@ void voteMajoritaire2( int *p, int n, int T[Max_obs][Max_annot],int nblignes,int
     }
 }
 
+
+void calculMoyenne( int *p, int n, int T[Max_obs][Max_annot],int nblignes,int nba, int nbc,
+		  float moyennes[Max_annot], int egalite)
+{
+    float moyenne = 0;
+    for(int obs=0; obs<nblignes; obs++){
+        for(int ann=0; ann<n; ann++){
+            //p[ann] nous donne un annotateur de la combinaison actuelle, T[obs][p[ann]] nous donne la classe qu'à attribué cet annotateur à l'observable obs
+            moyenne += T[obs][p[ann]];
+        }
+    }
+    //il faut calculer l'amplitude entre le min et le max des moyennes ??? ou l'amplitude par rapport aux 9/25 annotateurs ???
+    moyennes[n] += moyenne/(float) (n*nblignes);
+
+
+}
 //cas comparaison vote maj sans annotateurs communs
 void combinaisons2(vector<int> & ens, int *combinaison, int n, int p, int i, int t,
                 int T[Max_obs][Max_annot],int nblignes,int nba, int nbc,
-                int erreurVoteMaj[Max_annot], int voteMajReference[Max_obs], int egalite, int nbCombinaison[Max_annot]){
-    if (i<p) {
-        for (int k=t; k<n; k++) {
-            combinaison[i] = ens[k];
-            combinaisons2(ens,combinaison,n,p,i+1,k+1, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, egalite, nbCombinaison);
+                int erreurVoteMaj[Max_annot], int voteMajReference[Max_obs], int egalite, vector<vector<vector<int> > > & voteMajOcc){
+    //if(nbCombinaison[p] < 500000){
+        if (i<p) {
+            for (int k=t; k<n; k++) {
+                combinaison[i] = ens[k];
+                combinaisons2(ens,combinaison,n,p,i+1,k+1, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, egalite, voteMajOcc);
+            }
         }
-    }
-    else {
-        voteMajoritaire(combinaison,p, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, egalite);
-        nbCombinaison[p]++;
-    }
+        else {
+            voteMajoritaire2(combinaison,p, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, egalite, voteMajOcc);
+        }
+    //}
 }
 
 
 void calculCombiSansAnnotCommun(int *ens, int *combinaison, int p, int n,
-                int T[Max_obs][Max_annot],int nblignes,int nba, int nbc,
-                int erreurVoteMaj[Max_annot], int voteMajReference[Max_obs], int egalite, int nbCombinaison[Max_annot]){
-
+                int T[Max_obs][Max_annot],int nblignes,int nba, int nbc, int erreurVoteMaj[Max_annot], int voteMajReference[Max_obs],
+                int egalite, vector<vector<vector<int> > > &voteMajOcc){
+    //on crée un ensemble qui contient tous les annotateurs sauf ceux présent dans cette combinaison
     vector<int> ens2;
     bool b;
     for (int i = 0; i < n; i++){
@@ -634,7 +651,7 @@ void calculCombiSansAnnotCommun(int *ens, int *combinaison, int p, int n,
             ens2.push_back(ens[i]);
         }
     }
-    // du vote maj de reference
+    //calcul du vote maj de de cette combinaison
     int tNbOcc[nbc];
     for(int obs=0; obs<nblignes; obs++){
         float moyenne = 0;
@@ -659,8 +676,33 @@ void calculCombiSansAnnotCommun(int *ens, int *combinaison, int p, int n,
         }
         voteMajReference[obs]=voteMaj;
     }
+
+    //on calcul toutes les combinaisons avec le même nombre d'annotateurs et qui ne contiennent pas les même annotateurs
     int combi[p];
-    combinaisons2(ens2, combi, n-p, p, 0, 0, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, egalite, nbCombinaison);
+    combinaisons2(ens2, combi, n-p, p, 0, 0, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, egalite, voteMajOcc);
+    //on fait le vote maj des votes maj de toutes les combi sans annotateurs communs
+    for(int obs=0; obs<nblignes; obs++){
+        int max = voteMajOcc[p][obs][0];
+        int voteMaj = 0;
+        for(int c=1; c<nbc; c++){
+            if(voteMajOcc[p][obs][c]>max){
+                max = voteMajOcc[p][obs][c];
+                voteMaj = c;
+            }else if(voteMajOcc[p][obs][c]==max){
+                int rng = rand() % 2;
+                if(rng == 0){
+                    max = voteMajOcc[p][obs][c];
+                    voteMaj = c;
+                }
+            }
+            voteMajOcc[p][obs][c]=0;
+        }
+        //on compare le vote maj des votes maj de toutes les combi sans annotateurs communs avec le vote maj de cette combinaison
+        if(voteMajReference[obs] != voteMaj){
+            erreurVoteMaj[p]++;
+        }
+    }
+    //cout << "p: " << p << " " << erreurVoteMaj[p]<< endl;
 }
 
 
@@ -668,24 +710,24 @@ void calculCombiSansAnnotCommun(int *ens, int *combinaison, int p, int n,
 void combinaisons(int *ens, int *combinaison, int n, int p, int i, int t,
                   int T[Max_obs][Max_annot],int nblignes,int nba,int nbc, /*std::vector<float> *vAlpha,*/
 		  int erreurVoteMaj[Max_annot], int voteMajReference[Max_obs], int nbCombinaison[Max_annot], /*float moyenneReference[Max_obs],*/ int egalite,
-		  int choixGold, vector<vector<vector<int> > > &voteMajOcc) {
+		  int choixGold, vector<vector<vector<int> > > &voteMajOcc, float moyennes[Max_annot]) {
     if (i<p) {
         for (int k=t; k<n; k++) {
             combinaison[i] = ens[k];
-            combinaisons(ens,combinaison,n,p,i+1,k+1, T,nblignes,nba,nbc, /*&vAlpha,*/ erreurVoteMaj, voteMajReference, nbCombinaison, /*moyenneReference,*/ egalite, choixGold, voteMajOcc);
+            combinaisons(ens,combinaison,n,p,i+1,k+1, T,nblignes,nba,nbc, /*&vAlpha,*/ erreurVoteMaj, voteMajReference, nbCombinaison, /*moyenneReference,*/ egalite, choixGold, voteMajOcc, moyennes);
         }
     }
     else {
         if(choixGold==0){
             voteMajoritaire(combinaison,p, T,nblignes,nba,nbc, /*&vAlpha,*/ erreurVoteMaj, voteMajReference, /*moyenneReference,*/ egalite);
-            nbCombinaison[p]++;
         }else if(choixGold==1){
             voteMajoritaire2(combinaison,p, T,nblignes,nba,nbc, /*&vAlpha,*/ erreurVoteMaj, voteMajReference, /*moyenneReference,*/ egalite, voteMajOcc);
-            nbCombinaison[p]++;
-        }else{
-            calculCombiSansAnnotCommun(ens, combinaison,p, n, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, egalite, nbCombinaison);
+        }else if(choixGold==2){
+            calculCombiSansAnnotCommun(ens, combinaison,p, n, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, egalite, voteMajOcc);
+        }else if(choixGold==3){
+            calculMoyenne(combinaison, p, T,nblignes,nba,nbc, moyennes, egalite);
         }
-        //nbCombinaison[p]++;
+        nbCombinaison[p]++;
     }
 }
 
@@ -703,10 +745,13 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,int nbc, st
     int voteMajReference[Max_obs];
     //les moyennes de votes de la référence pour chaque observable
     //float moyenneReference[Max_obs];
+    //les moyennes pour chaque combinaisons de p annotateurs
+    float moyennes[Max_annot];
 
     for(int i=0; i<nba+1; i++){
         erreurVoteMaj[i]=0;
         nbCombinaison[i]=0;
+        moyennes[i]=0;
     }
 
     vector<vector<vector<int> > > voteMajOcc;
@@ -723,7 +768,7 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,int nbc, st
     if(choixGold==2){
         for(int p=nba/2; p>1; p--){
             int combi[p];
-            combinaisons(ens,combi,nba,p,0,0, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, nbCombinaison, egalite, choixGold, voteMajOcc);
+            combinaisons(ens,combi,nba,p,0,0, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, nbCombinaison, egalite, choixGold, voteMajOcc, moyennes);
         }
     }else{
         for(int p=nba; p>1; p--){
@@ -731,7 +776,7 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,int nbc, st
             //cout << endl;
             int combi[p];
             //std::vector<float> vAlpha;
-            combinaisons(ens,combi,nba,p,0,0, T,nblignes,nba,nbc, /*&vAlpha,*/ erreurVoteMaj, voteMajReference, nbCombinaison, /*moyenneReference,*/ egalite, choixGold, voteMajOcc);
+            combinaisons(ens,combi,nba,p,0,0, T,nblignes,nba,nbc, /*&vAlpha,*/ erreurVoteMaj, voteMajReference, nbCombinaison, /*moyenneReference,*/ egalite, choixGold, voteMajOcc, moyennes);
             //float moy = moyenne(&vAlpha);
             //cout << "moyenne : " << moy << endl;
             //cout << "ecart-type : " << ecart_type(&vAlpha, moy) << endl;
@@ -779,6 +824,12 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,int nbc, st
                 float pourcentage = ((float) erreurVoteMaj[i]/(float) (nbCombinaison[i]*nblignes))*100;
                 vPourcentageErreur->push_back(pourcentage);
             }
+        }
+    }else if(choixGold==3){
+        for(int i=nba; i>1; i--){
+            cout << i << ": " << moyennes[i] << "/" << nbCombinaison[i] << "    ";
+            float pourcentage = (float) moyennes[i]/(float) nbCombinaison[i];
+            vPourcentageErreur->push_back(pourcentage);
         }
     }else{
         //cout << "poucentage d'erreur :  ";
@@ -872,6 +923,8 @@ int fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, str
 
     if(choixGold==1){
         ss<<"goldParAnnot";
+    }else if(choixGold==2){
+        ss<<"goldParAnnotSansAnnotCommun";
     }
 
     ss << nba;
@@ -956,7 +1009,7 @@ int main() {
     //choixMetrique = "k";
 
     int choixGold;
-    cout << "Choix ? (gold: 0 pour verite ideale, 1 pour en fonction du nombre d'annotateurs retenus, 2 pareil mais sans annotateur commun)";
+    cout << "Choix ? (gold: 0 pour verite ideale, 1 pour en fonction du nombre d'annotateurs retenus, 2 pareil mais sans annotateur commun, 3 moyenne)";
     cin >> choixGold;
     //choixGold  = 0;
 
