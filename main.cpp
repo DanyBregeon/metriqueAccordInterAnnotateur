@@ -601,7 +601,7 @@ void voteMajoritaire2( int *p, int n, int T[Max_obs][Max_annot],int nblignes,int
 
 
 void calculMoyenne( int *p, int n, int T[Max_obs][Max_annot],int nblignes,int nba, int nbc,
-		  float moyennes[Max_annot], int egalite)
+		  vector<vector<float>> & moyennes, int egalite)
 {
     float moyenne = 0;
     for(int obs=0; obs<nblignes; obs++){
@@ -611,7 +611,7 @@ void calculMoyenne( int *p, int n, int T[Max_obs][Max_annot],int nblignes,int nb
         }
     }
     //il faut calculer l'amplitude entre le min et le max des moyennes ??? ou l'amplitude par rapport aux 9/25 annotateurs ???
-    moyennes[n] += moyenne/(float) (n*nblignes);
+    moyennes[n].push_back(moyenne/(float) (n*nblignes)) ;
 
 
 }
@@ -710,7 +710,7 @@ void calculCombiSansAnnotCommun(int *ens, int *combinaison, int p, int n,
 void combinaisons(int *ens, int *combinaison, int n, int p, int i, int t,
                   int T[Max_obs][Max_annot],int nblignes,int nba,int nbc, /*std::vector<float> *vAlpha,*/
 		  int erreurVoteMaj[Max_annot], int voteMajReference[Max_obs], int nbCombinaison[Max_annot], /*float moyenneReference[Max_obs],*/ int egalite,
-		  int choixGold, vector<vector<vector<int> > > &voteMajOcc, float moyennes[Max_annot]) {
+		  int choixGold, vector<vector<vector<int> > > &voteMajOcc, vector<vector<float>> & moyennes) {
     if (i<p) {
         for (int k=t; k<n; k++) {
             combinaison[i] = ens[k];
@@ -746,12 +746,12 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,int nbc, st
     //les moyennes de votes de la référence pour chaque observable
     //float moyenneReference[Max_obs];
     //les moyennes pour chaque combinaisons de p annotateurs
-    float moyennes[Max_annot];
+    vector<vector<float>> moyennes;
+    moyennes.resize(Max_annot);
 
     for(int i=0; i<nba+1; i++){
         erreurVoteMaj[i]=0;
         nbCombinaison[i]=0;
-        moyennes[i]=0;
     }
 
     vector<vector<vector<int> > > voteMajOcc;
@@ -827,9 +827,22 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,int nbc, st
         }
     }else if(choixGold==3){
         for(int i=nba; i>1; i--){
-            cout << i << ": " << moyennes[i] << "/" << nbCombinaison[i] << "    ";
-            float pourcentage = (float) moyennes[i]/(float) nbCombinaison[i];
-            vPourcentageErreur->push_back(pourcentage);
+            float minMoyenne = moyennes[i][0];
+            float minIndex = 0;
+            float maxMoyenne = moyennes[i][0];
+            float maxIndex = 0;
+            for(int j=1; j<moyennes[i].size(); j++){
+                if(moyennes[i][j] < minMoyenne){
+                    minMoyenne = moyennes[i][j];
+                    minIndex = j;
+                }else if(moyennes[i][j] > maxMoyenne){
+                    maxMoyenne = moyennes[i][j];
+                    maxIndex = j;
+                }
+            }
+            cout << i << ": min=" << minMoyenne << " max=" << maxMoyenne << "    ";
+            float amplitude = maxMoyenne-minMoyenne;
+            vPourcentageErreur->push_back(amplitude);
         }
     }else{
         //cout << "poucentage d'erreur :  ";
