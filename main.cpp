@@ -610,7 +610,6 @@ void calculMoyenne( int *p, int n, int T[Max_obs][Max_annot],int nblignes,int nb
             moyenne += T[obs][p[ann]];
         }
     }
-    //il faut calculer l'amplitude entre le min et le max des moyennes ??? ou l'amplitude par rapport aux 9/25 annotateurs ???
     moyennes[n].push_back(moyenne/(float) (n*nblignes)) ;
 
 
@@ -723,8 +722,12 @@ void combinaisons(int *ens, int *combinaison, int n, int p, int i, int t,
         }else if(choixGold==1){
             voteMajoritaire2(combinaison,p, T,nblignes,nba,nbc, /*&vAlpha,*/ erreurVoteMaj, voteMajReference, /*moyenneReference,*/ egalite, voteMajOcc);
         }else if(choixGold==2){
-            calculCombiSansAnnotCommun(ens, combinaison,p, n, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, egalite, voteMajOcc);
-        }else if(choixGold==3){
+            if(nbCombinaison[p] < 100){
+                calculCombiSansAnnotCommun(ens, combinaison,p, n, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, egalite, voteMajOcc);
+            }else{
+                nbCombinaison[p]=99;
+            }
+        }else if(choixGold==3 || choixGold ==4){
             calculMoyenne(combinaison, p, T,nblignes,nba,nbc, moyennes, egalite);
         }
         nbCombinaison[p]++;
@@ -844,6 +847,19 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,int nbc, st
             float amplitude = maxMoyenne-minMoyenne;
             vPourcentageErreur->push_back(amplitude);
         }
+    }else if(choixGold==4){
+        float moyenneRef = moyennes[nba][0];
+        vPourcentageErreur->push_back(0);
+        for(int i=nba-1; i>1; i--){
+            float moyenne = 0;
+            for(int j=1; j<moyennes[i].size(); j++){
+                moyenne += moyennes[i][j];
+            }
+            moyenne = moyenne / (float) moyennes[i].size();
+            cout << i << ": " << moyenne << "    ";
+            float amplitude = abs(moyenneRef-moyenne);
+            vPourcentageErreur->push_back(amplitude);
+        }
     }else{
         //cout << "poucentage d'erreur :  ";
         for(int i=nba; i>1; i--){
@@ -938,6 +954,10 @@ int fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, str
         ss<<"goldParAnnot";
     }else if(choixGold==2){
         ss<<"goldParAnnotSansAnnotCommun";
+    }else if(choixGold==3){
+        ss<<"moyenneParAnnot";
+    }else if(choixGold==4){
+        ss<<"moyenne";
     }
 
     ss << nba;
@@ -964,11 +984,15 @@ int fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, str
         for(int i=0; i<nba-1; i++){
             std::vector<float> valeurs = it->second;
              //myfile << valeurs[i] <<"\t";
-            if(valeurs[i]<10){
-                myfile << nba-i << ":  " << valeurs[i] <<"%   ";
-            }else{
-                myfile << nba-i << ": " << valeurs[i] <<"%   ";
-            }
+             if(choixGold==3 || choixGold==4){
+                myfile << nba-i << ":  " << valeurs[i] <<"   ";
+             }else{
+                if(valeurs[i]<10){
+                    myfile << nba-i << ":  " << valeurs[i] <<"%   ";
+                }else{
+                    myfile << nba-i << ": " << valeurs[i] <<"%   ";
+                }
+             }
         }
         myfile << endl;
         //myfile << endl;
@@ -1022,7 +1046,7 @@ int main() {
     //choixMetrique = "k";
 
     int choixGold;
-    cout << "Choix ? (gold: 0 pour verite ideale, 1 pour en fonction du nombre d'annotateurs retenus, 2 pareil mais sans annotateur commun, 3 moyenne)";
+    cout << "Choix ? (gold: 0 pour verite ideale, 1 pour en fonction du nombre d'annotateurs retenus, 2 pareil mais sans annotateur commun, 3 moyenne par rapport au nombre P d'annotateurs, 4 moyenne par rapport a la verite)";
     cin >> choixGold;
     //choixGold  = 0;
 
