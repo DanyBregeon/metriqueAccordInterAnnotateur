@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1523442324 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\corpusaa\main.cpp
+	<iostream>
+	<cstring>
+	<cstdlib>
+	<sstream>
+	<iomanip>
+	<fstream>
+	<dirent.h>
+	<string>
+	<vector>
+

@@ -352,7 +352,12 @@ void lire(string nomfich,int T[Max_annot][Max_obs],int & Nbobs,int & Nba,int & N
 
 void choixTableau(int choix,int T[Max_annot][Max_obs],int & Nbobs,int & Nba,int & Nbc) {
   std::ostringstream ss;
-  if(choix > 100 && choix < 107){
+  if(choix >= 1000){
+    Nba=2;Nbobs=12;
+    ss << (choix-1000);
+    lire("classe3/generationAleatoireDonneesReelles3/generationAleatoire" + ss.str() + ".csv",T,Nbobs,Nba,Nbc);
+  }
+  else if(choix > 100 && choix < 107){
     Nba=2;Nbobs=12;
     ss << (choix-100);
     lire("Exemple/Tableau" + ss.str() + ".csv",T,Nbobs,Nba,Nbc);
@@ -617,12 +622,12 @@ void calculMoyenne( int *p, int n, int T[Max_obs][Max_annot],int nblignes,int nb
 //cas comparaison vote maj sans annotateurs communs
 void combinaisons2(vector<int> & ens, int *combinaison, int n, int p, int i, int t,
                 int T[Max_obs][Max_annot],int nblignes,int nba, int nbc,
-                int erreurVoteMaj[Max_annot], int voteMajReference[Max_obs], int egalite, vector<vector<vector<int> > > & voteMajOcc){
-    //if(nbCombinaison[p] < 500000){
+                int erreurVoteMaj[Max_annot], int voteMajReference[Max_obs], int egalite, vector<vector<vector<int> > > & voteMajOcc, vector<int> & nbCombi){
+    //if(nbCombi[p] < 1000){
         if (i<p) {
             for (int k=t; k<n; k++) {
                 combinaison[i] = ens[k];
-                combinaisons2(ens,combinaison,n,p,i+1,k+1, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, egalite, voteMajOcc);
+                combinaisons2(ens,combinaison,n,p,i+1,k+1, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, egalite, voteMajOcc, nbCombi);
             }
         }
         else {
@@ -653,7 +658,6 @@ void calculCombiSansAnnotCommun(int *ens, int *combinaison, int p, int n,
     //calcul du vote maj de de cette combinaison
     int tNbOcc[nbc];
     for(int obs=0; obs<nblignes; obs++){
-        float moyenne = 0;
         for(int ann=0; ann<p; ann++){
             tNbOcc[T[obs][ens[ann]]]++;
         }
@@ -678,7 +682,9 @@ void calculCombiSansAnnotCommun(int *ens, int *combinaison, int p, int n,
 
     //on calcul toutes les combinaisons avec le même nombre d'annotateurs et qui ne contiennent pas les même annotateurs
     int combi[p];
-    combinaisons2(ens2, combi, n-p, p, 0, 0, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, egalite, voteMajOcc);
+    vector<int> nbCombi;
+    nbCombi.resize(nba);
+    combinaisons2(ens2, combi, n-p, p, 0, 0, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, egalite, voteMajOcc, nbCombi);
     //on fait le vote maj des votes maj de toutes les combi sans annotateurs communs
     for(int obs=0; obs<nblignes; obs++){
         int max = voteMajOcc[p][obs][0];
@@ -722,11 +728,12 @@ void combinaisons(int *ens, int *combinaison, int n, int p, int i, int t,
         }else if(choixGold==1){
             voteMajoritaire2(combinaison,p, T,nblignes,nba,nbc, /*&vAlpha,*/ erreurVoteMaj, voteMajReference, /*moyenneReference,*/ egalite, voteMajOcc);
         }else if(choixGold==2){
-            if(nbCombinaison[p] < 100){
+            //if(nbCombinaison[p] < 1000){
                 calculCombiSansAnnotCommun(ens, combinaison,p, n, T,nblignes,nba,nbc, erreurVoteMaj, voteMajReference, egalite, voteMajOcc);
-            }else{
-                nbCombinaison[p]=99;
-            }
+            //}else{
+              //  nbCombinaison[p]=999;
+            //}
+
         }else if(choixGold==3 || choixGold ==4){
             calculMoyenne(combinaison, p, T,nblignes,nba,nbc, moyennes, egalite);
         }
@@ -852,9 +859,10 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,int nbc, st
         vPourcentageErreur->push_back(0);
         for(int i=nba-1; i>1; i--){
             float moyenne = 0;
-            for(int j=1; j<moyennes[i].size(); j++){
+            for(int j=0; j<moyennes[i].size(); j++){
                 moyenne += moyennes[i][j];
             }
+            cout << moyenne << "/" <<  moyennes[i].size() << endl;
             moyenne = moyenne / (float) moyennes[i].size();
             cout << i << ": " << moyenne << "    ";
             float amplitude = abs(moyenneRef-moyenne);
@@ -863,7 +871,7 @@ void calculDifference(int T[Max_obs][Max_annot],int nblignes,int nba,int nbc, st
     }else{
         //cout << "poucentage d'erreur :  ";
         for(int i=nba; i>1; i--){
-            cout << i << ": " << erreurVoteMaj[i] << "/(" << nbCombinaison[i] << "*" << nblignes << ")    ";
+            //cout << i << ": " << erreurVoteMaj[i] << "/(" << nbCombinaison[i] << "*" << nblignes << ")    ";
             //cout << i << ": " << ((float) erreurVoteMaj[i]/(float) nbCombinaison[i])*100 << "%   ";
             float pourcentage = ((float) erreurVoteMaj[i]/(float) (nbCombinaison[i]*nblignes))*100;
             vPourcentageErreur->push_back(pourcentage);
@@ -983,8 +991,8 @@ int fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, str
         myfile << fixed << setprecision (3);
         for(int i=0; i<nba-1; i++){
             std::vector<float> valeurs = it->second;
-             //myfile << valeurs[i] <<"\t";
-             if(choixGold==3 || choixGold==4){
+             myfile << valeurs[i] <<"\t";
+             /*if(choixGold==3 || choixGold==4){
                 myfile << nba-i << ":  " << valeurs[i] <<"   ";
              }else{
                 if(valeurs[i]<10){
@@ -992,7 +1000,7 @@ int fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, str
                 }else{
                     myfile << nba-i << ": " << valeurs[i] <<"%   ";
                 }
-             }
+             }*/
         }
         myfile << endl;
         //myfile << endl;
@@ -1009,7 +1017,7 @@ int main() {
     int choix;
     int choixNbClasse;
     //cout << "Choix ? (0 pour auto, 1-6 pour les exemples, 301-312 pour emotions/opinions avec 3 classes, 501-512 avec 5 classes, 513 pour coreference)";
-    cout << "Choix ? (1 pour tous les corpus, 2 pour emotion, 3 pour opinion, 4 pour coreference)";
+    cout << "Choix ? (1 pour tous les corpus, 2 pour emotion, 3 pour opinion, 4 pour coreference, 0 pour les corpus généré aleatoirement)";
     cin >> choix ;
     //si >= 100, on test sur un seul fichier: on a plus de détail mais pas de fichier de sortie
     if(choix < 100){
@@ -1056,6 +1064,11 @@ int main() {
 
     if(choix<100){
         std::vector<int> lesChoix;
+        if(choix==0){
+            for(int i=1000; i<2629/*2629/*1270*/; i++){
+                lesChoix.push_back(i);
+            }
+        }
         if(choixNbClasse==1 || choixNbClasse==3){
             if(choix==1 || choix==2){
                 for(int i=301; i<307; i++){
