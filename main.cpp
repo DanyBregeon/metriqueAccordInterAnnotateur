@@ -355,7 +355,7 @@ void choixTableau(int choix,int T[Max_annot][Max_obs],int & Nbobs,int & Nba,int 
   if(choix >= 1000){
     Nba=2;Nbobs=12;
     ss << (choix-1000);
-    lire("classe3/generationAleatoireDonneesReelles3/generationAleatoire" + ss.str() + ".csv",T,Nbobs,Nba,Nbc);
+    lire("classe3/generationAleatoireDonneesReelles4/generationAleatoireTest" + ss.str() + ".csv",T,Nbobs,Nba,Nbc);
   }
   else if(choix > 100 && choix < 107){
     Nba=2;Nbobs=12;
@@ -428,6 +428,9 @@ void choixTableau(int choix,int T[Max_annot][Max_obs],int & Nbobs,int & Nba,int 
   }else if(choix==317) {
     Nba=2;Nbobs=12;
     lire("classe3/TableauEmotionContexte250.csv",T,Nbobs,Nba,Nbc);
+  }else if(choix==318) {
+    Nba=2;Nbobs=12;
+    lire("classe3/generationAleatoireTest.csv",T,Nbobs,Nba,Nbc);
   }
 
 }
@@ -991,8 +994,8 @@ int fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, str
         myfile << fixed << setprecision (3);
         for(int i=0; i<nba-1; i++){
             std::vector<float> valeurs = it->second;
-             myfile << valeurs[i] <<"\t";
-             /*if(choixGold==3 || choixGold==4){
+             //myfile << valeurs[i] <<"\t";
+             if(choixGold==3 || choixGold==4){
                 myfile << nba-i << ":  " << valeurs[i] <<"   ";
              }else{
                 if(valeurs[i]<10){
@@ -1000,7 +1003,7 @@ int fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, str
                 }else{
                     myfile << nba-i << ": " << valeurs[i] <<"%   ";
                 }
-             }*/
+             }
         }
         myfile << endl;
         //myfile << endl;
@@ -1065,7 +1068,7 @@ int main() {
     if(choix<100){
         std::vector<int> lesChoix;
         if(choix==0){
-            for(int i=1000; i<2629/*2629/*1270*/; i++){
+            for(int i=1000; i<1010/*2629/*2629/*1270*/; i++){
                 lesChoix.push_back(i);
             }
         }
