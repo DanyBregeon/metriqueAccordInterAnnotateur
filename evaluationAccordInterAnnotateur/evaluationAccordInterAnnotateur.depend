@@ -1,0 +1,103 @@
+# depslib dependency file v1.0
+1527261497 source:c:\users\admin\documents\c&c++\evaluationaccordinterannotateur\main.cpp
+	<iostream>
+	<vector>
+	<cstring>
+	<cstdlib>
+	<ctime>
+	<cmath>
+	<cstring>
+	<fstream>
+	<cstdio>
+	<map>
+	<iomanip>
+	"calculMetrique.h"
+	"lectureFichier.h"
+	"combinaison.h"
+	"fichierSortie.h"
+	"calculResultats.h"
+
+1526206787 c:\users\admin\documents\c&c++\evaluationaccordinterannotateur\calculmetrique.h
+	<vector>
+
+1526206038 source:c:\users\admin\documents\c&c++\evaluationaccordinterannotateur\calculmetrique.cpp
+	<iostream>
+	<vector>
+	<cstring>
+	<cstdlib>
+	<ctime>
+	<cmath>
+	<cstring>
+	<fstream>
+	<cstdio>
+	"calculMetrique.h"
+
+1527261276 source:c:\users\admin\documents\c&c++\evaluationaccordinterannotateur\lecturefichier.cpp
+	<iostream>
+	<vector>
+	<cstring>
+	<cstdlib>
+	<ctime>
+	<cmath>
+	<cstring>
+	<fstream>
+	<cstdio>
+	<sstream>
+	"lectureFichier.h"
+
+1526207401 c:\users\admin\documents\c&c++\evaluationaccordinterannotateur\lecturefichier.h
+	<vector>
+
+1527242778 source:c:\users\admin\documents\c&c++\evaluationaccordinterannotateur\combinaison.cpp
+	<iostream>
+	<vector>
+	<cstring>
+	<cstdlib>
+	<ctime>
+	<cmath>
+	<cstring>
+	<fstream>
+	<cstdio>
+	"combinaison.h"
+
+1527243159 c:\users\admin\documents\c&c++\evaluationaccordinterannotateur\combinaison.h
+	<vector>
+
+1527250216 source:c:\users\admin\documents\c&c++\evaluationaccordinterannotateur\fichiersortie.cpp
+	<iostream>
+	<vector>
+	<cstring>
+	<cstdlib>
+	<ctime>
+	<cmath>
+	<cstring>
+	<fstream>
+	<cstdio>
+	<sstream>
+	<map>
+	<iomanip>
+	"lectureFichier.h"
+
+1527250241 c:\users\admin\documents\c&c++\evaluationaccordinterannotateur\fichiersortie.h
+	<string>
+	<vector>
+	<map>
+
+1527262704 source:c:\users\admin\documents\c&c++\evaluationaccordinterannotateur\calculresultats.cpp
+	<iostream>
+	<vector>
+	<cstring>
+	<cstdlib>
+	<ctime>
+	<cmath>
+	<cstring>
+	<fstream>
+	<cstdio>
+	<sstream>
+	<map>
+	"calculResultats.h"
+
+1527261051 c:\users\admin\documents\c&c++\evaluationaccordinterannotateur\calculresultats.h
+	<vector>
+	<map>
+

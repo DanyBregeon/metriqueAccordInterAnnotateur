@@ -355,7 +355,7 @@ void choixTableau(int choix,int T[Max_annot][Max_obs],int & Nbobs,int & Nba,int 
   if(choix >= 1000){
     Nba=2;Nbobs=12;
     ss << (choix-1000);
-    lire("classe3/generationAleatoireDonneesReelles4/generationAleatoireTest" + ss.str() + ".csv",T,Nbobs,Nba,Nbc);
+    lire("classe3/generationAleatoireV2/generationAleatoire" + ss.str() + ".csv",T,Nbobs,Nba,Nbc);
   }
   else if(choix > 100 && choix < 107){
     Nba=2;Nbobs=12;
@@ -994,8 +994,8 @@ int fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, str
         myfile << fixed << setprecision (3);
         for(int i=0; i<nba-1; i++){
             std::vector<float> valeurs = it->second;
-             //myfile << valeurs[i] <<"\t";
-             if(choixGold==3 || choixGold==4){
+             myfile << valeurs[i] <<"\t";
+             /*if(choixGold==3 || choixGold==4){
                 myfile << nba-i << ":  " << valeurs[i] <<"   ";
              }else{
                 if(valeurs[i]<10){
@@ -1003,13 +1003,113 @@ int fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, str
                 }else{
                     myfile << nba-i << ": " << valeurs[i] <<"%   ";
                 }
-             }
+             }*/
         }
         myfile << endl;
         //myfile << endl;
     }
     myfile.close();
     return 0;
+}
+
+void generationAleatoireResultats(std::map<std::pair<int, float>, std::vector<float>> & mapResultat,
+                                  std::map<std::pair<int, float>, std::vector<float>> & mapResultat2, int nbc, int nba){
+
+    vector<vector<float>> vResultats;
+    vResultats.resize(21);
+    for(int i=0; i<21; i++){
+        vResultats[i].resize(nba-1);
+      }
+
+    for(int i=0; i<21; i++){
+        for(int j=0; j<nba-1; j++){
+            vResultats[i][j]=0;
+        }
+    }
+
+    //moyenne
+    float palier = 0.05f;
+    int occPalier = 0;
+    int indexPalier=0;
+    for (std::map<std::pair<int, float>, std::vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
+        std::pair<int, float> m = it->first;
+        std::vector<float> valeurs = it->second;
+        while(m.second>=palier){
+            if(occPalier > 0){
+                for(int i=0; i<nba-1; i++){
+                    vResultats[indexPalier][i] = vResultats[indexPalier][i] / (float) occPalier;
+                }
+                pair<int, float> pairNbcAlpha(nbc, palier-0.05f);
+                mapResultat2.insert(std::pair<std::pair<int, float>, std::vector<float>>(pairNbcAlpha, vResultats[indexPalier]));
+            }
+            palier += 0.05f;
+            occPalier = 0;
+            indexPalier++;
+        }
+        occPalier++;
+        for(int i=0; i<nba-1; i++){
+            vResultats[indexPalier][i] += valeurs[i];
+        }
+
+    }
+    if(occPalier > 0){
+        for(int i=0; i<nba-1; i++){
+            vResultats[indexPalier][i] = vResultats[indexPalier][i] / (float) occPalier;
+        }
+        pair<int, float> pairNbcAlpha(nbc, palier-0.05f);
+        mapResultat2.insert(std::pair<std::pair<int, float>, std::vector<float>>(pairNbcAlpha, vResultats[indexPalier]));
+    }
+    for(int i=0; i<21; i++){
+        for(int j=0; j<nba-1; j++){
+            cout << vResultats[i][j] << " ";
+        }
+        cout << endl;
+    }
+    //ecart-type
+    vector<vector<float>> vResultatsEcartType;
+    vResultatsEcartType.resize(21);
+    for(int i=0; i<21; i++){
+        vResultatsEcartType[i].resize(nba-1);
+      }
+
+    for(int i=0; i<21; i++){
+        for(int j=0; j<nba-1; j++){
+            vResultatsEcartType[i][j]=0;
+        }
+    }
+
+    palier = 0.05f;
+    occPalier = 0;
+    indexPalier=0;
+    for (std::map<std::pair<int, float>, std::vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
+        std::pair<int, float> m = it->first;
+        std::vector<float> valeurs = it->second;
+        while(m.second>=palier){
+            if(occPalier > 0){
+                for(int i=0; i<nba-1; i++){
+                    vResultatsEcartType[indexPalier][i] = sqrt(vResultatsEcartType[indexPalier][i] / (float) occPalier);
+                }
+                pair<int, float> pairNbcAlpha(10, palier-0.05f);
+                mapResultat2.insert(std::pair<std::pair<int, float>, std::vector<float>>(pairNbcAlpha, vResultatsEcartType[indexPalier]));
+            }
+            palier += 0.05f;
+            occPalier = 0;
+            indexPalier++;
+        }
+        occPalier++;
+        for(int i=0; i<nba-1; i++){
+            vResultatsEcartType[indexPalier][i] += (valeurs[i]-vResultats[indexPalier][i]) * (valeurs[i]-vResultats[indexPalier][i]);
+        }
+
+    }
+    if(occPalier > 0){
+        for(int i=0; i<nba-1; i++){
+            vResultatsEcartType[indexPalier][i] = sqrt(vResultatsEcartType[indexPalier][i] / (float) occPalier);
+        }
+        pair<int, float> pairNbcAlpha(10, palier-0.05f);
+        mapResultat2.insert(std::pair<std::pair<int, float>, std::vector<float>>(pairNbcAlpha, vResultatsEcartType[indexPalier]));
+    }
+
 }
 
 
@@ -1068,7 +1168,7 @@ int main() {
     if(choix<100){
         std::vector<int> lesChoix;
         if(choix==0){
-            for(int i=1000; i<1010/*2629/*2629/*1270*/; i++){
+            for(int i=1000; i<3000/*2629/*1270*/; i++){
                 lesChoix.push_back(i);
             }
         }
@@ -1140,13 +1240,15 @@ int main() {
             }
             cout << m.first <<" classes, "<< s << "=" << fixed << setprecision (3) << m.second << "   ";
             for(int i=0; i<nba-1; i++){
-            std::vector<float> valeurs = it->second;
-            cout << nba-i << ": " << valeurs[i] <<"%   ";
+                std::vector<float> valeurs = it->second;
+                cout << nba-i << ": " << valeurs[i] <<"%   ";
             }
             cout << endl;
             cout << endl;
         }
-        fichierSortie(choix, choixNbClasse, choixMetrique, egalite, choixGold, nba, mapResultat);
+        std::map<std::pair<int, float>, std::vector<float>> mapResultat2;
+        generationAleatoireResultats(mapResultat, mapResultat2, nbc, nba);
+        fichierSortie(choix, choixNbClasse, choixMetrique, egalite, choixGold, nba, mapResultat2);
     }else{
         choixTableau(choix,T,nbobs,nba,nbc); //on rempli tous les parametres par les valeurs lu dans le fichier
         afficheTableauLu(T,nbobs,nba); //on affiche le tableau d'annotations
