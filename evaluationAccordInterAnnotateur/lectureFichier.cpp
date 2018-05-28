@@ -203,6 +203,18 @@ void choixTableau(int choix,vector<vector<int>> & vAnnotObs,int & Nbobs,int & Nb
   }else if(choix==317) {
     Nba=2;Nbobs=12;
     lire("classe3/TableauEmotionContexte250.csv",vAnnotObs,Nbobs,Nba,Nbc);
+  }else if(choix==318) {
+    Nba=2;Nbobs=12;
+    lire("classe3/TableauSimilariteConqueteSpatiale.csv",vAnnotObs,Nbobs,Nba,Nbc);
+  }else if(choix==319) {
+    Nba=2;Nbobs=12;
+    lire("classe3/TableauSimilariteEpidemies.csv",vAnnotObs,Nbobs,Nba,Nbc);
+  }else if(choix==518) {
+    Nba=2;Nbobs=12;
+    lire("classe5/TableauSimilariteConqueteSpatiale.csv",vAnnotObs,Nbobs,Nba,Nbc);
+  }else if(choix==519) {
+    Nba=2;Nbobs=12;
+    lire("classe5/TableauSimilariteEpidemies.csv",vAnnotObs,Nbobs,Nba,Nbc);
   }
 
 }

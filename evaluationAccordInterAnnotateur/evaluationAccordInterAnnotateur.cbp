@@ -34,8 +34,12 @@
 		</Compiler>
 		<Unit filename="calculMetrique.cpp" />
 		<Unit filename="calculMetrique.h" />
+		<Unit filename="calculResultats.cpp" />
+		<Unit filename="calculResultats.h" />
 		<Unit filename="combinaison.cpp" />
 		<Unit filename="combinaison.h" />
+		<Unit filename="fichierSortie.cpp" />
+		<Unit filename="fichierSortie.h" />
 		<Unit filename="lectureFichier.cpp" />
 		<Unit filename="lectureFichier.h" />
 		<Unit filename="main.cpp" />

@@ -13,6 +13,22 @@
 
 using namespace std;
 
+void calculPrevalence(vector<vector<int>> & vAnnotObs, int nbc, int nba, int nbobs){
+    int occClasse[nbc];
+    for(int i=0; i<nbc; i++){
+        occClasse[i]=0;
+    }
+    for(int ann=0; ann<nba; ann++){
+        for(int obs=0; obs<nbobs; obs++){
+            occClasse[vAnnotObs[ann][obs]]++;
+        }
+    }
+    for(int i=0; i<nbc; i++){
+        cout << i << " : " << occClasse[i] << " (" << ((float)occClasse[i]/(float)(nba*nbobs))*100 << "%)    ";
+    }
+    cout << endl;
+}
+
 void calculPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pair<int, float>, vector<float>> & mapResultat2, float palierPas,
                   vector<vector<float>> & vResultats, vector<vector<float>> & vResultatsEcartType, int moyenneEcartType, int nbc, int nba){
     float palier = palierPas;

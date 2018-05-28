@@ -196,6 +196,9 @@ int main()
 
         cout << metrique << endl;
 
+        cout << "prevalence :  ";
+        calculPrevalence(vAnnotObs, nbc, nba, nbobs);
+
         cout << "combinaisons de n-p annotateurs :" <<endl;
 
         std::vector<float> vPourcentageErreur;

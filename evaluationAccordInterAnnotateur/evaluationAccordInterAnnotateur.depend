@@ -101,3 +101,105 @@
 	<vector>
 	<map>
 
+1526206038 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\calculmetrique.cpp
+	<iostream>
+	<vector>
+	<cstring>
+	<cstdlib>
+	<ctime>
+	<cmath>
+	<cstring>
+	<fstream>
+	<cstdio>
+	"calculMetrique.h"
+
+1526206787 c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\calculmetrique.h
+	<vector>
+
+1527510364 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\calculresultats.cpp
+	<iostream>
+	<vector>
+	<cstring>
+	<cstdlib>
+	<ctime>
+	<cmath>
+	<cstring>
+	<fstream>
+	<cstdio>
+	<sstream>
+	<map>
+	"calculResultats.h"
+
+1527509773 c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\calculresultats.h
+	<vector>
+	<map>
+
+1527242778 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\combinaison.cpp
+	<iostream>
+	<vector>
+	<cstring>
+	<cstdlib>
+	<ctime>
+	<cmath>
+	<cstring>
+	<fstream>
+	<cstdio>
+	"combinaison.h"
+
+1527243159 c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\combinaison.h
+	<vector>
+
+1527250216 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\fichiersortie.cpp
+	<iostream>
+	<vector>
+	<cstring>
+	<cstdlib>
+	<ctime>
+	<cmath>
+	<cstring>
+	<fstream>
+	<cstdio>
+	<sstream>
+	<map>
+	<iomanip>
+	"lectureFichier.h"
+
+1526207401 c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\lecturefichier.h
+	<vector>
+
+1527504432 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\lecturefichier.cpp
+	<iostream>
+	<vector>
+	<cstring>
+	<cstdlib>
+	<ctime>
+	<cmath>
+	<cstring>
+	<fstream>
+	<cstdio>
+	<sstream>
+	"lectureFichier.h"
+
+1527509865 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\main.cpp
+	<iostream>
+	<vector>
+	<cstring>
+	<cstdlib>
+	<ctime>
+	<cmath>
+	<cstring>
+	<fstream>
+	<cstdio>
+	<map>
+	<iomanip>
+	"calculMetrique.h"
+	"lectureFichier.h"
+	"combinaison.h"
+	"fichierSortie.h"
+	"calculResultats.h"
+
+1527250241 c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\fichiersortie.h
+	<string>
+	<vector>
+	<map>
+
