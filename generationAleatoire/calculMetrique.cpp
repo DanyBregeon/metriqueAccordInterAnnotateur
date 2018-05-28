@@ -83,9 +83,9 @@ float Aepi(int nblignes,int nbclasses,int Nbareel, vector<vector<int>> & vAnnotO
 float kappaAP(int nblignes,int nbclasses,int Nbareel, vector<vector<int>> & vAnnotObs){
    float Ao,Ae;
    Ao=Aokappa(nblignes,nbclasses,Nbareel,vAnnotObs);
-   printf("Ao=%f\n",Ao);
+   //printf("Ao=%f\n",Ao);
    Ae=Aekappa(nblignes,nbclasses,Nbareel,vAnnotObs);
-   printf("Aekappa=%f\n",Ae);
+   //printf("Aekappa=%f\n",Ae);
    return (Ao-Ae)/(1.0-Ae);
 }
 
