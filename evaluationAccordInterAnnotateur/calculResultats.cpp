@@ -24,7 +24,7 @@ void calculPrevalence(vector<vector<int>> & vAnnotObs, int nbc, int nba, int nbo
         }
     }
     for(int i=0; i<nbc; i++){
-        cout << i << " : " << occClasse[i] << " (" << ((float)occClasse[i]/(float)(nba*nbobs))*100 << "%)    ";
+        cout << i << " : " << /*occClasse[i] << " (" <<*/ ((float)occClasse[i]/(float)(nba*nbobs))*100 << "%    ";
     }
     cout << endl;
 }

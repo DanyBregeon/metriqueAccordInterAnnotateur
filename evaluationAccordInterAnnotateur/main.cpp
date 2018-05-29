@@ -48,7 +48,7 @@ int main()
     cin >> choixMetrique;
 
     int choixGold;
-    cout << "Choix ? (gold: 0 pour verite ideale, 1 pour en fonction du nombre d'annotateurs retenus, 2 pareil mais sans annotateur commun, 3 moyenne par rapport au nombre P d'annotateurs, 4 moyenne par rapport a la verite)";
+    cout << "Choix ? (gold: 0 pour verite ideale, 1 pour en fonction du nombre d'annotateurs retenus, 2 pareil mais sans annotateur commun, 3 prevalence)";
     cin >> choixGold;
 
     //tableau final avec les pourcentages de différences de votes majoritaires par rapport à la référence
@@ -196,22 +196,24 @@ int main()
 
         cout << metrique << endl;
 
-        cout << "prevalence :  ";
-        calculPrevalence(vAnnotObs, nbc, nba, nbobs);
+        if(choixGold == 3){
+            cout << "prevalence :  ";
+            calculPrevalence(vAnnotObs, nbc, nba, nbobs);
+        }else{
+            cout << "combinaisons de n-p annotateurs :" <<endl;
 
-        cout << "combinaisons de n-p annotateurs :" <<endl;
+            std::vector<float> vPourcentageErreur;
 
-        std::vector<float> vPourcentageErreur;
+            calculDifference(vObsAnnot,nbobs,nba,nbc, &vPourcentageErreur, choixGold);
 
-        calculDifference(vObsAnnot,nbobs,nba,nbc, &vPourcentageErreur, choixGold);
-
-        pair<int, float> pairNbcAlpha(nbc, metrique);
-        mapResultat.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vPourcentageErreur));
-        //affichage résultats
-        for(int i=0; i<nba-1; i++){
-            cout << nba-i << ": " << mapResultat.at(pairNbcAlpha)[i] <<"%   ";
+            pair<int, float> pairNbcAlpha(nbc, metrique);
+            mapResultat.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vPourcentageErreur));
+            //affichage résultats
+            for(int i=0; i<nba-1; i++){
+                cout << nba-i << ": " << mapResultat.at(pairNbcAlpha)[i] <<"%   ";
+            }
+            fichierSortie(choix, choixNbClasse, choixMetrique, choixGold, nba, mapResultat);
         }
-        fichierSortie(choix, choixNbClasse, choixMetrique, choixGold, nba, mapResultat);
     }
 
 
