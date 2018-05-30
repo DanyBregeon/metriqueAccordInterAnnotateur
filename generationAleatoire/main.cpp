@@ -207,7 +207,7 @@ int main()
             }
         }
     }else{
-        choixTableau(516, vAnnotObs, nbobs, nba, nbc);
+        choixTableau(315, vAnnotObs, nbobs, nba, nbc);
         for(int i=0; i<nba; i++){
             for(int j=0; j<nbobs; j++){
                 vPasChoisi.push_back(pair<int,int>(i,j));
@@ -341,14 +341,21 @@ Un exemple possible de protocole :
         moyenneErreurP2 = (float) nbErreur/(float) nba;
         moyenneErreurP1 = moyenneErreurP1 / (float) nbobs;
         cout << "moyenne % P1= " << moyenneErreurP1 << "%" << endl; //<< " , ";
+        float ecartType = 0;
+        for(int obs = 0; obs < nbobs; obs++){
+           ecartType += (pourcentageErreur[obs]-moyenneErreurP1)*(pourcentageErreur[obs]-moyenneErreurP1);
+        }
+        ecartType = ecartType/(float) nbobs;
+        ecartType = sqrt(ecartType);
+        cout << "ecart type : " << ecartType << endl;
         //cout << "moyenne % P2= " << ((float) moyenneErreurP2/(float) nbobs)*100.0 << " min=" << ((float) nbErreurMin/(float) nbobs)*100.0 << " , max=" << ((float) nbErreurMax/(float) nbobs)*100.0 << endl;
 
-    for(int occ=0; occ<2000; occ++){
+    for(int occ=0; occ<20000; occ++){
         int intervalleMin = occ%(nbobs-1);//nbErreurMin;//occ;
         int intervalleMax = intervalleMin+1;//nbErreurMax;//occ+1;
         /*int intervalleMin = 0;
         int intervalleMax = nbobs;*/
-        cout << occ << endl;
+        //cout << occ << endl;
         //cout << endl << "P2= " << moyenneErreurP2 << "  (" << nbErreur << "/" << nba << ") , min=" << nbErreurMin << " , max=" << nbErreurMax << endl;
         /*cout << "choix intervalle :" << endl << "min=";
         cin >> intervalleMin;
@@ -463,7 +470,7 @@ Un exemple possible de protocole :
         }
         float valeurMetrique;
         valeurMetrique = kappaAP(nbobs, nbc, nbNewAnnot, vObsAnnot2);
-        cout << "Metrique: " << valeurMetrique << endl;
+        //cout << "Metrique: " << valeurMetrique << endl;
 
 
 

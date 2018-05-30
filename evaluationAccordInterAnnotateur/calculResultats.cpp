@@ -42,6 +42,9 @@ void calculPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pair<i
                 for(int i=0; i<nba-1; i++){
                     if(moyenneEcartType == 0){
                         vResultats[indexPalier][i] = vResultats[indexPalier][i] / (float) occPalier;
+                        if(i==0){
+                            cout << indexPalier*palierPas << ": " << occPalier << " occurences" << endl;
+                        }
                     }else{
                         vResultatsEcartType[indexPalier][i] = sqrt(vResultatsEcartType[indexPalier][i] / (float) occPalier);
                     }
@@ -71,6 +74,9 @@ void calculPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pair<i
         for(int i=0; i<nba-1; i++){
             if(moyenneEcartType == 0){
                 vResultats[indexPalier][i] = vResultats[indexPalier][i] / (float) occPalier;
+                if(i==0){
+                    cout << indexPalier*palierPas << ": " << occPalier << " occurences" << endl;
+                }
             }else{
                 vResultatsEcartType[indexPalier][i] = sqrt(vResultatsEcartType[indexPalier][i] / (float) occPalier);
             }
@@ -85,13 +91,14 @@ void calculPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pair<i
     }
 
     //affichage
-    int nbPalier = 1 + (1/palierPas);
+    int nbPalier = 2 + (int)(1.0f/palierPas);
     for(int i=0; i<nbPalier; i++){
+        cout << i*palierPas << ": ";
         for(int j=0; j<nba-1; j++){
             if(moyenneEcartType == 0){
                 cout << vResultats[i][j] << " ";
             }else{
-                cout << vResultatsEcartType[i][j] << " A ";
+                cout << vResultatsEcartType[i][j] << " ET ";
             }
         }
         cout << endl;

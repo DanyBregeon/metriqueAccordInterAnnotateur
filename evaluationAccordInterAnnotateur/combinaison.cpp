@@ -77,7 +77,7 @@ void voteMajoritaire( int *p, int n, vector<vector<int>> & vObsAnnot,int nbobs,i
     }else{
         //int test = erreurVoteMaj[n];
         for(int i=0; i<nbobs; i++){
-            if(voteMajoritaire[i] != voteMajReference[i]){
+            if(voteMajoritaire[i] != voteMajReference[i]){ // à modifier si on veut pondéré l'erreur ?
                 erreurVoteMaj[n]++;
                 //"% de modifications par rapport à la référence" par nombre d'annotateur ou pour chaque vote majoritaire ?
                 //break;
