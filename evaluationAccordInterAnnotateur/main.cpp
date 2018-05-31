@@ -60,7 +60,7 @@ int main()
     if(choix<100){
         vector<int> lesChoix;
         if(choix==0){ //cas generation aleatoire
-            for(int i=1000; i<21000/*2629/*1270*/; i++){
+            for(int i=1000; i<3000/*2629/*1270*/; i++){
                 lesChoix.push_back(i);
             }
         }
@@ -91,7 +91,12 @@ int main()
                 lesChoix.push_back(513);
             }
         }
+        //prevalence
+        vector<pair<float, vector<float>>> vPrevalence;
+        //vPrevalence.resize(lesChoix.size());
         for(int i=0; i<lesChoix.size(); i++){
+            //if(i%2000==0) cout << i << endl; //affichage
+
             choixTableau(lesChoix[i],vAnnotObs,nbobs,nba,nbc);
             //afficheTableauLu(T,nbobs,nba);
             //vObsAnnot est vAnnotObs transposé
@@ -124,6 +129,9 @@ int main()
             }else{
                 metrique = alpha(nb,C,nbc, 0);
             }
+            //prevalence
+            calculPrevalence(vPrevalence, metrique, vAnnotObs, nbc, nba, nbobs);
+
             pair<int, float> pairNbcAlpha(nbc, metrique);
             //cout << " pairNbcAlpha: " << pairNbcAlpha.first << "/" << pairNbcAlpha.second;
             //cout<< "combinaisons de n-p annotateurs :" <<endl;
@@ -153,7 +161,7 @@ int main()
             cout << endl;
         }
         map<pair<int, float>, vector<float>> mapResultat2;
-        resultatsPalier(mapResultat, mapResultat2, 0.05f, nbc, nba);
+        resultatsPalier(mapResultat, mapResultat2, 0.05f, nbc, nba, vPrevalence);
         fichierSortie(choix, choixNbClasse, choixMetrique, choixGold, nba, mapResultat2);
     }else{ //on test sur un seul fichier
 
@@ -198,7 +206,11 @@ int main()
 
         if(choixGold == 3){
             cout << "prevalence :  ";
-            calculPrevalence(vAnnotObs, nbc, nba, nbobs);
+            vector<pair<float, vector<float>>> vPrevalence;
+            calculPrevalence(vPrevalence, metrique, vAnnotObs, nbc, nba, nbobs);
+            for(int c=0; c<nbc; c++){
+                cout << c << " : " << (vPrevalence[0].second)[c] << endl;
+            }
         }else{
             cout << "combinaisons de n-p annotateurs :" <<endl;
 

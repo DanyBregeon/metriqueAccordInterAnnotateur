@@ -182,6 +182,12 @@ void remplacerParNouveauAnnotateur(int nba, int nbobs, int nbc, vector<vector<in
 
 int main()
 {
+    vector<int> test;
+    test.resize(181);
+    for(int t=0; t<181; t++){
+        test[t]=0;
+    }
+
     srand(time(NULL));
     int nba = 9;
     int nbobs = 30;
@@ -350,7 +356,7 @@ Un exemple possible de protocole :
         cout << "ecart type : " << ecartType << endl;
         //cout << "moyenne % P2= " << ((float) moyenneErreurP2/(float) nbobs)*100.0 << " min=" << ((float) nbErreurMin/(float) nbobs)*100.0 << " , max=" << ((float) nbErreurMax/(float) nbobs)*100.0 << endl;
 
-    for(int occ=0; occ<20000; occ++){
+    for(int occ=0; occ<200; occ++){
         int intervalleMin = occ%(nbobs-1);//nbErreurMin;//occ;
         int intervalleMax = intervalleMin+1;//nbErreurMax;//occ+1;
         /*int intervalleMin = 0;
@@ -426,8 +432,9 @@ Un exemple possible de protocole :
                 while(rngObs >= proba[itObs]){
                     itObs++;
                 }
+                //l'annotateur ann fait une erreur à l'observable vObsErreur[itObs]
                 vAnnotObs2[ann][vObsErreur[itObs]]+= 1 + (rand() % (nbc-1));
-                vAnnotObs2[ann][vObsErreur[itObs]] = vAnnotObs2[ann][itObs] % nbc;
+                vAnnotObs2[ann][vObsErreur[itObs]] = vAnnotObs2[ann][vObsErreur[itObs]] % nbc;
                 //totalPossibilite -= (1 + nbErreurObs[itObs]*nbErreurObs[itObs]*nbErreurObs[itObs]);
                 //cout << "itObs : " << itObs << " , vObsErreur[itObs] : " << vObsErreur[itObs] << "  ";
                 //cout << proba[itObs] << " vs ";
@@ -473,11 +480,14 @@ Un exemple possible de protocole :
         //cout << "Metrique: " << valeurMetrique << endl;
 
 
-
         //affichage(nba, nbobs, vAnnotObs);
         ostringstream ss;
         ss << "generationAleatoireV2/generationAleatoire" << occ << ".csv";
         ecrireFichier(nbNewAnnot, nbobs, nbc, vAnnotObs2, ss.str());
+    }
+
+    for(int t=0; t<nbobs; t++){
+        cout << t << " : " << test[t] << endl;
     }
 
     return 0;

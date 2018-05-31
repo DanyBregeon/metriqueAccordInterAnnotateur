@@ -116,7 +116,7 @@
 1526206787 c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\calculmetrique.h
 	<vector>
 
-1527597129 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\calculresultats.cpp
+1527777084 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\calculresultats.cpp
 	<iostream>
 	<vector>
 	<cstring>
@@ -128,9 +128,10 @@
 	<cstdio>
 	<sstream>
 	<map>
+	<algorithm>
 	"calculResultats.h"
 
-1527509773 c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\calculresultats.h
+1527772069 c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\calculresultats.h
 	<vector>
 	<map>
 
@@ -167,7 +168,7 @@
 1526207401 c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\lecturefichier.h
 	<vector>
 
-1527677171 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\lecturefichier.cpp
+1527779960 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\lecturefichier.cpp
 	<iostream>
 	<vector>
 	<cstring>
@@ -180,7 +181,7 @@
 	<sstream>
 	"lectureFichier.h"
 
-1527596661 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\main.cpp
+1527779799 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\main.cpp
 	<iostream>
 	<vector>
 	<cstring>
