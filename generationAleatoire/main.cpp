@@ -207,7 +207,7 @@ int main()
             }
         }
     }else{
-        choixTableau(519, vAnnotObs, nbobs, nba, nbc);
+        choixTableau(314, vAnnotObs, nbobs, nba, nbc);
         for(int i=0; i<nba; i++){
             for(int j=0; j<nbobs; j++){
                 vPasChoisi.push_back(pair<int,int>(i,j));
