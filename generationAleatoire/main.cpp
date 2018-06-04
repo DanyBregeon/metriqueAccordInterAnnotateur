@@ -182,12 +182,6 @@ void remplacerParNouveauAnnotateur(int nba, int nbobs, int nbc, vector<vector<in
 
 int main()
 {
-    vector<int> test;
-    test.resize(181);
-    for(int t=0; t<181; t++){
-        test[t]=0;
-    }
-
     srand(time(NULL));
     int nba = 9;
     int nbobs = 30;
@@ -213,7 +207,7 @@ int main()
             }
         }
     }else{
-        choixTableau(315, vAnnotObs, nbobs, nba, nbc);
+        choixTableau(519, vAnnotObs, nbobs, nba, nbc);
         for(int i=0; i<nba; i++){
             for(int j=0; j<nbobs; j++){
                 vPasChoisi.push_back(pair<int,int>(i,j));
@@ -356,12 +350,13 @@ Un exemple possible de protocole :
         cout << "ecart type : " << ecartType << endl;
         //cout << "moyenne % P2= " << ((float) moyenneErreurP2/(float) nbobs)*100.0 << " min=" << ((float) nbErreurMin/(float) nbobs)*100.0 << " , max=" << ((float) nbErreurMax/(float) nbobs)*100.0 << endl;
 
-    for(int occ=0; occ<200; occ++){
-        int intervalleMin = occ%(nbobs-1);//nbErreurMin;//occ;
+    for(int occ=0; occ<2000; occ++){
+        //l'intervalle d'erreur des annotateurs (chaque annotateur fera entre intervalleMin et intervalleMax erreurs)
+        int intervalleMin = occ%(int)((float)nbobs*sqrt((float)(nbc-1)/(float)(nbc)));//occ%(nbobs-1);//nbErreurMin;//occ;
         int intervalleMax = intervalleMin+1;//nbErreurMax;//occ+1;
         /*int intervalleMin = 0;
         int intervalleMax = nbobs;*/
-        //cout << occ << endl;
+        cout << occ << endl;
         //cout << endl << "P2= " << moyenneErreurP2 << "  (" << nbErreur << "/" << nba << ") , min=" << nbErreurMin << " , max=" << nbErreurMax << endl;
         /*cout << "choix intervalle :" << endl << "min=";
         cin >> intervalleMin;
@@ -477,7 +472,7 @@ Un exemple possible de protocole :
         }
         float valeurMetrique;
         valeurMetrique = kappaAP(nbobs, nbc, nbNewAnnot, vObsAnnot2);
-        //cout << "Metrique: " << valeurMetrique << endl;
+        cout << "Metrique: " << valeurMetrique << endl;
 
 
         //affichage(nba, nbobs, vAnnotObs);
@@ -486,9 +481,6 @@ Un exemple possible de protocole :
         ecrireFichier(nbNewAnnot, nbobs, nbc, vAnnotObs2, ss.str());
     }
 
-    for(int t=0; t<nbobs; t++){
-        cout << t << " : " << test[t] << endl;
-    }
 
     return 0;
 }

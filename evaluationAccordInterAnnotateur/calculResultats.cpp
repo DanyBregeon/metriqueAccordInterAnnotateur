@@ -150,7 +150,7 @@ void calculPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pair<i
             if(moyenneEcartType == 0){
                 cout << vResultats[i][j] << " ";
             }else{
-                cout << vResultatsEcartType[i][j] << " ET ";
+                cout << vResultatsEcartType[i][j] << " ";
             }
         }
         cout << endl;
