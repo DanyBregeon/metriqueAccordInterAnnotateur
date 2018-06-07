@@ -180,11 +180,24 @@ void remplacerParNouveauAnnotateur(int nba, int nbobs, int nbc, vector<vector<in
     }
 }
 
+
+void testPrevalence(vector<vector<int>> & vAnnotObs, int classe1, int classe2, int nba, int taille){
+    for(int ann=0; ann<nba; ann++){
+        for(int obs=0; obs<taille; obs++){
+            if(vAnnotObs[ann][obs]==classe1){
+                vAnnotObs[ann][obs]=classe2;
+            }else if(vAnnotObs[ann][obs]==classe2){
+                vAnnotObs[ann][obs]=classe1;
+            }
+        }
+    }
+}
+
 int main()
 {
     srand(time(NULL));
-    int nba = 9;
-    int nbobs = 30;
+    int nba = 25;
+    int nbobs = 100;
     int nbc = 3;
     vector<vector<int>> vAnnotObs;
     vector<vector<int>> vObsAnnot;
@@ -202,17 +215,22 @@ int main()
 
         for(int i=0; i<nba; i++){
             for(int j=0; j<nbobs; j++){
-                vAnnotObs[i][j]=j % nbc;
+                if(j<nbobs/4){
+                    vAnnotObs[i][j]=rand() % nbc;
+                }else{
+                    vAnnotObs[i][j]=j % nbc;
+                }
                 vPasChoisi.push_back(pair<int,int>(i,j));
             }
         }
     }else{
-        choixTableau(314, vAnnotObs, nbobs, nba, nbc);
+        choixTableau(513, vAnnotObs, nbobs, nba, nbc);
         for(int i=0; i<nba; i++){
             for(int j=0; j<nbobs; j++){
                 vPasChoisi.push_back(pair<int,int>(i,j));
             }
         }
+        //testPrevalence(vAnnotObs, 1, 2, nba, nbobs/2);
     }
 
     //affichage(nba, nbobs, vAnnotObs);
@@ -322,6 +340,22 @@ Un exemple possible de protocole :
             cout << pourcentageErreur[obs] << endl;
             moyenneErreurP1 += pourcentageErreur[obs];
         }
+        // !!! test !!!
+        int testOcc[11];
+        for(int i=0; i<11; i++){
+            testOcc[i]=0;
+        }
+        for(int obs=0; obs<nbobs; obs++){
+            int i=0;
+            while(pourcentageErreur[obs] > i*10){
+                i++;
+            }
+            testOcc[i]++;
+        }
+        for(int i=0; i<11; i++){
+            cout << i*10 << " " << testOcc[i] << endl;
+        }
+        // !!! fin test !!!
 
         //calcul de P2
         int nbErreur = 0;

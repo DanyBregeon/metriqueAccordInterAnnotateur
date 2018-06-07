@@ -60,7 +60,7 @@ int main()
     if(choix<100){
         vector<int> lesChoix;
         if(choix==0){ //cas generation aleatoire
-            for(int i=1000; i<21000/*3000/*2629/*1270*/; i++){
+            for(int i=1000; i<3000/*2629/*1270*/; i++){
                 lesChoix.push_back(i);
             }
         }
