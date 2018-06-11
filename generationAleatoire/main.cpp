@@ -193,6 +193,27 @@ void testPrevalence(vector<vector<int>> & vAnnotObs, int classe1, int classe2, i
     }
 }
 
+void probaErreurAnnotateur(vector<vector<int>> & tNbOcc, vector<int> & voteMajoritaire, int nbobs, int nbc, vector<vector<int>> & probaClasseErreur, vector<int> & totalPossibiliteClasse){
+    for(int obs=0; obs<nbobs; obs++){
+        for(int c=0; c<nbc; c++){
+            if(c != voteMajoritaire[obs]){
+                if(tNbOcc[obs][c]==0){
+                    probaClasseErreur[obs][c] = totalPossibiliteClasse[obs] + 1;
+                    totalPossibiliteClasse[obs] += 1;
+                }else{
+                    probaClasseErreur[obs][c] = totalPossibiliteClasse[obs] + tNbOcc[obs][c]*2;
+                    totalPossibiliteClasse[obs] += tNbOcc[obs][c]*2;
+                }
+            }else{
+                probaClasseErreur[obs][c]=0;
+            }
+            cout << c << " : " << probaClasseErreur[obs][c] << "(" << tNbOcc[obs][c] <<")        ";
+        }
+        cout << "   / " << totalPossibiliteClasse[obs] << endl;
+    }
+}
+
+
 int main()
 {
     srand(time(NULL));
@@ -224,7 +245,7 @@ int main()
             }
         }
     }else{
-        choixTableau(513, vAnnotObs, nbobs, nba, nbc);
+        choixTableau(316, vAnnotObs, nbobs, nba, nbc);
         for(int i=0; i<nba; i++){
             for(int j=0; j<nbobs; j++){
                 vPasChoisi.push_back(pair<int,int>(i,j));
@@ -295,43 +316,47 @@ Un exemple possible de protocole :
     vector<int> voteMajoritaire;
     voteMajoritaire.resize(nbobs);
     //le nombre d'occurence des classes dans les annotations d'un observable
-    int tNbOcc[nbc];
+    vector<vector<int>> tNbOcc;
+    tNbOcc.resize(nbobs);
+    for(int o=0; o<nbobs; o++){
+        tNbOcc[o].resize(nbc);
+    }
     //le nombre d'annotation manquante
     int nbInfoManquante = 0;
 
-    //for(int occ=0; occ<10; occ++){
-        for(int c=0; c<nbc; c++){
-            tNbOcc[c]=0;
-        }
-
         //calcul des votes majoritaires et de P1
         for(int obs=0; obs<nbobs; obs++){
+            for(int c=0; c<nbc; c++){
+                tNbOcc[obs][c]=0;
+            }
             for(int ann=0; ann<nba; ann++){
                 if(vObsAnnot[obs][ann]!=-1){
-                    tNbOcc[vObsAnnot[obs][ann]]++;
+                    tNbOcc[obs][vObsAnnot[obs][ann]]++;
                 }else{
                     nbInfoManquante++;
                 }
             }
-            int max=tNbOcc[0];
+            int max=tNbOcc[obs][0];
             int voteMaj = 0;
-            tNbOcc[0] = 0;
             for(int i=1; i<nbc; i++){
-                if(tNbOcc[i]>max){
-                    max = tNbOcc[i];
+                if(tNbOcc[obs][i]>max){
+                    max = tNbOcc[obs][i];
                     voteMaj = i;
-                }else if(tNbOcc[i]==max){
+                }else if(tNbOcc[obs][i]==max){
                     int rng = rand() % 2;
                         if(rng == 0){
-                            max = tNbOcc[i];
+                            max = tNbOcc[obs][i];
                             voteMaj = i;
                         }
 
                 }
-                tNbOcc[i]=0;
             }
             voteMajoritaire[obs]=voteMaj;
             cout << "voteMajoritaire : " << voteMaj << endl;
+            for(int c=0; c<nbc; c++){
+                cout << c << " : " << tNbOcc[obs][c] << "       ";
+            }
+            cout << endl;
             //cout << obs << ":" << voteMajoritaire[obs] << "(" << max << ") ";
             pourcentageErreur[obs] = ((float) (nba - max - nbInfoManquante)/(float) (nba - nbInfoManquante))*100;
             nbErreurObs[obs] = nba - max - nbInfoManquante;
@@ -339,7 +364,26 @@ Un exemple possible de protocole :
 
             cout << pourcentageErreur[obs] << endl;
             moyenneErreurP1 += pourcentageErreur[obs];
+
+            // !!! test sur données artificielles !!!
+            //pourcentageErreur[obs] = ((float) (( (float)obs/(float)nbobs)*(float)nba) /(float) (nba))*100;
         }
+
+        //test erreur pas totalement aléatoire
+        //la probabilité de tomber sur tel classe lorsqu'un annotateur fait une erreur
+        vector<vector<int>> probaClasseErreur;
+        probaClasseErreur.resize(nbobs);
+        //le total de possibilité pour choisir de quelle classe est l'erreur
+        vector<int> totalPossibiliteClasse;
+        totalPossibiliteClasse.resize(nbobs);
+        for(int o=0; o<nbobs; o++){
+            probaClasseErreur[o].resize(nbc);
+            totalPossibiliteClasse[o]=0;
+        }
+
+
+        probaErreurAnnotateur(tNbOcc, voteMajoritaire, nbobs, nbc, probaClasseErreur, totalPossibiliteClasse);
+
         // !!! test !!!
         int testOcc[11];
         for(int i=0; i<11; i++){
@@ -385,9 +429,14 @@ Un exemple possible de protocole :
         //cout << "moyenne % P2= " << ((float) moyenneErreurP2/(float) nbobs)*100.0 << " min=" << ((float) nbErreurMin/(float) nbobs)*100.0 << " , max=" << ((float) nbErreurMax/(float) nbobs)*100.0 << endl;
 
     for(int occ=0; occ<2000; occ++){
-        //l'intervalle d'erreur des annotateurs (chaque annotateur fera entre intervalleMin et intervalleMax erreurs)
-        int intervalleMin = occ%(int)((float)nbobs*sqrt((float)(nbc-1)/(float)(nbc)));//occ%(nbobs-1);//nbErreurMin;//occ;
-        int intervalleMax = intervalleMin+1;//nbErreurMax;//occ+1;
+        //l'intervalle d'erreur des annotateurs (chaque annotateur fera entre intervalleMin et intervalleMax erreurs) (max exclu)
+        //cas où l'intervalle est de 1
+        /*int intervalleMin = occ%(int)((float)nbobs*sqrt((float)(nbc-1)/(float)(nbc)));//occ%(nbobs-1);//nbErreurMin;//occ;
+        int intervalleMax = intervalleMin+1;//nbErreurMax;//occ+1;*/
+        //cas où l'intervalle est le plus grand possible
+        int intervalleMin = 0;
+        int intervalleMax = (occ%(nbobs/2))*2;
+        if(intervalleMax==0) intervalleMax=1;
         /*int intervalleMin = 0;
         int intervalleMax = nbobs;*/
         cout << occ << endl;
@@ -462,8 +511,27 @@ Un exemple possible de protocole :
                     itObs++;
                 }
                 //l'annotateur ann fait une erreur à l'observable vObsErreur[itObs]
+                //cas où l'erreur est choisi aléatoirement parmi les classes non majoritaire
                 vAnnotObs2[ann][vObsErreur[itObs]]+= 1 + (rand() % (nbc-1));
                 vAnnotObs2[ann][vObsErreur[itObs]] = vAnnotObs2[ann][vObsErreur[itObs]] % nbc;
+                //cas où l'erreur dépend des données de départ
+                /*int rngClasse = rand() % totalPossibiliteClasse[vObsErreur[itObs]];
+                int itClasse = 0;
+                while(rngClasse >= probaClasseErreur[vObsErreur[itObs]][itClasse]){
+                    itClasse++;
+                }
+                vAnnotObs2[ann][vObsErreur[itObs]] = itClasse;*/
+                //cas où l'erreur peut être choisi totalement au hasard (et peut donc ne pas en être une)
+                /*if(occ%2==0){
+                    vAnnotObs2[ann][vObsErreur[itObs]]= rand() % nbc;
+                }else{
+                    vAnnotObs2[ann][vObsErreur[itObs]]+= 1 + (rand() % (nbc-1));
+                    vAnnotObs2[ann][vObsErreur[itObs]] = vAnnotObs2[ann][vObsErreur[itObs]] % nbc;
+                }*/
+
+
+
+
                 //totalPossibilite -= (1 + nbErreurObs[itObs]*nbErreurObs[itObs]*nbErreurObs[itObs]);
                 //cout << "itObs : " << itObs << " , vObsErreur[itObs] : " << vObsErreur[itObs] << "  ";
                 //cout << proba[itObs] << " vs ";
