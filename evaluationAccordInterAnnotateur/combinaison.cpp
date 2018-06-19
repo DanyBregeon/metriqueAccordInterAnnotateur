@@ -77,8 +77,14 @@ void voteMajoritaire( int *p, int n, vector<vector<int>> & vObsAnnot,int nbobs,i
     }else{
         //int test = erreurVoteMaj[n];
         for(int i=0; i<nbobs; i++){
-            if(voteMajoritaire[i] != voteMajReference[i]){ // à modifier si on veut pondéré l'erreur ?
-                erreurVoteMaj[n]++;
+            if(voteMajoritaire[i] != voteMajReference[i]){
+                bool ponderation = false;
+                if(!ponderation){
+                    erreurVoteMaj[n]++;
+                }else{
+                    //si on veut pondéré l'erreur :
+                    erreurVoteMaj[n]+= abs(voteMajoritaire[i] - voteMajReference[i]);
+                }
                 //"% de modifications par rapport à la référence" par nombre d'annotateur ou pour chaque vote majoritaire ?
                 //break;
             }
@@ -231,7 +237,14 @@ void calculDifference(vector<vector<int>> & vObsAnnot,int nbobs,int nba,int nbc,
         for(int i=nba; i>1; i--){
             //cout << i << ": " << erreurVoteMaj[i] << "/(" << nbCombinaison[i] << "*" << nblignes << ")    ";
             //cout << i << ": " << ((float) erreurVoteMaj[i]/(float) nbCombinaison[i])*100 << "%   ";
-            float pourcentage = ((float) erreurVoteMaj[i]/(float) (nbCombinaison[i]*nbobs))*100;
+            float pourcentage;
+            bool ponderation = false;
+            if(!ponderation){
+                pourcentage = ((float) erreurVoteMaj[i]/(float) (nbCombinaison[i]*nbobs))*100;
+            }else{
+                pourcentage = (((float) erreurVoteMaj[i]/(nbc-1))  /(float) (nbCombinaison[i]*nbobs))*100;
+            }
+
             vPourcentageErreur->push_back(pourcentage);
             //cout << i << ": " << fixed << setprecision (3) << pourcentage << "%   ";
             //TPourcentageErreur[i] = pourcentage;

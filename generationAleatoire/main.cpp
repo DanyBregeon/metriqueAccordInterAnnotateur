@@ -236,16 +236,16 @@ int main()
 
         for(int i=0; i<nba; i++){
             for(int j=0; j<nbobs; j++){
-                if(j<nbobs/4){
+                //if(j<nbobs/4){
                     vAnnotObs[i][j]=rand() % nbc;
-                }else{
-                    vAnnotObs[i][j]=j % nbc;
-                }
+                //}else{
+                  //  vAnnotObs[i][j]=j % nbc;
+                //}
                 vPasChoisi.push_back(pair<int,int>(i,j));
             }
         }
     }else{
-        choixTableau(316, vAnnotObs, nbobs, nba, nbc);
+        choixTableau(314, vAnnotObs, nbobs, nba, nbc);
         for(int i=0; i<nba; i++){
             for(int j=0; j<nbobs; j++){
                 vPasChoisi.push_back(pair<int,int>(i,j));
@@ -367,6 +367,21 @@ Un exemple possible de protocole :
 
             // !!! test sur données artificielles !!!
             //pourcentageErreur[obs] = ((float) (( (float)obs/(float)nbobs)*(float)nba) /(float) (nba))*100;
+            /*if(choix==0){
+                if((float)obs < ((float)nbobs)*((float)30/(float)100)){
+                    pourcentageErreur[obs] = ((nba/2) /(float) (nba))*100;
+                }else if((float)obs < ((float)nbobs)*((float)55/(float)100)){
+                    pourcentageErreur[obs] = ((nba/4) /(float) (nba))*100;
+                }
+                else if((float)obs < ((float)nbobs)*((float)75/(float)100)){
+                    pourcentageErreur[obs] = ((nba/8) /(float) (nba))*100;
+                }
+                else if((float)obs < ((float)nbobs)*((float)90/(float)100)){
+                    pourcentageErreur[obs] = ((nba/16) /(float) (nba))*100;
+                }else{
+                    pourcentageErreur[obs] = 0;
+                }
+            }*/
         }
 
         //test erreur pas totalement aléatoire
@@ -385,7 +400,18 @@ Un exemple possible de protocole :
         probaErreurAnnotateur(tNbOcc, voteMajoritaire, nbobs, nbc, probaClasseErreur, totalPossibiliteClasse);
 
         // !!! test !!!
-        int testOcc[11];
+        int taille = ((float)(nbc-1)/(float)nbc)*(float)nba + 1;
+        int testOcc[taille];
+        for(int i=0; i<taille; i++){
+            testOcc[i]=0;
+        }
+        for(int obs=0; obs<nbobs; obs++){
+            testOcc[nbErreurObs[obs]]++;
+        }
+        for(int i=0; i<taille; i++){
+            cout << /*i << "  " <<*/ testOcc[i] << endl;
+        }
+        /*int testOcc[11];
         for(int i=0; i<11; i++){
             testOcc[i]=0;
         }
@@ -398,7 +424,7 @@ Un exemple possible de protocole :
         }
         for(int i=0; i<11; i++){
             cout << i*10 << " " << testOcc[i] << endl;
-        }
+        }*/
         // !!! fin test !!!
 
         //calcul de P2
@@ -431,14 +457,12 @@ Un exemple possible de protocole :
     for(int occ=0; occ<2000; occ++){
         //l'intervalle d'erreur des annotateurs (chaque annotateur fera entre intervalleMin et intervalleMax erreurs) (max exclu)
         //cas où l'intervalle est de 1
-        /*int intervalleMin = occ%(int)((float)nbobs*sqrt((float)(nbc-1)/(float)(nbc)));//occ%(nbobs-1);//nbErreurMin;//occ;
-        int intervalleMax = intervalleMin+1;//nbErreurMax;//occ+1;*/
+        int intervalleMin = occ%(int)((float)nbobs*sqrt((float)(nbc-1)/(float)(nbc)));//occ%(nbobs-1);//nbErreurMin;//occ;
+        int intervalleMax = intervalleMin+1;//nbErreurMax;//occ+1;
         //cas où l'intervalle est le plus grand possible
-        int intervalleMin = 0;
-        int intervalleMax = (occ%(nbobs/2))*2;
-        if(intervalleMax==0) intervalleMax=1;
         /*int intervalleMin = 0;
-        int intervalleMax = nbobs;*/
+        int intervalleMax = (occ%(nbobs/2))*2;
+        if(intervalleMax==0) intervalleMax=1;*/
         cout << occ << endl;
         //cout << endl << "P2= " << moyenneErreurP2 << "  (" << nbErreur << "/" << nba << ") , min=" << nbErreurMin << " , max=" << nbErreurMax << endl;
         /*cout << "choix intervalle :" << endl << "min=";
@@ -482,12 +506,24 @@ Un exemple possible de protocole :
                     // //proba[obs]= 1 + nbErreurObs[obs] * nbErreurObs[obs] * nbErreurObs[obs];
                     //(pourcentageErreur[obs]/100)*(nbc/(nbc-1)) ->resultat entre 0 et 1, 0 entant tout le monde d'accord et 1 le plus de desaccord possible
                     //proba[obs]= 1.0 + ((pourcentageErreur[obs]/100.0)*((float) nbc/(float) (nbc-1))*10.0)*((pourcentageErreur[obs]/100.0)*((float) nbc/(float) (nbc-1))*10.0);
-                    proba[obs]= 1.0 + (pourcentageErreur[obs]*((float) nbc/(float) (nbc-1)))*(pourcentageErreur[obs]*((float) nbc/(float) (nbc-1)))/100.0;
+
+                    //proba[obs]= 1.0 + (pourcentageErreur[obs]*((float) nbc/(float) (nbc-1)))*(pourcentageErreur[obs]*((float) nbc/(float) (nbc-1)))/100.0;
+                    if(pourcentageErreur[obs]<1){
+                        proba[obs]= 1;
+                    }else{
+                        proba[obs]=pourcentageErreur[obs];
+                    }
                     //cout << obs << " proba : " << proba[obs] <<  " : " << (pourcentageErreur[obs]/100.0)*((float) nbc/(float) (nbc-1)) << endl;
                 }else{
                     // //proba[obs]= proba[obs-1] + 1 + nbErreurObs[obs] * nbErreurObs[obs] * nbErreurObs[obs]; //1f/(float) nbobs;pourcentageErreur
                     //proba[obs]= proba[obs-1] + 1.0 + ((pourcentageErreur[obs]/100.0)*((float) nbc/(float) (nbc-1))*10.0)*((pourcentageErreur[obs]/100.0)*((float) nbc/(float) (nbc-1))*10.0);
-                    proba[obs]= proba[obs-1] + 1.0 + (pourcentageErreur[obs]*((float) nbc/(float) (nbc-1)))*(pourcentageErreur[obs]*((float) nbc/(float) (nbc-1)))/100.0;
+
+                    //proba[obs]= proba[obs-1] + 1.0 + (pourcentageErreur[obs]*((float) nbc/(float) (nbc-1)))*(pourcentageErreur[obs]*((float) nbc/(float) (nbc-1)))/100.0;
+                    if(pourcentageErreur[obs]<1){
+                        proba[obs]= proba[obs-1] + 1.0;
+                    }else{
+                        proba[obs]= proba[obs-1] + pourcentageErreur[obs];
+                    }
                     //cout << obs << " proba : " << proba[obs] <<  " : " << (pourcentageErreur[obs]/100.0)*((float) nbc/(float) (nbc-1)) << endl;
                     //cout << 1 + nbErreurObs[obs] * nbErreurObs[obs] << endl;
                     //cout << proba[obs] << endl;
@@ -514,7 +550,7 @@ Un exemple possible de protocole :
                 //cas où l'erreur est choisi aléatoirement parmi les classes non majoritaire
                 vAnnotObs2[ann][vObsErreur[itObs]]+= 1 + (rand() % (nbc-1));
                 vAnnotObs2[ann][vObsErreur[itObs]] = vAnnotObs2[ann][vObsErreur[itObs]] % nbc;
-                //cas où l'erreur dépend des données de départ
+                //cas où la classe de l'erreur dépend des données de départ
                 /*int rngClasse = rand() % totalPossibiliteClasse[vObsErreur[itObs]];
                 int itClasse = 0;
                 while(rngClasse >= probaClasseErreur[vObsErreur[itObs]][itClasse]){
@@ -522,7 +558,8 @@ Un exemple possible de protocole :
                 }
                 vAnnotObs2[ann][vObsErreur[itObs]] = itClasse;*/
                 //cas où l'erreur peut être choisi totalement au hasard (et peut donc ne pas en être une)
-                /*if(occ%2==0){
+                /*int aleatoire = rand()%2;
+                if(aleatoire==0){
                     vAnnotObs2[ann][vObsErreur[itObs]]= rand() % nbc;
                 }else{
                     vAnnotObs2[ann][vObsErreur[itObs]]+= 1 + (rand() % (nbc-1));
@@ -541,7 +578,13 @@ Un exemple possible de protocole :
                 for(int i=itObs; i<proba.size()-1; i++){
                     // //proba[i] = proba[i+1] - (1 + nbErreurObs[vObsErreur[itObs]]*nbErreurObs[vObsErreur[itObs]]*nbErreurObs[vObsErreur[itObs]]);
                     //proba[i] = proba[i+1] - (int) (1.0 + ((pourcentageErreur[vObsErreur[itObs]]/100.0)*((float) nbc/(float) (nbc-1))*10.0)*((pourcentageErreur[vObsErreur[itObs]]/100.0)*((float) nbc/(float) (nbc-1))*10.0));
-                    proba[i] = proba[i+1] - (int) (1.0 + (pourcentageErreur[vObsErreur[itObs]]*((float) nbc/(float) (nbc-1)))*(pourcentageErreur[vObsErreur[itObs]]*((float) nbc/(float) (nbc-1)))/100.0);
+
+                    //proba[i] = proba[i+1] - (int) (1.0 + (pourcentageErreur[vObsErreur[itObs]]*((float) nbc/(float) (nbc-1)))*(pourcentageErreur[vObsErreur[itObs]]*((float) nbc/(float) (nbc-1)))/100.0);
+                    if(pourcentageErreur[vObsErreur[itObs]]<1){
+                        proba[i]= proba[i+1] - 1;
+                    }else{
+                        proba[i]= proba[i+1] - (int)(pourcentageErreur[vObsErreur[itObs]]);
+                    }
                 }
                 proba.pop_back();
                 //cout << "itObs-2 : " <<proba[itObs-2] << " itObs-1 : " <<proba[itObs-1] << " " << itObs << " : " << proba[itObs] <<

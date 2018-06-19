@@ -130,7 +130,7 @@ void choixTableau(int choix,vector<vector<int>> & vAnnotObs,int & Nbobs,int & Nb
   if(choix >= 1000){
     Nba=2;Nbobs=12;
     ss << (choix-1000);
-    lire("classe3/generationAleatoireV2/test4/generationAleatoire" + ss.str() + ".csv",vAnnotObs,Nbobs,Nba,Nbc);
+    lire("classe3/generationAleatoireV2/314_test4/generationAleatoire" + ss.str() + ".csv",vAnnotObs,Nbobs,Nba,Nbc);
   }
   else if(choix > 100 && choix < 107){
     Nba=2;Nbobs=12;
