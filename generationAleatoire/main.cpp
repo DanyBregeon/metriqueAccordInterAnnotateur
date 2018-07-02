@@ -14,6 +14,10 @@
 
 using namespace std;
 
+int nba = 25;
+int nbobs = 100;
+int nbc = 3;
+
 void affichage(int nba, int nbobs, vector<vector<int>> & vAnnotObs){
     for (int i=0;i<nba;i++) {
         for (int j=0;j<nbobs;j++)
@@ -213,13 +217,41 @@ void probaErreurAnnotateur(vector<vector<int>> & tNbOcc, vector<int> & voteMajor
     }
 }
 
+void repartitionP1(/*int nbc, int nba, int nbobs, */vector<int> & nbErreurObs){
+    int taille = ((float)(nbc-1)/(float)nbc)*(float)nba + 1;
+        int testOcc[taille];
+        for(int i=0; i<taille; i++){
+            testOcc[i]=0;
+        }
+        for(int obs=0; obs<nbobs; obs++){
+            testOcc[nbErreurObs[obs]]++;
+        }
+        for(int i=0; i<taille; i++){
+            cout << /*i << "  " <<*/ testOcc[i] << endl;
+        }
+        //avec palier
+        /*int testOcc[11];
+        for(int i=0; i<11; i++){
+            testOcc[i]=0;
+        }
+        for(int obs=0; obs<nbobs; obs++){
+            int i=0;
+            while(pourcentageErreur[obs] > i*10){
+                i++;
+            }
+            testOcc[i]++;
+        }
+        for(int i=0; i<11; i++){
+            cout << i*10 << " " << testOcc[i] << endl;
+        }*/
+}
 
 int main()
 {
     srand(time(NULL));
-    int nba = 25;
+    /*int nba = 25;
     int nbobs = 100;
-    int nbc = 3;
+    int nbc = 3;*/
     vector<vector<int>> vAnnotObs;
     vector<vector<int>> vObsAnnot;
     vector<pair<int,int>> vPasChoisi;
@@ -228,6 +260,7 @@ int main()
     cout << "Choix ? (0 pour artificielle, 1 pour reelle)";
     cin >> choix ;
 
+    //initialise les vecteurs avec les données
     if(choix==0){
         vAnnotObs.resize(nba);
         for(int i=0; i<nba; i++){
@@ -245,7 +278,7 @@ int main()
             }
         }
     }else{
-        choixTableau(314, vAnnotObs, nbobs, nba, nbc);
+        choixTableau(316, vAnnotObs, nbobs, nba, nbc);
         for(int i=0; i<nba; i++){
             for(int j=0; j<nbobs; j++){
                 vPasChoisi.push_back(pair<int,int>(i,j));
@@ -268,9 +301,12 @@ int main()
         }
     }
 
+    //calcul la métrique sur les données
     float valeurMetriqueInit;
     valeurMetriqueInit = kappaAP(nbobs, nbc, nba, vObsAnnot);
     cout << "Metrique: " << valeurMetriqueInit << endl;
+
+    //premiers tests de générations aléatoires
 
     //generationAleatoire1(vPasChoisi, vAnnotObs, nba, nbobs, nbc);
 
@@ -399,33 +435,9 @@ Un exemple possible de protocole :
 
         probaErreurAnnotateur(tNbOcc, voteMajoritaire, nbobs, nbc, probaClasseErreur, totalPossibiliteClasse);
 
-        // !!! test !!!
-        int taille = ((float)(nbc-1)/(float)nbc)*(float)nba + 1;
-        int testOcc[taille];
-        for(int i=0; i<taille; i++){
-            testOcc[i]=0;
-        }
-        for(int obs=0; obs<nbobs; obs++){
-            testOcc[nbErreurObs[obs]]++;
-        }
-        for(int i=0; i<taille; i++){
-            cout << /*i << "  " <<*/ testOcc[i] << endl;
-        }
-        /*int testOcc[11];
-        for(int i=0; i<11; i++){
-            testOcc[i]=0;
-        }
-        for(int obs=0; obs<nbobs; obs++){
-            int i=0;
-            while(pourcentageErreur[obs] > i*10){
-                i++;
-            }
-            testOcc[i]++;
-        }
-        for(int i=0; i<11; i++){
-            cout << i*10 << " " << testOcc[i] << endl;
-        }*/
-        // !!! fin test !!!
+        // test répartition p1
+        repartitionP1(/*nbc, nba, nbobs, */nbErreurObs);
+        //fin test test répartition p1
 
         //calcul de P2
         int nbErreur = 0;
@@ -454,7 +466,8 @@ Un exemple possible de protocole :
         cout << "ecart type : " << ecartType << endl;
         //cout << "moyenne % P2= " << ((float) moyenneErreurP2/(float) nbobs)*100.0 << " min=" << ((float) nbErreurMin/(float) nbobs)*100.0 << " , max=" << ((float) nbErreurMax/(float) nbobs)*100.0 << endl;
 
-    for(int occ=0; occ<2000; occ++){
+    //création des groupes d'annotateurs
+    for(int occ=0; occ<80; occ++){
         //l'intervalle d'erreur des annotateurs (chaque annotateur fera entre intervalleMin et intervalleMax erreurs) (max exclu)
         //cas où l'intervalle est de 1
         int intervalleMin = occ%(int)((float)nbobs*sqrt((float)(nbc-1)/(float)(nbc)));//occ%(nbobs-1);//nbErreurMin;//occ;
@@ -480,7 +493,7 @@ Un exemple possible de protocole :
 
         //III-on les crée à part
 
-        int nbNewAnnot = 9;//nba;
+        int nbNewAnnot = 13;//nba;
         vector<vector<int>> vAnnotObs2;
         vAnnotObs2.resize(nbNewAnnot);
         for(int i=0; i<nbNewAnnot; i++){
@@ -507,23 +520,23 @@ Un exemple possible de protocole :
                     //(pourcentageErreur[obs]/100)*(nbc/(nbc-1)) ->resultat entre 0 et 1, 0 entant tout le monde d'accord et 1 le plus de desaccord possible
                     //proba[obs]= 1.0 + ((pourcentageErreur[obs]/100.0)*((float) nbc/(float) (nbc-1))*10.0)*((pourcentageErreur[obs]/100.0)*((float) nbc/(float) (nbc-1))*10.0);
 
-                    //proba[obs]= 1.0 + (pourcentageErreur[obs]*((float) nbc/(float) (nbc-1)))*(pourcentageErreur[obs]*((float) nbc/(float) (nbc-1)))/100.0;
-                    if(pourcentageErreur[obs]<1){
+                    proba[obs]= 1.0 + (pourcentageErreur[obs]*((float) nbc/(float) (nbc-1)))*(pourcentageErreur[obs]*((float) nbc/(float) (nbc-1)))/100.0;
+                    /*if(pourcentageErreur[obs]<1){
                         proba[obs]= 1;
                     }else{
                         proba[obs]=pourcentageErreur[obs];
-                    }
+                    }*/
                     //cout << obs << " proba : " << proba[obs] <<  " : " << (pourcentageErreur[obs]/100.0)*((float) nbc/(float) (nbc-1)) << endl;
                 }else{
                     // //proba[obs]= proba[obs-1] + 1 + nbErreurObs[obs] * nbErreurObs[obs] * nbErreurObs[obs]; //1f/(float) nbobs;pourcentageErreur
                     //proba[obs]= proba[obs-1] + 1.0 + ((pourcentageErreur[obs]/100.0)*((float) nbc/(float) (nbc-1))*10.0)*((pourcentageErreur[obs]/100.0)*((float) nbc/(float) (nbc-1))*10.0);
 
-                    //proba[obs]= proba[obs-1] + 1.0 + (pourcentageErreur[obs]*((float) nbc/(float) (nbc-1)))*(pourcentageErreur[obs]*((float) nbc/(float) (nbc-1)))/100.0;
-                    if(pourcentageErreur[obs]<1){
+                    proba[obs]= proba[obs-1] + 1.0 + (pourcentageErreur[obs]*((float) nbc/(float) (nbc-1)))*(pourcentageErreur[obs]*((float) nbc/(float) (nbc-1)))/100.0;
+                    /*if(pourcentageErreur[obs]<1){
                         proba[obs]= proba[obs-1] + 1.0;
                     }else{
                         proba[obs]= proba[obs-1] + pourcentageErreur[obs];
-                    }
+                    }*/
                     //cout << obs << " proba : " << proba[obs] <<  " : " << (pourcentageErreur[obs]/100.0)*((float) nbc/(float) (nbc-1)) << endl;
                     //cout << 1 + nbErreurObs[obs] * nbErreurObs[obs] << endl;
                     //cout << proba[obs] << endl;
@@ -579,12 +592,12 @@ Un exemple possible de protocole :
                     // //proba[i] = proba[i+1] - (1 + nbErreurObs[vObsErreur[itObs]]*nbErreurObs[vObsErreur[itObs]]*nbErreurObs[vObsErreur[itObs]]);
                     //proba[i] = proba[i+1] - (int) (1.0 + ((pourcentageErreur[vObsErreur[itObs]]/100.0)*((float) nbc/(float) (nbc-1))*10.0)*((pourcentageErreur[vObsErreur[itObs]]/100.0)*((float) nbc/(float) (nbc-1))*10.0));
 
-                    //proba[i] = proba[i+1] - (int) (1.0 + (pourcentageErreur[vObsErreur[itObs]]*((float) nbc/(float) (nbc-1)))*(pourcentageErreur[vObsErreur[itObs]]*((float) nbc/(float) (nbc-1)))/100.0);
-                    if(pourcentageErreur[vObsErreur[itObs]]<1){
+                    proba[i] = proba[i+1] - (int) (1.0 + (pourcentageErreur[vObsErreur[itObs]]*((float) nbc/(float) (nbc-1)))*(pourcentageErreur[vObsErreur[itObs]]*((float) nbc/(float) (nbc-1)))/100.0);
+                    /*if(pourcentageErreur[vObsErreur[itObs]]<1){
                         proba[i]= proba[i+1] - 1;
                     }else{
                         proba[i]= proba[i+1] - (int)(pourcentageErreur[vObsErreur[itObs]]);
-                    }
+                    }*/
                 }
                 proba.pop_back();
                 //cout << "itObs-2 : " <<proba[itObs-2] << " itObs-1 : " <<proba[itObs-1] << " " << itObs << " : " << proba[itObs] <<
@@ -624,6 +637,52 @@ Un exemple possible de protocole :
         ostringstream ss;
         ss << "generationAleatoireV2/generationAleatoire" << occ << ".csv";
         ecrireFichier(nbNewAnnot, nbobs, nbc, vAnnotObs2, ss.str());
+
+        // !!!!!!!!!!!!!!!!!!!!!!! WIP !!!!!!!!!!!!!!!!!!!!!!!
+
+        //le nombre d'erreur pour chaque observable
+        vector<int> nbErreurObs2;
+        nbErreurObs2.resize(nbobs);
+        //le nombre d'occurence des classes dans les annotations d'un observable
+        vector<vector<int>> tNbOcc2;
+        tNbOcc2.resize(nbobs);
+        for(int o=0; o<nbobs; o++){
+            tNbOcc2[o].resize(nbc);
+        }
+        //le nombre d'annotation manquante
+        int nbInfoManquante2 = 0;
+
+        //calcul des votes majoritaires et de P1
+        for(int obs=0; obs<nbobs; obs++){
+            for(int c=0; c<nbc; c++){
+                tNbOcc2[obs][c]=0;
+            }
+            for(int ann=0; ann<nbNewAnnot; ann++){
+                if(vObsAnnot[obs][ann]!=-1){
+                    tNbOcc2[obs][vObsAnnot2[obs][ann]]++;
+                }else{
+                    nbInfoManquante2++;
+                }
+            }
+            int max=tNbOcc2[obs][0];
+            int voteMaj = 0;
+            for(int i=1; i<nbc; i++){
+                if(tNbOcc2[obs][i]>max){
+                    max = tNbOcc2[obs][i];
+                    voteMaj = i;
+                }else if(tNbOcc2[obs][i]==max){
+                    int rng = rand() % 2;
+                    if(rng == 0){
+                        max = tNbOcc2[obs][i];
+                        voteMaj = i;
+                    }
+
+                }
+            }
+            nbErreurObs2[obs] = nbNewAnnot - max - nbInfoManquante2;
+            nbInfoManquante2 = 0;
+        }
+        repartitionP1(/*nbc, nbNewAnnot, nbobs, */nbErreurObs2);
     }
 
 

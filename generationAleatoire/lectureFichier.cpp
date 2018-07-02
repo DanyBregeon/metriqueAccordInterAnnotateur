@@ -12,6 +12,8 @@
 
 using namespace std;
 
+extern int test;
+
 const int Max_obs=3000;//nb maximal d'observables
 const int Max_classes=10;//nb maximal de classes
 const int Max_annot=30;//nb maximal d'annotateurs
