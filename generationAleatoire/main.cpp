@@ -18,7 +18,7 @@ int nba = 25;
 int nbobs = 100;
 int nbc = 3;
 
-void affichage(int nba, int nbobs, vector<vector<int>> & vAnnotObs){
+void affichage(vector<vector<int>> & vAnnotObs){
     for (int i=0;i<nba;i++) {
         for (int j=0;j<nbobs;j++)
             printf("%3d",vAnnotObs[i][j]);
@@ -26,7 +26,7 @@ void affichage(int nba, int nbobs, vector<vector<int>> & vAnnotObs){
     }
 }
 
-void ecrireFichier(int nba, int nbobs, int nbc, vector<vector<int>> & vAnnotObs, string ss){
+void ecrireFichier(int nba, vector<vector<int>> & vAnnotObs, string ss){
     ofstream file;
     file.open(ss);
 
@@ -217,8 +217,8 @@ void probaErreurAnnotateur(vector<vector<int>> & tNbOcc, vector<int> & voteMajor
     }
 }
 
-void repartitionP1(/*int nbc, int nba, int nbobs, */vector<int> & nbErreurObs){
-    int taille = ((float)(nbc-1)/(float)nbc)*(float)nba + 1;
+void repartitionP1(int nbNewAnnot, vector<int> & nbErreurObs){
+    int taille = ((float)(nbc-1)/(float)nbc)*(float)nbNewAnnot + 1;
         int testOcc[taille];
         for(int i=0; i<taille; i++){
             testOcc[i]=0;
@@ -278,7 +278,7 @@ int main()
             }
         }
     }else{
-        choixTableau(316, vAnnotObs, nbobs, nba, nbc);
+        choixTableau(314, vAnnotObs, nbobs, nba, nbc);
         for(int i=0; i<nba; i++){
             for(int j=0; j<nbobs; j++){
                 vPasChoisi.push_back(pair<int,int>(i,j));
@@ -287,7 +287,7 @@ int main()
         //testPrevalence(vAnnotObs, 1, 2, nba, nbobs/2);
     }
 
-    //affichage(nba, nbobs, vAnnotObs);
+    //affichage(vAnnotObs);
 
     vObsAnnot.resize(nbobs);
     for(int i=0; i<nbobs; i++){
@@ -436,7 +436,7 @@ Un exemple possible de protocole :
         probaErreurAnnotateur(tNbOcc, voteMajoritaire, nbobs, nbc, probaClasseErreur, totalPossibiliteClasse);
 
         // test répartition p1
-        repartitionP1(/*nbc, nba, nbobs, */nbErreurObs);
+        repartitionP1(nba, nbErreurObs);
         //fin test test répartition p1
 
         //calcul de P2
@@ -467,7 +467,7 @@ Un exemple possible de protocole :
         //cout << "moyenne % P2= " << ((float) moyenneErreurP2/(float) nbobs)*100.0 << " min=" << ((float) nbErreurMin/(float) nbobs)*100.0 << " , max=" << ((float) nbErreurMax/(float) nbobs)*100.0 << endl;
 
     //création des groupes d'annotateurs
-    for(int occ=0; occ<80; occ++){
+    for(int occ=0; occ<130; occ++){
         //l'intervalle d'erreur des annotateurs (chaque annotateur fera entre intervalleMin et intervalleMax erreurs) (max exclu)
         //cas où l'intervalle est de 1
         int intervalleMin = occ%(int)((float)nbobs*sqrt((float)(nbc-1)/(float)(nbc)));//occ%(nbobs-1);//nbErreurMin;//occ;
@@ -476,7 +476,7 @@ Un exemple possible de protocole :
         /*int intervalleMin = 0;
         int intervalleMax = (occ%(nbobs/2))*2;
         if(intervalleMax==0) intervalleMax=1;*/
-        cout << occ << endl;
+        //cout << occ << endl;
         //cout << endl << "P2= " << moyenneErreurP2 << "  (" << nbErreur << "/" << nba << ") , min=" << nbErreurMin << " , max=" << nbErreurMax << endl;
         /*cout << "choix intervalle :" << endl << "min=";
         cin >> intervalleMin;
@@ -493,7 +493,7 @@ Un exemple possible de protocole :
 
         //III-on les crée à part
 
-        int nbNewAnnot = 13;//nba;
+        int nbNewAnnot = 9;//nba;
         vector<vector<int>> vAnnotObs2;
         vAnnotObs2.resize(nbNewAnnot);
         for(int i=0; i<nbNewAnnot; i++){
@@ -633,10 +633,10 @@ Un exemple possible de protocole :
         cout << "Metrique: " << valeurMetrique << endl;
 
 
-        //affichage(nba, nbobs, vAnnotObs);
+        //affichage(vAnnotObs);
         ostringstream ss;
         ss << "generationAleatoireV2/generationAleatoire" << occ << ".csv";
-        ecrireFichier(nbNewAnnot, nbobs, nbc, vAnnotObs2, ss.str());
+        ecrireFichier(nbNewAnnot, vAnnotObs2, ss.str());
 
         // !!!!!!!!!!!!!!!!!!!!!!! WIP !!!!!!!!!!!!!!!!!!!!!!!
 
@@ -682,7 +682,7 @@ Un exemple possible de protocole :
             nbErreurObs2[obs] = nbNewAnnot - max - nbInfoManquante2;
             nbInfoManquante2 = 0;
         }
-        repartitionP1(/*nbc, nbNewAnnot, nbobs, */nbErreurObs2);
+        repartitionP1(nbNewAnnot, nbErreurObs2);
     }
 
 
