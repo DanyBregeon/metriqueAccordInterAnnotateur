@@ -1,3 +1,11 @@
+/**
+ * \file main.cpp
+ * \author    Dany Br√©geon
+ * \version   1.0
+ * \date       4 juillet 2018
+ * \brief       G√©n√©ration al√©atoire de donn√©es
+ *
+ */
 #include <iostream>
 #include <vector>
 #include <cstring>
@@ -12,12 +20,17 @@
 #include "calculMetrique.h"
 #include "lectureFichier.h"
 
+
 using namespace std;
 
-int nba = 25;
-int nbobs = 100;
-int nbc = 3;
+int nba = 25; /**< \brief le nombre d'annotateurs */
+int nbobs = 100; /**< \brief le nombre d'observables */
+int nbc = 3; /**< \brief le nombre de classes */
 
+/** \brief affiche le tableau d'annotation
+ *
+ * \param vAnnotObs : les vecteurs repr√©sentant le tableau d'annotation
+ */
 void affichage(vector<vector<int>> & vAnnotObs){
     for (int i=0;i<nba;i++) {
         for (int j=0;j<nbobs;j++)
@@ -26,6 +39,12 @@ void affichage(vector<vector<int>> & vAnnotObs){
     }
 }
 
+/** \brief cr√©e des fichiers .csv avec le nombre d'annotateurs, d'observables, de classes ainsi que le tableau d'annotation. Ces fichiers peuvent etre utilis√©s en entr√©e par le programme "evaluationAccordInterAnnotateur"
+ *
+ * \param nba : le nombre d'annotateur
+ * \param vAnnotObs : les vecteurs repr√©sentant le tableau d'annotation
+ * \param ss : le nom du fichier cr√©e
+ */
 void ecrireFichier(int nba, vector<vector<int>> & vAnnotObs, string ss){
     ofstream file;
     file.open(ss);
@@ -46,8 +65,12 @@ void ecrireFichier(int nba, vector<vector<int>> & vAnnotObs, string ss){
     }
 }
 
-
-void generationAleatoire1(vector<pair<int,int>> & vPasChoisi, vector<vector<int>> & vAnnotObs, int nba, int nbobs, int nbc){
+/** \brief g√©n√©ration al√©atoire qui consiste √† changer al√©atoirement les annotations une √† une
+ *
+ * \param vPasChoisi : toutes lse annotations pas encore modifi√©es
+ * \param vAnnotObs : les vecteurs repr√©sentant le tableau d'annotation
+ */
+void generationAleatoire1(vector<pair<int,int>> & vPasChoisi, vector<vector<int>> & vAnnotObs){
     srand(time(0));
     int it = 0;
     while(vPasChoisi.size() > 0){
@@ -62,7 +85,7 @@ void generationAleatoire1(vector<pair<int,int>> & vPasChoisi, vector<vector<int>
             //cout << "i: " << i << " j: " << j << " " << (i*nbobs + j) << endl;
             ss << "generationAleatoireDonneesReelles/generationAleatoire" << it << ".csv";
 
-            ecrireFichier(nba, nbobs, nbc, vAnnotObs, ss.str());
+            ecrireFichier(nba, vAnnotObs, ss.str());
             /*ofstream file;
             file.open(ss.str());
 
@@ -84,7 +107,11 @@ void generationAleatoire1(vector<pair<int,int>> & vPasChoisi, vector<vector<int>
     }
 }
 
-void generationAleatoire2(vector<vector<int>> & vAnnotObs, int nba, int nbobs, int nbc){
+/** \brief g√©n√©ration al√©atoire qui consiste √† changer les annotations une √† une par annotateur
+ *
+ * \param vAnnotObs : les vecteurs repr√©sentant le tableau d'annotation
+ */
+void generationAleatoire2(vector<vector<int>> & vAnnotObs){
     for (int i=0;i<nba;i++){
         for (int j=0;j<nbobs;j++){
             //for (int i=0;i<nba;i++){
@@ -99,13 +126,17 @@ void generationAleatoire2(vector<vector<int>> & vAnnotObs, int nba, int nbobs, i
                 //cout << "i: " << i << " j: " << j << " " << (i*nbobs + j) << endl;
                 ss << "generationAleatoireDonneesReelles3/generationAleatoire" << (i*nbobs + j) << ".csv";
 
-                ecrireFichier(nba, nbobs, nbc, vAnnotObs, ss.str());
+                ecrireFichier(nba, vAnnotObs, ss.str());
             //}
         }
     }
 }
 
-void generationAleatoire3(vector<pair<int,int>> & vPasChoisi, vector<vector<int>> & vAnnotObs, int nba, int nbobs, int nbc){
+/** \brief g√©n√©ration al√©atoire qui consiste √† changer les annotations une √† une par observable
+ *
+ * \param vAnnotObs : les vecteurs repr√©sentant le tableau d'annotation
+ */
+void generationAleatoire3(vector<pair<int,int>> & vPasChoisi, vector<vector<int>> & vAnnotObs){
     srand(time(0));
     int tChoisi[nbobs][nba];
     for (int j=0;j<nbobs;j++){
@@ -145,11 +176,12 @@ void generationAleatoire3(vector<pair<int,int>> & vPasChoisi, vector<vector<int>
         //cout << "i: " << i << " j: " << j << " " << (i*nbobs + j) << endl;
         ss << "generationAleatoire4/generationAleatoire" << occ << ".csv";
 
-        ecrireFichier(nba, nbobs, nbc, vAnnotObs, ss.str());
+        ecrireFichier(nba, vAnnotObs, ss.str());
     }
 }
 
-void ajouterNouveauAnnotateur(int & nba, int nbobs, int nbc, vector<vector<int>> & vAnnotObs, vector<float> & pourcentageErreur, vector<int> & voteMajoritaire){
+/*
+void ajouterNouveauAnnotateur(vector<vector<int>> & vAnnotObs, vector<float> & pourcentageErreur, vector<int> & voteMajoritaire){
     int nbNewAnnot = nba;
     nba += nbNewAnnot;
     vAnnotObs.resize(nba);
@@ -170,7 +202,7 @@ void ajouterNouveauAnnotateur(int & nba, int nbobs, int nbc, vector<vector<int>>
     }
 }
 
-void remplacerParNouveauAnnotateur(int nba, int nbobs, int nbc, vector<vector<int>> & vAnnotObs, vector<float> & pourcentageErreur, vector<int> & voteMajoritaire){
+void remplacerParNouveauAnnotateur(vector<vector<int>> & vAnnotObs, vector<float> & pourcentageErreur, vector<int> & voteMajoritaire){
     for(int ann=0; ann<nba; ann++){
         for(int obs=0; obs<nbobs; obs++){
             //on compare un nombre aleatoire entre 0 et 100 avec le pourcentage d'erreur
@@ -183,9 +215,15 @@ void remplacerParNouveauAnnotateur(int nba, int nbobs, int nbc, vector<vector<in
         }
     }
 }
+*/
 
-
-void testPrevalence(vector<vector<int>> & vAnnotObs, int classe1, int classe2, int nba, int taille){
+/** \brief permet de modifier la pr√©valence des classes sans changer p1
+ *
+ * \param vAnnotObs : les vecteurs repr√©sentant le tableau d'annotation
+ * \param classe1 : la classe majoritaire
+ * \param classe2 : la classe la moins majoritaire
+ */
+void testPrevalence(vector<vector<int>> & vAnnotObs, int classe1, int classe2, int taille){
     for(int ann=0; ann<nba; ann++){
         for(int obs=0; obs<taille; obs++){
             if(vAnnotObs[ann][obs]==classe1){
@@ -197,7 +235,14 @@ void testPrevalence(vector<vector<int>> & vAnnotObs, int classe1, int classe2, i
     }
 }
 
-void probaErreurAnnotateur(vector<vector<int>> & tNbOcc, vector<int> & voteMajoritaire, int nbobs, int nbc, vector<vector<int>> & probaClasseErreur, vector<int> & totalPossibiliteClasse){
+/** \brief √©tablit les probabilit√©s de tomber sur telle ou telle classe lorq'un annotateur fait une erreur en fonction des erreurs des vrais annotateurs
+ *
+ * \param tNbOcc : le nombre d'annotation de telle classe pour tel observable
+ * \param voteMajoritaire : le vote majoritaire de chaque observable
+ * \param probaClasseErreur : la probabilit√© de tomber sur telle classe en cas d'erreur sur tel observable
+ * \param totalPossibiliteClasse : le nombre total de possibilit√© par observable
+ */
+void probaErreurAnnotateur(vector<vector<int>> & tNbOcc, vector<int> & voteMajoritaire, vector<vector<int>> & probaClasseErreur, vector<int> & totalPossibiliteClasse){
     for(int obs=0; obs<nbobs; obs++){
         for(int c=0; c<nbc; c++){
             if(c != voteMajoritaire[obs]){
@@ -217,6 +262,12 @@ void probaErreurAnnotateur(vector<vector<int>> & tNbOcc, vector<int> & voteMajor
     }
 }
 
+
+/** \brief permet de calculer la r√©partition de p1
+ *
+ * \param nbNewAnnot : le nombre d'annotateur
+ * \param nbErreurObs : le nombre d'erreur par observable
+ */
 void repartitionP1(int nbNewAnnot, vector<int> & nbErreurObs){
     int taille = ((float)(nbc-1)/(float)nbc)*(float)nbNewAnnot + 1;
         int testOcc[taille];
@@ -246,6 +297,9 @@ void repartitionP1(int nbNewAnnot, vector<int> & nbErreurObs){
         }*/
 }
 
+/** \brief entr√©e du programme
+ * \return EXIT_SUCCESS - Arr√™t normal du programme.
+ */
 int main()
 {
     srand(time(NULL));
@@ -260,7 +314,7 @@ int main()
     cout << "Choix ? (0 pour artificielle, 1 pour reelle)";
     cin >> choix ;
 
-    //initialise les vecteurs avec les donnÈes
+    //initialise les vecteurs avec les donn√©es
     if(choix==0){
         vAnnotObs.resize(nba);
         for(int i=0; i<nba; i++){
@@ -284,7 +338,7 @@ int main()
                 vPasChoisi.push_back(pair<int,int>(i,j));
             }
         }
-        //testPrevalence(vAnnotObs, 1, 2, nba, nbobs/2);
+        //testPrevalence(vAnnotObs, 1, 2, nbobs/2);
     }
 
     //affichage(vAnnotObs);
@@ -301,44 +355,44 @@ int main()
         }
     }
 
-    //calcul la mÈtrique sur les donnÈes
+    //calcul la m√©trique sur les donn√©es
     float valeurMetriqueInit;
     valeurMetriqueInit = kappaAP(nbobs, nbc, nba, vObsAnnot);
     cout << "Metrique: " << valeurMetriqueInit << endl;
 
-    //premiers tests de gÈnÈrations alÈatoires
+    //premiers tests de g√©n√©rations al√©atoires
 
-    //generationAleatoire1(vPasChoisi, vAnnotObs, nba, nbobs, nbc);
+    //generationAleatoire1(vPasChoisi, vAnnotObs);
 
-    //generationAleatoire2(vAnnotObs, nba, nbobs, nbc);
+    //generationAleatoire2(vAnnotObs);
 
-    //generationAleatoire3(vPasChoisi, vAnnotObs, nba, nbobs, nbc);
+    //generationAleatoire3(vPasChoisi, vAnnotObs);
 
 
     /*(2) GENERATION ALEATOIRE
 
-Or donc, imaginons que nous ayons p annotateurs (a_i, i de 1 ‡ p) qui ont donnÈ chacun leur avis sur n observables (o_j, j de 1 ‡ n)
+Or donc, imaginons que nous ayons p annotateurs (a_i, i de 1 √† p) qui ont donn√© chacun leur avis sur n observables (o_j, j de 1 √† n)
 
-Pour p1, on Ètudie ce qui se passe pour chaque observable o_j : on calcule la rÈfÈrence pour cet observable (r_j) ; le nombre d'observateurs qui n'ont pas choisi cette rÈfÈrence (n_j). Ensuite, on calcule la moyenne du nombre d'"erreurs" pour cet observable particulier (eobs_j=n_j/p).
+Pour p1, on √©tudie ce qui se passe pour chaque observable o_j : on calcule la r√©f√©rence pour cet observable (r_j) ; le nombre d'observateurs qui n'ont pas choisi cette r√©f√©rence (n_j). Ensuite, on calcule la moyenne du nombre d'"erreurs" pour cet observable particulier (eobs_j=n_j/p).
 
-Pour p2, on Ètudie ce qui se passe pour un annotateur (a_i) : on calcule la rÈfÈrence pour l'ensemble des observable (r_j, j de 1 ‡ n), puis le nombre de fois o˘ l'annotateur a_i, sur l'ensemble des observables, n'a pas choisi la rÈfÈrence (eannot_i).  La somme des (eannot_i) divisÈe par p nous donne la moyenne du nombre d'erreurs, par annotateur, ce que j'ai appelÈ p2.
+Pour p2, on √©tudie ce qui se passe pour un annotateur (a_i) : on calcule la r√©f√©rence pour l'ensemble des observable (r_j, j de 1 √† n), puis le nombre de fois o√π l'annotateur a_i, sur l'ensemble des observables, n'a pas choisi la r√©f√©rence (eannot_i).  La somme des (eannot_i) divis√©e par p nous donne la moyenne du nombre d'erreurs, par annotateur, ce que j'ai appel√© p2.
 
-En fait, l'idÈe qui sous-tend le calcul de p2, c'est de pouvoir crÈer des annotateurs fictifs plus ou moins "bons", i.e. qui s'Ècartent plus ou moins de la rÈfÈrence par rapport ‡ nos annotateurs rÈels, ce qui, en principe, devrait nous permettre de pouvoir obtenir des valeurs d'accords plus ou moins ÈlevÈes suivant la faÁon dont on dÈciderait de faire varier ce paramËtre... Si on choisit pour un groupe d'annotateurs fictifs, un taux d'erreurs globalement < ‡ p2, on devrait voir augmenter la mesure d'accord, alors que dans le cas contraire, on devrait la voir baisser...
+En fait, l'id√©e qui sous-tend le calcul de p2, c'est de pouvoir cr√©er des annotateurs fictifs plus ou moins "bons", i.e. qui s'√©cartent plus ou moins de la r√©f√©rence par rapport √† nos annotateurs r√©els, ce qui, en principe, devrait nous permettre de pouvoir obtenir des valeurs d'accords plus ou moins √©lev√©es suivant la fa√ßon dont on d√©ciderait de faire varier ce param√®tre... Si on choisit pour un groupe d'annotateurs fictifs, un taux d'erreurs globalement < √† p2, on devrait voir augmenter la mesure d'accord, alors que dans le cas contraire, on devrait la voir baisser...
 
 Je pense aussi qu'il faut combiner p1 et p2.
 
 Un exemple possible de protocole :
 
-1 - on choisit, en fonction du taux d'accord que l'on souhaite, un intervalle dans lequel on veut faire varier le taux d'erreurs par annotateur. Par exemple, si on a p2=20% sur les observateurs rÈels et qu'on a 100 observables, on peut choisir [10;25] si on veut amÈliorer l'accord et [15;30] si on veut au contraire le dÈgrader...
+1 - on choisit, en fonction du taux d'accord que l'on souhaite, un intervalle dans lequel on veut faire varier le taux d'erreurs par annotateur. Par exemple, si on a p2=20% sur les observateurs r√©els et qu'on a 100 observables, on peut choisir [10;25] si on veut am√©liorer l'accord et [15;30] si on veut au contraire le d√©grader...
 
-2- Pour chaque annotateur fictif crÈÈ, on tire au sort le nombre d'"erreurs" (nbe) qu'il va commettre (par rapport ‡ la rÈfÈrence calculÈe avec les annotateurs rÈels) dans cet intervalle
+2- Pour chaque annotateur fictif cr√©√©, on tire au sort le nombre d'"erreurs" (nbe) qu'il va commettre (par rapport √† la r√©f√©rence calcul√©e avec les annotateurs r√©els) dans cet intervalle
 
-3 - on tire au sort nbe observations pour lesquelles l'annotateur fictif va s'Ècarter de la rÈfÈrence (en tenant compte ou non des erreurs constatÈes sur les observations : par exemple, on pourrait avoir un tirage qui favoriserait les observations ayant eu le plus fort taux d'erreurs - eobs_j-). Pour ces observations, on choisit une valeur diffÈrente de la rÈfÈrence (en tenant compte ou non des erreurs constatÈes sur ces observations...)
+3 - on tire au sort nbe observations pour lesquelles l'annotateur fictif va s'√©carter de la r√©f√©rence (en tenant compte ou non des erreurs constat√©es sur les observations : par exemple, on pourrait avoir un tirage qui favoriserait les observations ayant eu le plus fort taux d'erreurs - eobs_j-). Pour ces observations, on choisit une valeur diff√©rente de la r√©f√©rence (en tenant compte ou non des erreurs constat√©es sur ces observations...)
 
-4 - bien s˚r, pour les autres observations, l'annotateur fictif vote comme la rÈfÈrence.*/
+4 - bien s√ªr, pour les autres observations, l'annotateur fictif vote comme la r√©f√©rence.*/
 
 
-    //le pourcentage de fois o˘ un annotateur ne vote pas comme la rÈfÈrence pour chaque observable
+    //le pourcentage de fois o√π un annotateur ne vote pas comme la r√©f√©rence pour chaque observable
     vector<float> pourcentageErreur;
     pourcentageErreur.resize(nbobs);
     //le nombre d'erreur pour chaque observable
@@ -401,7 +455,7 @@ Un exemple possible de protocole :
             cout << pourcentageErreur[obs] << endl;
             moyenneErreurP1 += pourcentageErreur[obs];
 
-            // !!! test sur donnÈes artificielles !!!
+            // !!! test sur donn√©es artificielles !!!
             //pourcentageErreur[obs] = ((float) (( (float)obs/(float)nbobs)*(float)nba) /(float) (nba))*100;
             /*if(choix==0){
                 if((float)obs < ((float)nbobs)*((float)30/(float)100)){
@@ -420,11 +474,11 @@ Un exemple possible de protocole :
             }*/
         }
 
-        //test erreur pas totalement alÈatoire
-        //la probabilitÈ de tomber sur tel classe lorsqu'un annotateur fait une erreur
+        //test erreur pas totalement al√©atoire
+        //la probabilit√© de tomber sur tel classe lorsqu'un annotateur fait une erreur
         vector<vector<int>> probaClasseErreur;
         probaClasseErreur.resize(nbobs);
-        //le total de possibilitÈ pour choisir de quelle classe est l'erreur
+        //le total de possibilit√© pour choisir de quelle classe est l'erreur
         vector<int> totalPossibiliteClasse;
         totalPossibiliteClasse.resize(nbobs);
         for(int o=0; o<nbobs; o++){
@@ -433,11 +487,11 @@ Un exemple possible de protocole :
         }
 
 
-        probaErreurAnnotateur(tNbOcc, voteMajoritaire, nbobs, nbc, probaClasseErreur, totalPossibiliteClasse);
+        probaErreurAnnotateur(tNbOcc, voteMajoritaire, probaClasseErreur, totalPossibiliteClasse);
 
-        // test rÈpartition p1
+        // test r√©partition p1
         repartitionP1(nba, nbErreurObs);
-        //fin test test rÈpartition p1
+        //fin test test r√©partition p1
 
         //calcul de P2
         int nbErreur = 0;
@@ -466,13 +520,13 @@ Un exemple possible de protocole :
         cout << "ecart type : " << ecartType << endl;
         //cout << "moyenne % P2= " << ((float) moyenneErreurP2/(float) nbobs)*100.0 << " min=" << ((float) nbErreurMin/(float) nbobs)*100.0 << " , max=" << ((float) nbErreurMax/(float) nbobs)*100.0 << endl;
 
-    //crÈation des groupes d'annotateurs
+    //cr√©ation des groupes d'annotateurs
     for(int occ=0; occ<130; occ++){
         //l'intervalle d'erreur des annotateurs (chaque annotateur fera entre intervalleMin et intervalleMax erreurs) (max exclu)
-        //cas o˘ l'intervalle est de 1
+        //cas o√π l'intervalle est de 1
         int intervalleMin = occ%(int)((float)nbobs*sqrt((float)(nbc-1)/(float)(nbc)));//occ%(nbobs-1);//nbErreurMin;//occ;
         int intervalleMax = intervalleMin+1;//nbErreurMax;//occ+1;
-        //cas o˘ l'intervalle est le plus grand possible
+        //cas o√π l'intervalle est le plus grand possible
         /*int intervalleMin = 0;
         int intervalleMax = (occ%(nbobs/2))*2;
         if(intervalleMax==0) intervalleMax=1;*/
@@ -485,13 +539,13 @@ Un exemple possible de protocole :
 
         //generation des nouveaux annotateurs
 
-        //I-on les ajoute ‡ ceux dÈj‡ existant
-        //ajouterNouveauAnnotateur(nba, nbobs, nbc, vAnnotObs, pourcentageErreur, voteMajoritaire);
+        //I-on les ajoute √† ceux d√©j√† existant
+        //ajouterNouveauAnnotateur(vAnnotObs, pourcentageErreur, voteMajoritaire);
 
-        //II-on les met ‡ la place de ceux dÈj‡ existant
-        //remplacerParNouveauAnnotateur(nba, nbobs, nbc, vAnnotObs, pourcentageErreur, voteMajoritaire);
+        //II-on les met √† la place de ceux d√©j√† existant
+        //remplacerParNouveauAnnotateur(vAnnotObs, pourcentageErreur, voteMajoritaire);
 
-        //III-on les crÈe ‡ part
+        //III-on les cr√©e √† part
 
         int nbNewAnnot = 9;//nba;
         vector<vector<int>> vAnnotObs2;
@@ -544,7 +598,7 @@ Un exemple possible de protocole :
             }
 
             totalPossibilite = proba[nbobs-1];
-            //on choisi un nombre alÈatoire d'erreur compris dans l'intervalle
+            //on choisi un nombre al√©atoire d'erreur compris dans l'intervalle
             int rng = intervalleMin + (rand() % (intervalleMax - intervalleMin));
             //cout << rng << ": ";
             for(int err=0; err<rng; err++){
@@ -559,18 +613,18 @@ Un exemple possible de protocole :
                 while(rngObs >= proba[itObs]){
                     itObs++;
                 }
-                //l'annotateur ann fait une erreur ‡ l'observable vObsErreur[itObs]
-                //cas o˘ l'erreur est choisi alÈatoirement parmi les classes non majoritaire
+                //l'annotateur ann fait une erreur √† l'observable vObsErreur[itObs]
+                //cas o√π l'erreur est choisi al√©atoirement parmi les classes non majoritaire
                 vAnnotObs2[ann][vObsErreur[itObs]]+= 1 + (rand() % (nbc-1));
                 vAnnotObs2[ann][vObsErreur[itObs]] = vAnnotObs2[ann][vObsErreur[itObs]] % nbc;
-                //cas o˘ la classe de l'erreur dÈpend des donnÈes de dÈpart
+                //cas o√π la classe de l'erreur d√©pend des donn√©es de d√©part
                 /*int rngClasse = rand() % totalPossibiliteClasse[vObsErreur[itObs]];
                 int itClasse = 0;
                 while(rngClasse >= probaClasseErreur[vObsErreur[itObs]][itClasse]){
                     itClasse++;
                 }
                 vAnnotObs2[ann][vObsErreur[itObs]] = itClasse;*/
-                //cas o˘ l'erreur peut Ítre choisi totalement au hasard (et peut donc ne pas en Ítre une)
+                //cas o√π l'erreur peut √™tre choisi totalement au hasard (et peut donc ne pas en √™tre une)
                 /*int aleatoire = rand()%2;
                 if(aleatoire==0){
                     vAnnotObs2[ann][vObsErreur[itObs]]= rand() % nbc;
@@ -608,7 +662,7 @@ Un exemple possible de protocole :
                     cout << "AAAAAAAAA" << endl;
                 }*/
                 //cout << "itObs-2 : " <<vObsErreur[itObs-2] << " itObs-1 : " <<vObsErreur[itObs-1] << " itObs : " << vObsErreur[itObs] << " itObs+1 " << vObsErreur[itObs+1] << endl;
-                //bilan : il ne faut pas mettre le -1 mais cela crÈer une erreur (proba.begin()+ itObs >= proba.end() -> pourquoi ?)
+                //bilan : il ne faut pas mettre le -1 mais cela cr√©er une erreur (proba.begin()+ itObs >= proba.end() -> pourquoi ?)
                 //proba.erase(proba.begin()+ itObs -1);
                 //cout << "test6" << endl;
 
