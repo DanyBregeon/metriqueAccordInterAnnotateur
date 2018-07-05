@@ -25,7 +25,7 @@ const std::string currentDateTime() {
     return buf;
 }
 
-int fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, int choixGold,
+void fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, int choixGold,
                    int nba, map<pair<int, float>, vector<float>> mapResultat)
 {
     //création fichier de sortie
@@ -113,5 +113,4 @@ int fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, int
         //myfile << endl;
     }
     myfile.close();
-    return 0;
 }

@@ -11,7 +11,7 @@
 
 #include <vector>
 
-/*! \brief calcul le kappa de Cohen
+/** \brief va lire le fichier correpondant au choix
  *
  * \param choix : le fichier à lire
  * \param vAnnotObs : les vecteurs représentant le tableau d'annotation

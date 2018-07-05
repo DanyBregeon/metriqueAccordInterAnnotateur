@@ -17,6 +17,8 @@
 
 using namespace std;
 
+int nba, nbobs, nbc;//nb d'annotateurs, d'observables, de classes
+
 int main()
 {
     //int tAnnotObs[Max_annot][Max_obs],tObsAnnot[Max_obs][Max_annot];
@@ -24,8 +26,8 @@ int main()
     vector<vector<int>> vObsAnnot;
     //float C[Max_classes][Max_classes];
     vector<vector<float>> C;
-    int nba, nbobs, nbc;//nb d'annotateurs, d'observables, de classes
-    float nb;//observation réellement prises en compte
+    //int nba, nbobs, nbc;//nb d'annotateurs, d'observables, de classes
+    float nb;//observation rÃ©ellement prises en compte
 
     int choix;
     int choixNbClasse;
@@ -51,8 +53,8 @@ int main()
     cout << "Choix ? (gold: 0 pour verite ideale, 1 pour en fonction du nombre d'annotateurs retenus, 2 pareil mais sans annotateur commun, 3 prevalence)";
     cin >> choixGold;
 
-    //tableau final avec les pourcentages de différences de votes majoritaires par rapport à la référence
-    //en fonction du nombre de classes et de la valeur de la métrique
+    //tableau final avec les pourcentages de diffÃ©rences de votes majoritaires par rapport Ã  la rÃ©fÃ©rence
+    //en fonction du nombre de classes et de la valeur de la mÃ©trique
     std::map<std::pair<int, float>, std::vector<float>> mapResultat;
 
 
@@ -99,7 +101,7 @@ int main()
 
             choixTableau(lesChoix[i],vAnnotObs,nbobs,nba,nbc);
             //afficheTableauLu(T,nbobs,nba);
-            //vObsAnnot est vAnnotObs transposé
+            //vObsAnnot est vAnnotObs transposÃ©
             vObsAnnot.resize(nbobs);
             for(int i=0; i<nbobs; i++){
                 vObsAnnot[i].resize(nba);
@@ -130,16 +132,16 @@ int main()
                 metrique = alpha(nb,C,nbc, 0);
             }
             //prevalence
-            calculPrevalence(vPrevalence, metrique, vAnnotObs, nbc, nba, nbobs);
+            calculPrevalence(vPrevalence, metrique, vAnnotObs/*, nbc, nba, nbobs*/);
 
             pair<int, float> pairNbcAlpha(nbc, metrique);
             //cout << " pairNbcAlpha: " << pairNbcAlpha.first << "/" << pairNbcAlpha.second;
             //cout<< "combinaisons de n-p annotateurs :" <<endl;
-            calculDifference(vObsAnnot,nbobs,nba,nbc, &vPourcentageErreur, choixGold);
+            calculDifference(vObsAnnot,/*nbobs,nba,nbc,*/ &vPourcentageErreur, choixGold);
             mapResultat.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vPourcentageErreur));
         }
 
-        //affichage résultats
+        //affichage rÃ©sultats
         for (map<std::pair<int, float>, vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
             pair<int, float> m = it->first;
             string s;
@@ -161,7 +163,7 @@ int main()
             cout << endl;
         }
         map<pair<int, float>, vector<float>> mapResultat2;
-        resultatsPalier(mapResultat, mapResultat2, 0.05f, nbc, nba, vPrevalence);
+        resultatsPalier(mapResultat, mapResultat2, 0.05f, /*nbc, nba,*/ vPrevalence);
         fichierSortie(choix, choixNbClasse, choixMetrique, choixGold, nba, mapResultat2);
     }else{ //on test sur un seul fichier
 
@@ -207,7 +209,7 @@ int main()
         if(choixGold == 3){
             cout << "prevalence :  ";
             vector<pair<float, vector<float>>> vPrevalence;
-            calculPrevalence(vPrevalence, metrique, vAnnotObs, nbc, nba, nbobs);
+            calculPrevalence(vPrevalence, metrique, vAnnotObs/*, nbc, nba, nbobs*/);
             for(int c=0; c<nbc; c++){
                 cout << c << " : " << (vPrevalence[0].second)[c] << endl;
             }
@@ -216,11 +218,11 @@ int main()
 
             std::vector<float> vPourcentageErreur;
 
-            calculDifference(vObsAnnot,nbobs,nba,nbc, &vPourcentageErreur, choixGold);
+            calculDifference(vObsAnnot,/*nbobs,nba,nbc,*/ &vPourcentageErreur, choixGold);
 
             pair<int, float> pairNbcAlpha(nbc, metrique);
             mapResultat.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vPourcentageErreur));
-            //affichage résultats
+            //affichage rÃ©sultats
             for(int i=0; i<nba-1; i++){
                 cout << nba-i << ": " << mapResultat.at(pairNbcAlpha)[i] <<"%   ";
             }
@@ -274,8 +276,8 @@ int main()
     cout << "combinaisons de n-p annotateurs :" << endl;
 
 
-    //tableau final avec les pourcentages de différences de votes majoritaires par rapport à la référence
-    //en fonction du nombre de classes et de la valeur de la métrique
+    //tableau final avec les pourcentages de diffÃ©rences de votes majoritaires par rapport Ã  la rÃ©fÃ©rence
+    //en fonction du nombre de classes et de la valeur de la mÃ©trique
     map<pair<int, float>, vector<float>> mapResultat;
 
     vector<float> vPourcentageErreur;
@@ -287,7 +289,7 @@ int main()
 
     std::pair<int, float> pairNbcAlpha(nbc, valeurMetrique);
     mapResultat.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vPourcentageErreur));
-    //affichage résultats
+    //affichage rÃ©sultats
     for(int i=0; i<nba-1; i++){
         cout << nba-i << ": " << mapResultat.at(pairNbcAlpha)[i] <<"%   ";
     }

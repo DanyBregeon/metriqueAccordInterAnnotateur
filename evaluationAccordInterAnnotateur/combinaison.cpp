@@ -9,15 +9,19 @@
 #include <cstdio>
 #include "combinaison.h"
 
+extern int nba;
+extern int nbobs;
+extern int nbc;
+
 using namespace std;
 
-// IV - génère toutes les annotations par vote majoritaires pour toutes les combinaisons de (n-1),
-//      (n-2), (n-3) ... annotateurs, et donne les % de modifications par rapport à la référence
+// IV - gÃ©nÃ¨re toutes les annotations par vote majoritaires pour toutes les combinaisons de (n-1),
+//      (n-2), (n-3) ... annotateurs, et donne les % de modifications par rapport Ã  la rÃ©fÃ©rence
 
-//calcul du vote majoritaire et le compare avec celui de référence
+//calcul du vote majoritaire et le compare avec celui de rÃ©fÃ©rence
 
 //n = 9 ou 8 ou 7 etc annotateurs, effectue des calculs pour chaque combinaison
-void voteMajoritaire( int *p, int n, vector<vector<int>> & vObsAnnot,int nbobs,int nba, int nbc,
+void voteMajoritaire( int *p, int n, vector<vector<int>> & vObsAnnot,/*int nbobs,int nba, int nbc,*/
 		  vector<int> & erreurVoteMaj, vector<int> & voteMajReference) {
     /*int i;
     for (i = 0; i < n; i++){
@@ -36,7 +40,7 @@ void voteMajoritaire( int *p, int n, vector<vector<int>> & vObsAnnot,int nbobs,i
     for(int obs=0; obs<nbobs; obs++){
         float moyenne = 0;
         for(int ann=0; ann<n; ann++){
-            //p[ann] nous donne un annotateur de la combinaison actuelle, T[obs][p[ann]] nous donne la classe qu'à attribué cet annotateur à l'observable obs
+            //p[ann] nous donne un annotateur de la combinaison actuelle, T[obs][p[ann]] nous donne la classe qu'Ã  attribuÃ© cet annotateur Ã  l'observable obs
             tNbOcc[vObsAnnot[obs][p[ann]]]++;
             moyenne += vObsAnnot[obs][p[ann]];
         }
@@ -64,7 +68,7 @@ void voteMajoritaire( int *p, int n, vector<vector<int>> & vObsAnnot,int nbobs,i
         }*/
     }
 
-    //si c'est la référence
+    //si c'est la rÃ©fÃ©rence
     if(n == nba){
         erreurVoteMaj[n]=0;
         //cout << "voteMajRef : ";
@@ -73,7 +77,7 @@ void voteMajoritaire( int *p, int n, vector<vector<int>> & vObsAnnot,int nbobs,i
             //cout << voteMajReference[i] <<" ";
             //moyenneReference[i] = tMoyenne[i];
         }
-    //sinon on compare avec la référence
+    //sinon on compare avec la rÃ©fÃ©rence
     }else{
         //int test = erreurVoteMaj[n];
         for(int i=0; i<nbobs; i++){
@@ -82,10 +86,10 @@ void voteMajoritaire( int *p, int n, vector<vector<int>> & vObsAnnot,int nbobs,i
                 if(!ponderation){
                     erreurVoteMaj[n]++;
                 }else{
-                    //si on veut pondéré l'erreur :
+                    //si on veut pondÃ©rÃ© l'erreur :
                     erreurVoteMaj[n]+= abs(voteMajoritaire[i] - voteMajReference[i]);
                 }
-                //"% de modifications par rapport à la référence" par nombre d'annotateur ou pour chaque vote majoritaire ?
+                //"% de modifications par rapport Ã  la rÃ©fÃ©rence" par nombre d'annotateur ou pour chaque vote majoritaire ?
                 //break;
             }
         }
@@ -94,7 +98,7 @@ void voteMajoritaire( int *p, int n, vector<vector<int>> & vObsAnnot,int nbobs,i
 }
 
 //vote maj pour le gold en fonction du nombre d'annotateur de la combinaison
-void voteMajoritaire2( int *p, int n, vector<vector<int>> & vObsAnnot,int nbobs,int nba, int nbc,
+void voteMajoritaire2( int *p, int n, vector<vector<int>> & vObsAnnot,/*int nbobs,int nba, int nbc,*/
 		  vector<int> & erreurVoteMaj, vector<int> & voteMajReference, vector<vector<vector<int>>> & voteMajOcc) {
 
     //le vote majoritaire pour chaque observable
@@ -107,7 +111,7 @@ void voteMajoritaire2( int *p, int n, vector<vector<int>> & vObsAnnot,int nbobs,
     for(int obs=0; obs<nbobs; obs++){
         float moyenne = 0;
         for(int ann=0; ann<n; ann++){
-            //p[ann] nous donne un annotateur de la combinaison actuelle, T[obs][p[ann]] nous donne la classe qu'à attribué cet annotateur à l'observable obs
+            //p[ann] nous donne un annotateur de la combinaison actuelle, T[obs][p[ann]] nous donne la classe qu'Ã  attribuÃ© cet annotateur Ã  l'observable obs
             tNbOcc[vObsAnnot[obs][p[ann]]]++;
             moyenne += vObsAnnot[obs][p[ann]];
         }
@@ -134,40 +138,40 @@ void voteMajoritaire2( int *p, int n, vector<vector<int>> & vObsAnnot,int nbobs,
 }
 
 
-//trouve l'ensemble des combinaisons de p parmi n (de manière récursive)
+//trouve l'ensemble des combinaisons de p parmi n (de maniÃ¨re rÃ©cursive)
 void combinaisons(int *ens, int *combinaison, int n, int p, int i, int t,
-                  vector<vector<int>> & vObsAnnot,int nbobs,int nba,int nbc,
+                  vector<vector<int>> & vObsAnnot,/*int nbobs,int nba,int nbc,*/
 		  vector<int> & erreurVoteMaj, vector<int> & voteMajReference, vector<int> & nbCombinaison,
 		  int choixGold, vector<vector<vector<int> > > &voteMajOcc, vector<vector<float>> & moyennes) {
     if (i<p) {
         for (int k=t; k<n; k++) {
             combinaison[i] = ens[k];
-            combinaisons(ens,combinaison,n,p,i+1,k+1, vObsAnnot,nbobs,nba,nbc, erreurVoteMaj, voteMajReference, nbCombinaison, choixGold, voteMajOcc, moyennes);
+            combinaisons(ens,combinaison,n,p,i+1,k+1, vObsAnnot,/*nbobs,nba,nbc,*/ erreurVoteMaj, voteMajReference, nbCombinaison, choixGold, voteMajOcc, moyennes);
         }
     }
     else {
         if(choixGold==0){
-            voteMajoritaire(combinaison,p, vObsAnnot,nbobs,nba,nbc, erreurVoteMaj, voteMajReference);
+            voteMajoritaire(combinaison,p, vObsAnnot,/*nbobs,nba,nbc,*/ erreurVoteMaj, voteMajReference);
         }else if(choixGold==1){
-            voteMajoritaire2(combinaison,p, vObsAnnot,nbobs,nba,nbc, erreurVoteMaj, voteMajReference, voteMajOcc);
+            voteMajoritaire2(combinaison,p, vObsAnnot,/*nbobs,nba,nbc,*/ erreurVoteMaj, voteMajReference, voteMajOcc);
         }
         nbCombinaison[p]++;
     }
 }
 
 
-void calculDifference(vector<vector<int>> & vObsAnnot,int nbobs,int nba,int nbc, vector<float> *vPourcentageErreur, int choixGold){
+void calculDifference(vector<vector<int>> & vObsAnnot,/*int nbobs,int nba,int nbc,*/ vector<float> *vPourcentageErreur, int choixGold){
     int ens[nba];
     for(int i=0; i<nba; i++){
         ens[i] = i;
     }
-    //le nombre de votes majoritaires différent de la référence par nombre d'annotateurs
+    //le nombre de votes majoritaires diffÃ©rent de la rÃ©fÃ©rence par nombre d'annotateurs
     vector<int> erreurVoteMaj;
     erreurVoteMaj.resize(nba+1);
     //le nombre de combinaisons par nombre d'annotateurs
     vector<int> nbCombinaison;
     nbCombinaison.resize(nba+1);
-    //les votes majoritaires de la référence pour chaque observable
+    //les votes majoritaires de la rÃ©fÃ©rence pour chaque observable
     vector<int> voteMajReference;
     voteMajReference.resize(nbobs);
     //les moyennes pour chaque combinaisons de p annotateurs
@@ -194,7 +198,7 @@ void calculDifference(vector<vector<int>> & vObsAnnot,int nbobs,int nba,int nbc,
         //cout << endl;
         int combi[p];
         //std::vector<float> vAlpha;
-        combinaisons(ens,combi,nba,p,0,0, vObsAnnot,nbobs,nba,nbc, erreurVoteMaj, voteMajReference, nbCombinaison, choixGold, voteMajOcc, moyennes);
+        combinaisons(ens,combi,nba,p,0,0, vObsAnnot,/*nbobs,nba,nbc,*/ erreurVoteMaj, voteMajReference, nbCombinaison, choixGold, voteMajOcc, moyennes);
         //float moy = moyenne(&vAlpha);
         //cout << "moyenne : " << moy << endl;
         //cout << "ecart-type : " << ecart_type(&vAlpha, moy) << endl;
