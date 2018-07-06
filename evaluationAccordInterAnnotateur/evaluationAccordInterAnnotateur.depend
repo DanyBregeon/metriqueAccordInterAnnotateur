@@ -116,7 +116,7 @@
 1530707256 c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\calculmetrique.h
 	<vector>
 
-1530709979 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\calculresultats.cpp
+1530799790 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\calculresultats.cpp
 	<iostream>
 	<vector>
 	<cstring>
@@ -150,7 +150,7 @@
 1530714381 c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\combinaison.h
 	<vector>
 
-1530713778 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\fichiersortie.cpp
+1530865372 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\fichiersortie.cpp
 	<iostream>
 	<vector>
 	<cstring>
@@ -165,10 +165,10 @@
 	<iomanip>
 	"lectureFichier.h"
 
-1530713224 c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\lecturefichier.h
+1530786910 c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\lecturefichier.h
 	<vector>
 
-1530542521 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\lecturefichier.cpp
+1530794611 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\lecturefichier.cpp
 	<iostream>
 	<vector>
 	<cstring>
@@ -181,7 +181,7 @@
 	<sstream>
 	"lectureFichier.h"
 
-1530709967 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\main.cpp
+1530865453 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\main.cpp
 	<iostream>
 	<vector>
 	<cstring>
@@ -193,13 +193,14 @@
 	<cstdio>
 	<map>
 	<iomanip>
+	<dirent.h>
 	"calculMetrique.h"
 	"lectureFichier.h"
 	"combinaison.h"
 	"fichierSortie.h"
 	"calculResultats.h"
 
-1530714432 c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\fichiersortie.h
+1530801475 c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\fichiersortie.h
 	<string>
 	<vector>
 	<map>

@@ -90,11 +90,11 @@ void calculPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pair<i
     for (map<pair<int, float>, vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
         pair<int, float> m = it->first;
         vector<float> valeurs = it->second;
-        //pour chaque génération aléatoire, on regarde s'il est dans le palier actuel: tant qu'il ne l'est pas on change de palier
+        //pour chaque gÃ©nÃ©ration alÃ©atoire, on regarde s'il est dans le palier actuel: tant qu'il ne l'est pas on change de palier
         while(m.second>=/*palier*/palier-(palierPas/2)){
-            //s'il y a au moins une génération aléatorie dans ce palier
+            //s'il y a au moins une gÃ©nÃ©ration alÃ©atorie dans ce palier
             if(occPalier > 0){
-                //on calcul la moyenne/l'éécart type pour chaque groupe de N annotateurs
+                //on calcul la moyenne/l'Ã©Ã©cart type pour chaque groupe de N annotateurs
                 for(int i=0; i<nba-1; i++){
                     if(moyenneEcartType == 0){
                         vResultats[indexPalier][i] = vResultats[indexPalier][i] / (float) occPalier;
@@ -147,6 +147,13 @@ void calculPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pair<i
     }
 
     //affichage
+    cout << endl;
+    if(moyenneEcartType == 0){
+        cout << "moyenne des pourcentages de modification par palier :" << endl << endl;
+    }else{
+        cout << "ecart type des pourcentages de modification par palier :" << endl << endl;
+    }
+
     int nbPalier = 2 + (int)(1.0f/palierPas);
     for(int i=0; i<nbPalier; i++){
         cout << i*palierPas << ": ";
@@ -169,7 +176,7 @@ void resultatsPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pai
     cout << "nbPalier : " << nbPalier << endl;
 
     sort(vPrevalence.begin(), vPrevalence.end());
-    //affichage pérvalence
+    //affichage pÃ©rvalence
     /*for(int i=0; i<vPrevalence.size(); i++){
             cout << vPrevalence[i].first << " :  ";
         for(int j=0; j<nbc; j++){
@@ -201,6 +208,7 @@ void resultatsPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pai
 
     //moyenne
     calculPalier(mapResultat, mapResultat2, palierPas, vResultats, vResultatsEcartType, 0, /*nbc, nba,*/ vPrevalence, vPrevalencePalier);
+    cout << endl;
     //ecart type
     calculPalier(mapResultat, mapResultat2, palierPas, vResultats, vResultatsEcartType, 1, /*nbc, nba,*/ vPrevalence, vPrevalencePalier);
     /*float palier = palierPas:

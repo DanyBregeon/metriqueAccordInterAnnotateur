@@ -18,13 +18,14 @@ const int Max_annot=30;//nb maximal d'annotateurs
 
 // III - LECTURE D'UN FICHIER STANDARDISE
 //Nbobs : nb d'observables, Nba : nb d'annotateurs, Nbc : nb de classes
-// Les classes sont numérotées 0, 1, ..., Nbc-1
+// Les classes sont numÃ©rotÃ©es 0, 1, ..., Nbc-1
 
-void lire(string nomfich,vector<vector<int>> & vAnnotObs,int & Nbobs,int & Nba,int & Nbc) {
+int lire(string nomfich,vector<vector<int>> & vAnnotObs,int & Nbobs,int & Nba,int & Nbc) {
    const char * nom_fichier=nomfich.c_str();
     ifstream file(nom_fichier);
     if (!file){
       cout << "erreur ouverture fichier " << nomfich << endl;
+      return 0;
     }
     else {
       string ligne;
@@ -67,7 +68,7 @@ void lire(string nomfich,vector<vector<int>> & vAnnotObs,int & Nbobs,int & Nba,i
             }//fin else 2
           }//fin else 1
         }//fin ligne qui n'est pas un commentaire
-      }//fin while lecture paramètres
+      }//fin while lecture paramÃ¨tres
 
       vAnnotObs.resize(Nba);
       for(int i=0; i<Nba; i++){
@@ -84,7 +85,7 @@ void lire(string nomfich,vector<vector<int>> & vAnnotObs,int & Nbobs,int & Nba,i
       for (int an=0;an<Nba;an++) {//une ligne par annotateur
         lg=ligne.size();
         int i=0; //indiceligne
-        for (int ob=0;ob<Nbobs;ob++) {//Nbobs à lire
+        for (int ob=0;ob<Nbobs;ob++) {//Nbobs Ã  lire
           if (i>=lg) cout << "erreur lecture ligne " << i << endl;
           else {
             if (ligne[i]=='.') {
@@ -123,6 +124,8 @@ void lire(string nomfich,vector<vector<int>> & vAnnotObs,int & Nbobs,int & Nba,i
         getline(file,ligne);
       }
     }
+
+    return 1;
 }
 
 void choixTableau(int choix,vector<vector<int>> & vAnnotObs,int & Nbobs,int & Nba,int & Nbc) {

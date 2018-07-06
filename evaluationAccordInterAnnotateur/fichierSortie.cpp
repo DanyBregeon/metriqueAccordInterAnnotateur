@@ -25,10 +25,57 @@ const std::string currentDateTime() {
     return buf;
 }
 
-void fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, int choixGold,
+void fichierSortie(string nomFichier, string choixMetrique, int nba, map<pair<int, float>, vector<float>> mapResultat){
+    //création fichier de sortie
+    ostringstream ss;
+    ss << "resultats_";
+    ss << "" + nomFichier;
+    if(choixMetrique.compare("a")==0){
+        ss<<"_alpha";
+    }else if(choixMetrique.compare("k")==0){
+        ss<<"_kappa";
+    }else if(choixMetrique.compare("pi")==0){
+        ss<<"_pi";
+    }else if(choixMetrique.compare("ap")==0){
+        ss<<"_alphaPondéré";
+    }
+    ss << nba;
+    ofstream myfile;
+    myfile.open ("resultats/"+ss.str()+".txt");
+    //cout << ss.str();
+
+    for (map<pair<int, float>, vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
+        pair<int, float> m = it->first;
+        string s;
+        if(choixMetrique.compare("k")==0){
+            s = "kappa";
+        }else if(choixMetrique.compare("ap")==0){
+            s = "alpha(pondéré)";
+        }else if(choixMetrique.compare("pi")==0){
+            s = "pi";
+        }else{
+            s = "alpha";
+        }
+        if(m.first != 0){ //si = 0 ecart type
+            myfile << m.first <<" classes, "<< s << "=" << fixed << setprecision (3) << m.second << "   ";
+            myfile << fixed << setprecision (3);
+            for(int i=0; i<nba-1; i++){
+                vector<float> valeurs = it->second;
+                 myfile << valeurs[i] <<"\t";
+            }
+            myfile << endl;
+        }
+    }
+    myfile.close();
+}
+
+
+
+//deprecated, ne sert plus
+void fichierSortieCorpus (int choixCorpus, int choixNbClasse, string choixMetrique, int choixGold,
                    int nba, map<pair<int, float>, vector<float>> mapResultat)
 {
-    //cr�ation fichier de sortie
+    //création fichier de sortie
     ostringstream ss;
     switch (choixCorpus)
     {
@@ -63,12 +110,12 @@ void fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, in
     }else if(choixMetrique.compare("pi")==0){
         ss<<"pi_";
     }else if(choixMetrique.compare("ap")==0){
-        ss<<"alphaPond�r�_";
+        ss<<"alphaPondéré_";
     }
 
-    if(choixGold==1){
+    /*if(choixGold==1){
         ss<<"goldParAnnot";
-    }/*else if(choixGold==2){
+    }else if(choixGold==2){
         ss<<"goldParAnnotSansAnnotCommun";
     }else if(choixGold==3){
         ss<<"moyenneParAnnot";
@@ -88,7 +135,7 @@ void fichierSortie (int choixCorpus, int choixNbClasse, string choixMetrique, in
         if(choixMetrique.compare("k")==0){
             s = "kappa";
         }else if(choixMetrique.compare("ap")==0){
-            s = "alpha(pond�r�)";
+            s = "alpha(pondéré)";
         }else if(choixMetrique.compare("pi")==0){
             s = "pi";
         }else{

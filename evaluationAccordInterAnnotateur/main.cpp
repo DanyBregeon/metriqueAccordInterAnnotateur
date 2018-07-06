@@ -9,6 +9,7 @@
 #include <cstdio>
 #include <map>
 #include <iomanip>
+#include <dirent.h>
 #include "calculMetrique.h"
 #include "lectureFichier.h"
 #include "combinaison.h"
@@ -29,6 +30,204 @@ int main()
     //int nba, nbobs, nbc;//nb d'annotateurs, d'observables, de classes
     float nb;//observation réellement prises en compte
 
+    int choixGold = 0; //choix de la référence : 0 est pour la référence idéale au maximum d'annotateur
+
+    //tableau final avec les pourcentages de différences de votes majoritaires par rapport à la référence
+    //en fonction du nombre de classes et de la valeur de la métrique
+    std::map<std::pair<int, float>, std::vector<float>> mapResultat;
+
+
+    bool erreur = false;
+    do{
+        string choixFichier;
+        string choixMetrique;
+
+        cout << "Chemin du fichier ou dossier : ";
+        cin >> choixFichier;
+
+        if(choixFichier.size() > 4 && choixFichier.substr(choixFichier.size()-4).compare(".csv")==0){ //cas un seul fichier
+            if(lire(choixFichier, vAnnotObs, nbobs, nba, nbc) == 0){
+                erreur = true;
+            }else{
+                erreur = false;
+                cout << "Choix de la metrique : a pour alpha, k pour kappa, pi pour pi, ap pour alpha pondere : ";
+                cin >> choixMetrique;
+                //afficheTableauLu(vAnnotObs,nbobs,nba); //on affiche le tableau d'annotations
+                //tableau de coincidences :
+                //on transpose vAnnotObs dans vObsAnnot
+                vObsAnnot.resize(nbobs);
+                for(int i=0; i<nbobs; i++){
+                    vObsAnnot[i].resize(nba);
+                }
+                C.resize(nbc);
+                for(int i=0; i<nbc; i++){
+                    C[i].resize(nbc);
+                }
+                for (int i=0;i<nba;i++){
+                    for (int j=0;j<nbobs;j++){
+                        vObsAnnot[j][i]=vAnnotObs[i][j];
+                    }
+                }
+                //cout << "Tableau des coincidences :\n";
+                coincidences(vObsAnnot,nbobs,nba,C,nbc,nb);
+                //affiche_coincidences(C,nbc);
+                //cout << "nb d'observations prises en compte="<< nb <<endl;
+
+                float metrique;
+                if(choixMetrique.compare("k")==0){
+                    metrique = kappaAP(nbobs, nbc, nba, vObsAnnot);
+                    cout << "kappa= ";
+                }else if(choixMetrique.compare("ap")==0){
+                    metrique = alpha(nb,C,nbc, 1);
+                    cout << "alpha(pondere)= ";
+                }else if(choixMetrique.compare("pi")==0){
+                    metrique = piAP(nbobs, nbc, nba, vObsAnnot);
+                    cout << "pi= ";
+                }else{
+                    metrique = alpha(nb,C,nbc, 0);
+                    cout << "alpha= ";
+                }
+
+                cout << metrique << endl << endl;
+
+                cout << "pourcentages de modification : (le pourcentage de votes majoritaires different avec k<" << nba;
+                cout << " annotateurs par rapport a " << nba << " annotateurs)" << endl;
+
+                std::vector<float> vPourcentageErreur;
+
+                calculDifference(vObsAnnot, &vPourcentageErreur, choixGold);
+
+                pair<int, float> pairNbcAlpha(nbc, metrique);
+                mapResultat.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vPourcentageErreur));
+                //affichage résultats
+                for(int i=0; i<nba-1; i++){
+                    cout << nba-i << ": " << mapResultat.at(pairNbcAlpha)[i] <<"%   ";
+                }
+
+                fichierSortie(""/*choixFichier.substr(0, choixFichier.size()-4)*/, choixMetrique, nba, mapResultat);
+            }
+        }else{ //cas plusieurs fichiers
+
+            DIR * rep = opendir(choixFichier.c_str());
+
+            vector<string> files;
+
+            if (rep == NULL){ //si ce n'était pas un répertoire
+                erreur = true;
+            }
+            else
+            {
+                erreur = false;
+                if(choixFichier[choixFichier.size()-1]!='/'){
+                    choixFichier += "/";
+                }
+
+                struct dirent * ent;
+
+                while ((ent = readdir(rep)) != NULL)
+                {
+                    string f = choixFichier + ent->d_name;
+                    if(f.size() > 4 && f.substr(f.size()-4).compare(".csv")==0){
+                        cout << f << endl;
+                        files.push_back(f);
+                    }
+                }
+                closedir(rep);
+
+                /////////////////////////////////////////////////////////////////////////
+
+                cout << "Choix de la metrique : a pour alpha, k pour kappa, pi pour pi, ap pour alpha pondere : ";
+                cin >> choixMetrique;
+                //prevalence
+                vector<pair<float, vector<float>>> vPrevalence;
+                //vPrevalence.resize(files.size());
+                for(int i=0; i<files.size(); i++){
+                    cout << (i+1) << " / " << files.size() << endl;
+                    //if(i%2000==0) cout << i << endl; //affichage
+                    if(lire(files[i], vAnnotObs, nbobs, nba, nbc)==1){
+                        //choixTableau(files[i],vAnnotObs,nbobs,nba,nbc);
+                        //afficheTableauLu(T,nbobs,nba);
+                        //vObsAnnot est vAnnotObs transposé
+                        vObsAnnot.resize(nbobs);
+                        for(int i=0; i<nbobs; i++){
+                            vObsAnnot[i].resize(nba);
+                        }
+                        C.resize(nbc);
+                        for(int i=0; i<nbc; i++){
+                            C[i].resize(nbc);
+                        }
+                        for (int i=0;i<nba;i++){
+                            for (int j=0;j<nbobs;j++){
+                                vObsAnnot[j][i]=vAnnotObs[i][j];
+                            }
+                        }
+                        //cout << "Tableau des coincidences :\n";
+                        coincidences(vObsAnnot,nbobs,nba,C,nbc,nb);
+                        //affiche_coincidences(C,nbc);
+                        //cout << "nb d'observations prises en compte="<<nb <<endl;
+                        vector<float> vPourcentageErreur;
+                        //cout << "alpha=" << alpha(nb,C,nbc);
+                        float metrique;
+                        if(choixMetrique.compare("k")==0){
+                            metrique = kappaAP(nbobs, nbc, nba, vObsAnnot);
+                        }else if(choixMetrique.compare("ap")==0){
+                            metrique = alpha(nb,C,nbc, 1);
+                        }else if(choixMetrique.compare("pi")==0){
+                            metrique = piAP(nbobs, nbc, nba, vObsAnnot);
+                        }else{
+                            metrique = alpha(nb,C,nbc, 0);
+                        }
+                        //prevalence
+                        calculPrevalence(vPrevalence, metrique, vAnnotObs);
+
+                        pair<int, float> pairNbcAlpha(nbc, metrique);
+                        //cout << " pairNbcAlpha: " << pairNbcAlpha.first << "/" << pairNbcAlpha.second;
+                        //cout<< "combinaisons de n-p annotateurs :" <<endl;
+                        calculDifference(vObsAnnot, &vPourcentageErreur, choixGold);
+                        mapResultat.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vPourcentageErreur));
+                    }
+                }
+
+                //affichage résultats
+                bool changement = false;
+                for (map<std::pair<int, float>, vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
+                    pair<int, float> m = it->first;
+                    string s;
+                    if(choixMetrique.compare("k")==0){
+                        s = "kappa";
+                    }else if(choixMetrique.compare("ap")==0){
+                        s = "alpha(pondere)";
+                    }else if(choixMetrique.compare("pi")==0){
+                        s = "pi";
+                    }else{
+                        s = "alpha";
+                    }
+                    if(m.first != nbc){
+                        changement = true;
+                    }
+                    cout << m.first <<" classes, "<< s << "=" << fixed << setprecision (3) << m.second << "   ";
+                    for(int i=0; i<nba-1; i++){
+                        vector<float> valeurs = it->second;
+                        cout << nba-i << ": " << valeurs[i] <<"%   ";
+                    }
+                    cout << endl;
+                    cout << endl;
+                }
+                map<pair<int, float>, vector<float>> mapResultat2;
+                if(!changement){
+                    resultatsPalier(mapResultat, mapResultat2, 0.05f, vPrevalence);
+                    fichierSortie("", choixMetrique, nba, mapResultat2);
+                }else{
+                    fichierSortie("", choixMetrique, nba, mapResultat);
+                }
+
+            }
+        }
+    }while(erreur);
+
+
+
+    /*
     int choix;
     int choixNbClasse;
     cout << "Choix ? (1 pour tous les corpus, 2 pour emotion, 3 pour opinion, 4 pour coreference, 0 pour les corpus generes aleatoirement)";
@@ -62,7 +261,7 @@ int main()
     if(choix<100){
         vector<int> lesChoix;
         if(choix==0){ //cas generation aleatoire
-            for(int i=1000; i<1500/*3000/*2629/*1270*/; i++){
+            for(int i=1000; i<3000; i++){
                 lesChoix.push_back(i);
             }
         }
@@ -132,12 +331,12 @@ int main()
                 metrique = alpha(nb,C,nbc, 0);
             }
             //prevalence
-            calculPrevalence(vPrevalence, metrique, vAnnotObs/*, nbc, nba, nbobs*/);
+            calculPrevalence(vPrevalence, metrique, vAnnotObs);
 
             pair<int, float> pairNbcAlpha(nbc, metrique);
             //cout << " pairNbcAlpha: " << pairNbcAlpha.first << "/" << pairNbcAlpha.second;
             //cout<< "combinaisons de n-p annotateurs :" <<endl;
-            calculDifference(vObsAnnot,/*nbobs,nba,nbc,*/ &vPourcentageErreur, choixGold);
+            calculDifference(vObsAnnot, &vPourcentageErreur, choixGold);
             mapResultat.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vPourcentageErreur));
         }
 
@@ -163,7 +362,7 @@ int main()
             cout << endl;
         }
         map<pair<int, float>, vector<float>> mapResultat2;
-        resultatsPalier(mapResultat, mapResultat2, 0.05f, /*nbc, nba,*/ vPrevalence);
+        resultatsPalier(mapResultat, mapResultat2, 0.05f, vPrevalence);
         fichierSortie(choix, choixNbClasse, choixMetrique, choixGold, nba, mapResultat2);
     }else{ //on test sur un seul fichier
 
@@ -209,7 +408,7 @@ int main()
         if(choixGold == 3){
             cout << "prevalence :  ";
             vector<pair<float, vector<float>>> vPrevalence;
-            calculPrevalence(vPrevalence, metrique, vAnnotObs/*, nbc, nba, nbobs*/);
+            calculPrevalence(vPrevalence, metrique, vAnnotObs);
             for(int c=0; c<nbc; c++){
                 cout << c << " : " << (vPrevalence[0].second)[c] << endl;
             }
@@ -218,7 +417,7 @@ int main()
 
             std::vector<float> vPourcentageErreur;
 
-            calculDifference(vObsAnnot,/*nbobs,nba,nbc,*/ &vPourcentageErreur, choixGold);
+            calculDifference(vObsAnnot, &vPourcentageErreur, choixGold);
 
             pair<int, float> pairNbcAlpha(nbc, metrique);
             mapResultat.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vPourcentageErreur));
@@ -228,72 +427,6 @@ int main()
             }
             fichierSortie(choix, choixNbClasse, choixMetrique, choixGold, nba, mapResultat);
         }
-    }
-
-
-    /*choixTableau(307, vAnnotObs, nbobs, nba, nbc);
-
-
-    //vAnnotObs.resize(nba);
-      //for(int i=0; i<nba; i++){
-        //vAnnotObs[i].resize(nbobs);
-      //}
-      vObsAnnot.resize(nbobs);
-      for(int i=0; i<nbobs; i++){
-        vObsAnnot[i].resize(nba);
-      }
-      C.resize(nbc);
-      for(int i=0; i<nbc; i++){
-        C[i].resize(nbc);
-      }
-
-    //for(int i=0; i<nba; i++){
-        //for(int j=0; j<nbobs; j++){
-          //  vAnnotObs[i][j]=j%nbc;
-        //}
-    //}
-    //vAnnotObs[0][1]=2;
-
-    //transpose
-    for (int i=0;i<nba;i++){
-        for (int j=0;j<nbobs;j++){
-            vObsAnnot[j][i]=vAnnotObs[i][j];
-        }
-    }
-
-    float valeurMetrique;
-    valeurMetrique = piAP(nbobs, nbc, nba, vObsAnnot);
-    cout << "pi: " << valeurMetrique;
-
-    coincidences(vObsAnnot,nbobs,nba,C,nbc,nb);
-    valeurMetrique = alpha(nb, C, nbc, 0);
-    cout << " alpha: " << valeurMetrique;
-    valeurMetrique = alpha(nb, C, nbc, 1);
-    cout << " alpha pondere: " << valeurMetrique;
-    valeurMetrique = kappaAP(nbobs, nbc, nba, vObsAnnot);
-    cout << " kappa: " << valeurMetrique << endl;
-
-    cout << "combinaisons de n-p annotateurs :" << endl;
-
-
-    //tableau final avec les pourcentages de différences de votes majoritaires par rapport à la référence
-    //en fonction du nombre de classes et de la valeur de la métrique
-    map<pair<int, float>, vector<float>> mapResultat;
-
-    vector<float> vPourcentageErreur;
-    int choixGold=0;
-    int choixNbClasse=3;
-    int choix = 3;
-    string choixMetrique="k";
-    calculDifference(vObsAnnot,nbobs,nba,nbc, &vPourcentageErreur, choixGold);
-
-    std::pair<int, float> pairNbcAlpha(nbc, valeurMetrique);
-    mapResultat.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vPourcentageErreur));
-    //affichage résultats
-    for(int i=0; i<nba-1; i++){
-        cout << nba-i << ": " << mapResultat.at(pairNbcAlpha)[i] <<"%   ";
-    }
-    fichierSortie(choix, choixNbClasse, choixMetrique, choixGold, nba, mapResultat);*/
-
+    }*/
     return 0;
 }
