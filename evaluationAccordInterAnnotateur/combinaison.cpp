@@ -12,6 +12,8 @@
 extern int nba;
 extern int nbobs;
 extern int nbc;
+extern int choixErreurPondere;
+extern int choixGold;
 
 using namespace std;
 
@@ -21,7 +23,7 @@ using namespace std;
 //calcul du vote majoritaire et le compare avec celui de référence
 
 //n = 9 ou 8 ou 7 etc annotateurs, effectue des calculs pour chaque combinaison
-void voteMajoritaire( int *p, int n, vector<vector<int>> & vObsAnnot,/*int nbobs,int nba, int nbc,*/
+void voteMajoritaire( int *p, int n, vector<vector<int>> & vObsAnnot,
 		  vector<int> & erreurVoteMaj, vector<int> & voteMajReference) {
     /*int i;
     for (i = 0; i < n; i++){
@@ -82,8 +84,7 @@ void voteMajoritaire( int *p, int n, vector<vector<int>> & vObsAnnot,/*int nbobs
         //int test = erreurVoteMaj[n];
         for(int i=0; i<nbobs; i++){
             if(voteMajoritaire[i] != voteMajReference[i]){
-                bool ponderation = false;
-                if(!ponderation){
+                if(choixErreurPondere == 0){
                     erreurVoteMaj[n]++;
                 }else{
                     //si on veut pondéré l'erreur :
@@ -98,7 +99,7 @@ void voteMajoritaire( int *p, int n, vector<vector<int>> & vObsAnnot,/*int nbobs
 }
 
 //vote maj pour le gold en fonction du nombre d'annotateur de la combinaison
-void voteMajoritaire2( int *p, int n, vector<vector<int>> & vObsAnnot,/*int nbobs,int nba, int nbc,*/
+void voteMajoritaire2( int *p, int n, vector<vector<int>> & vObsAnnot,
 		  vector<int> & erreurVoteMaj, vector<int> & voteMajReference, vector<vector<vector<int>>> & voteMajOcc) {
 
     //le vote majoritaire pour chaque observable
@@ -140,27 +141,27 @@ void voteMajoritaire2( int *p, int n, vector<vector<int>> & vObsAnnot,/*int nbob
 
 //trouve l'ensemble des combinaisons de p parmi n (de manière récursive)
 void combinaisons(int *ens, int *combinaison, int n, int p, int i, int t,
-                  vector<vector<int>> & vObsAnnot,/*int nbobs,int nba,int nbc,*/
+                  vector<vector<int>> & vObsAnnot,
 		  vector<int> & erreurVoteMaj, vector<int> & voteMajReference, vector<int> & nbCombinaison,
-		  int choixGold, vector<vector<vector<int> > > &voteMajOcc, vector<vector<float>> & moyennes) {
+		  vector<vector<vector<int> > > &voteMajOcc, vector<vector<float>> & moyennes) {
     if (i<p) {
         for (int k=t; k<n; k++) {
             combinaison[i] = ens[k];
-            combinaisons(ens,combinaison,n,p,i+1,k+1, vObsAnnot,/*nbobs,nba,nbc,*/ erreurVoteMaj, voteMajReference, nbCombinaison, choixGold, voteMajOcc, moyennes);
+            combinaisons(ens,combinaison,n,p,i+1,k+1, vObsAnnot, erreurVoteMaj, voteMajReference, nbCombinaison, voteMajOcc, moyennes);
         }
     }
     else {
         if(choixGold==0){
-            voteMajoritaire(combinaison,p, vObsAnnot,/*nbobs,nba,nbc,*/ erreurVoteMaj, voteMajReference);
+            voteMajoritaire(combinaison,p, vObsAnnot, erreurVoteMaj, voteMajReference);
         }else if(choixGold==1){
-            voteMajoritaire2(combinaison,p, vObsAnnot,/*nbobs,nba,nbc,*/ erreurVoteMaj, voteMajReference, voteMajOcc);
+            voteMajoritaire2(combinaison,p, vObsAnnot, erreurVoteMaj, voteMajReference, voteMajOcc);
         }
         nbCombinaison[p]++;
     }
 }
 
 
-void calculDifference(vector<vector<int>> & vObsAnnot,/*int nbobs,int nba,int nbc,*/ vector<float> *vPourcentageErreur, int choixGold){
+void calculDifference(vector<vector<int>> & vObsAnnot, vector<float> *vPourcentageErreur){
     int ens[nba];
     for(int i=0; i<nba; i++){
         ens[i] = i;
@@ -198,7 +199,7 @@ void calculDifference(vector<vector<int>> & vObsAnnot,/*int nbobs,int nba,int nb
         //cout << endl;
         int combi[p];
         //std::vector<float> vAlpha;
-        combinaisons(ens,combi,nba,p,0,0, vObsAnnot,/*nbobs,nba,nbc,*/ erreurVoteMaj, voteMajReference, nbCombinaison, choixGold, voteMajOcc, moyennes);
+        combinaisons(ens,combi,nba,p,0,0, vObsAnnot, erreurVoteMaj, voteMajReference, nbCombinaison, voteMajOcc, moyennes);
         //float moy = moyenne(&vAlpha);
         //cout << "moyenne : " << moy << endl;
         //cout << "ecart-type : " << ecart_type(&vAlpha, moy) << endl;
@@ -232,7 +233,7 @@ void calculDifference(vector<vector<int>> & vObsAnnot,/*int nbobs,int nba,int nb
             }
             //cout << nbErreur << "/(" << nbCombinaison[i] << "*" << nblignes << ")    ";
             float pourcentage = ((float) nbErreur/(float) (nbCombinaison[i]*nbobs))*100;
-            //cout << i << ": " << fixed << setprecision (3) << pourcentage << "%   ";
+            cout << i << ": " << pourcentage << "%   ";
             vPourcentageErreur->push_back(pourcentage);
         }
 
@@ -242,8 +243,7 @@ void calculDifference(vector<vector<int>> & vObsAnnot,/*int nbobs,int nba,int nb
             //cout << i << ": " << erreurVoteMaj[i] << "/(" << nbCombinaison[i] << "*" << nblignes << ")    ";
             //cout << i << ": " << ((float) erreurVoteMaj[i]/(float) nbCombinaison[i])*100 << "%   ";
             float pourcentage;
-            bool ponderation = false;
-            if(!ponderation){
+            if(choixErreurPondere == 0){
                 pourcentage = ((float) erreurVoteMaj[i]/(float) (nbCombinaison[i]*nbobs))*100;
             }else{
                 pourcentage = (((float) erreurVoteMaj[i]/(nbc-1))  /(float) (nbCombinaison[i]*nbobs))*100;

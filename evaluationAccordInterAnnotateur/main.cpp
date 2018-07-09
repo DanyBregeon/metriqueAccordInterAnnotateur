@@ -1,10 +1,9 @@
 #include <iostream>
 #include <vector>
-#include <cstring>
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
-#include <cstring>
+#include <string>
 #include <fstream>
 #include <cstdio>
 #include <map>
@@ -20,6 +19,10 @@ using namespace std;
 
 int nba, nbobs, nbc;//nb d'annotateurs, d'observables, de classes
 
+int choixGold = 0; //choix de la référence : 0 est pour la référence idéale au maximum d'annotateur
+int choixSortie = 0; //0 pour les pourcentages de modification pour chaque fichier, 1 pour la moyenne et l'écart type de ces pourcentages par palier, 2 pour les 2 en même temps
+int choixErreurPondere = 0; //0 pour non, 1 pour oui
+
 int main()
 {
     //int tAnnotObs[Max_annot][Max_obs],tObsAnnot[Max_obs][Max_annot];
@@ -30,12 +33,33 @@ int main()
     //int nba, nbobs, nbc;//nb d'annotateurs, d'observables, de classes
     float nb;//observation réellement prises en compte
 
-    int choixGold = 0; //choix de la référence : 0 est pour la référence idéale au maximum d'annotateur
-
     //tableau final avec les pourcentages de différences de votes majoritaires par rapport à la référence
     //en fonction du nombre de classes et de la valeur de la métrique
     std::map<std::pair<int, float>, std::vector<float>> mapResultat;
 
+    string reponse;
+    do{
+        cout << "1 pour activer le mode avancee, 0 sinon : ";
+        cin >> reponse;
+    }while(reponse != "0" && reponse != "1");
+
+    if(reponse.compare("1")==0){ //mode avancée : on peut changer la référence, si les erreurs sont pondérées et les résultats que l'on veut
+        do{
+            cout << "choix de la reference : 0 pour reference ideale, 1 pour reference par nombre d'annotateurs : ";
+            cin >> reponse;
+        }while(reponse != "0" && reponse != "1");
+        choixGold = atoi(reponse.c_str());
+        do{
+            cout << "erreur pondere : 0 pour non, 1 pour oui : ";
+            cin >> reponse;
+        }while(reponse != "0" && reponse != "1");
+        choixErreurPondere = atoi(reponse.c_str());
+        do{
+            cout << "resultats : 0 pour les pourcentages de modification pour chaque fichier, 1 pour la moyenne et l'ecart type de ces pourcentages par palier, 2 pour les 2 en meme temps : ";
+            cin >> reponse;
+        }while(reponse != "0" && reponse != "1" && reponse != "2");
+        choixSortie = atoi(reponse.c_str());
+    }
 
     bool erreur = false;
     do{
@@ -50,8 +74,10 @@ int main()
                 erreur = true;
             }else{
                 erreur = false;
-                cout << "Choix de la metrique : a pour alpha, k pour kappa, pi pour pi, ap pour alpha pondere : ";
-                cin >> choixMetrique;
+                do{
+                    cout << "Choix de la metrique : a pour alpha, k pour kappa, pi pour pi, ap pour alpha pondere : ";
+                    cin >> choixMetrique;
+                }while(choixMetrique != "a" && choixMetrique != "k" && choixMetrique != "pi" && choixMetrique != "ap");
                 //afficheTableauLu(vAnnotObs,nbobs,nba); //on affiche le tableau d'annotations
                 //tableau de coincidences :
                 //on transpose vAnnotObs dans vObsAnnot
@@ -95,7 +121,7 @@ int main()
 
                 std::vector<float> vPourcentageErreur;
 
-                calculDifference(vObsAnnot, &vPourcentageErreur, choixGold);
+                calculDifference(vObsAnnot, &vPourcentageErreur);
 
                 pair<int, float> pairNbcAlpha(nbc, metrique);
                 mapResultat.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vPourcentageErreur));
@@ -135,9 +161,10 @@ int main()
                 closedir(rep);
 
                 /////////////////////////////////////////////////////////////////////////
-
-                cout << "Choix de la metrique : a pour alpha, k pour kappa, pi pour pi, ap pour alpha pondere : ";
-                cin >> choixMetrique;
+                do{
+                    cout << "Choix de la metrique : a pour alpha, k pour kappa, pi pour pi, ap pour alpha pondere : ";
+                    cin >> choixMetrique;
+                }while(choixMetrique != "a" && choixMetrique != "k" && choixMetrique != "pi" && choixMetrique != "ap");
                 //prevalence
                 vector<pair<float, vector<float>>> vPrevalence;
                 //vPrevalence.resize(files.size());
@@ -183,13 +210,13 @@ int main()
                         pair<int, float> pairNbcAlpha(nbc, metrique);
                         //cout << " pairNbcAlpha: " << pairNbcAlpha.first << "/" << pairNbcAlpha.second;
                         //cout<< "combinaisons de n-p annotateurs :" <<endl;
-                        calculDifference(vObsAnnot, &vPourcentageErreur, choixGold);
+                        calculDifference(vObsAnnot, &vPourcentageErreur);
                         mapResultat.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vPourcentageErreur));
                     }
                 }
 
                 //affichage résultats
-                bool changement = false;
+                bool changement = false; //si le nombre de classes change
                 for (map<std::pair<int, float>, vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
                     pair<int, float> m = it->first;
                     string s;

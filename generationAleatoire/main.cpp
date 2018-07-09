@@ -27,6 +27,12 @@ int nba = 25; /**< \brief le nombre d'annotateurs */
 int nbobs = 100; /**< \brief le nombre d'observables */
 int nbc = 3; /**< \brief le nombre de classes */
 
+int choixClasseErreurParRapportAuDonneesrelles = 0;
+int choixIntervalleErreurAnnotateur = 0;
+int choixCalculP1 = 0;
+int choixGenerationAleatoire = 0;
+int choixCalculRepartitionP1DonneesGenerees = 0;
+
 /** \brief affiche le tableau d'annotation
  *
  * \param vAnnotObs : les vecteurs représentant le tableau d'annotation
@@ -303,19 +309,66 @@ void repartitionP1(int nbNewAnnot, vector<int> & nbErreurObs){
 int main()
 {
     srand(time(NULL));
-    /*int nba = 25;
-    int nbobs = 100;
-    int nbc = 3;*/
     vector<vector<int>> vAnnotObs;
     vector<vector<int>> vObsAnnot;
     vector<pair<int,int>> vPasChoisi;
 
-    int choix;
-    cout << "Choix ? (0 pour artificielle, 1 pour reelle)";
-    cin >> choix ;
+    string reponse;
+    do{
+        cout << "1 pour activer le mode avancee, 0 sinon : ";
+        cin >> reponse;
+    }while(reponse != "0" && reponse != "1");
 
+    if(reponse.compare("1")==0){ //mode avancée
+        do{
+            cout << "choix de la méthode de generation aleatoire : 0 par defaut, 1 aleatoire, 2 aleatoire annot par annot, 3 aleatoire obs par obs : ";
+            cin >> reponse;
+        }while(reponse != "0" && reponse != "1" && reponse != "2" && reponse != "3");
+        choixGenerationAleatoire = atoi(reponse.c_str());
+        if(choixGenerationAleatoire==0){
+            do{
+                cout << "choix intervalle du nombre d'erreurs des annotateurs : 0 pour minimal, 1 pour maximal : ";
+                cin >> reponse;
+            }while(reponse != "0" && reponse != "1");
+            choixIntervalleErreurAnnotateur = atoi(reponse.c_str());
+            do{
+                cout << "choix erreurs des annotateurs : 0 pour aleatoire, 1 par rapport aux erreurs des annotateurs reelles : ";
+                cin >> reponse;
+            }while(reponse != "0" && reponse != "1");
+            choixClasseErreurParRapportAuDonneesrelles = atoi(reponse.c_str());
+            do{
+                cout << "choix calcul de la repartition du nombre d'erreurs par observable : 0 pour non, 1 pour oui : ";
+                cin >> reponse;
+            }while(reponse != "0" && reponse != "1");
+            choixCalculRepartitionP1DonneesGenerees = atoi(reponse.c_str());
+            do{
+                cout << "choix de la maniere dont p1 va inluencer les resultats : 0 ou 1 : ";
+                cin >> reponse;
+            }while(reponse != "0" && reponse != "1");
+            choixCalculP1 = atoi(reponse.c_str());
+        }
+
+    }
+
+    /*int choix;
+    cout << "Choix ? (0 pour artificielle, 1 pour reelle)";
+    cin >> choix ;*/
     //initialise les vecteurs avec les données
-    if(choix==0){
+    string choixFichier;
+    do{
+        cout << "Chemin du fichier ou dossier des donnees de depart : ";
+        cin >> choixFichier;
+    }while(lire(choixFichier, vAnnotObs, nbobs, nba, nbc) == 0);
+
+    for(int i=0; i<nba; i++){
+        for(int j=0; j<nbobs; j++){
+            vPasChoisi.push_back(pair<int,int>(i,j));
+        }
+    }
+    //testPrevalence(vAnnotObs, 1, 2, nbobs/2);
+
+
+    /*if(choix==0){
         vAnnotObs.resize(nba);
         for(int i=0; i<nba; i++){
             vAnnotObs[i].resize(nbobs);
@@ -339,7 +392,7 @@ int main()
             }
         }
         //testPrevalence(vAnnotObs, 1, 2, nbobs/2);
-    }
+    }*/
 
     //affichage(vAnnotObs);
 
