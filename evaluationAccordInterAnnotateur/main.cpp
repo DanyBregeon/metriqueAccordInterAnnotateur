@@ -164,7 +164,7 @@ int main()
 
                 replace(choixFichier.begin(), choixFichier.end(), '/', '_');
 
-                /////////////////////////////////////////////////////////////////////////
+
                 do{
                     cout << "Choix de la metrique : a pour alpha, k pour kappa, pi pour pi, ap pour alpha pondere : ";
                     cin >> choixMetrique;
@@ -256,7 +256,7 @@ int main()
         }
     }while(erreur);
 
-
+    system("PAUSE");
 
     /*
     int choix;

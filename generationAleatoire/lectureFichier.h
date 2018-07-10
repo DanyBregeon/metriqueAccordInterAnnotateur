@@ -29,7 +29,6 @@ int lire(std::string nomfich,std::vector<std::vector<int>> & vAnnotObs,int & Nbo
  * \param Nbobs : le nombre d'observable
  * \param Nba : le nombre d'annotateur
  * \param Nbc : le nombre de classe
- * \return la valeur du kappa
  */
 void choixTableau(int choix,std::vector<std::vector<int>> & vAnnotObs,int & Nbobs,int & Nba,int & Nbc);
 

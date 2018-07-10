@@ -773,6 +773,6 @@ Un exemple possible de protocole :
         }
     }
     }
-
+    system("PAUSE");
     return 0;
 }

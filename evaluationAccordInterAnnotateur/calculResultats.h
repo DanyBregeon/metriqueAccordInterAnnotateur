@@ -1,9 +1,9 @@
 /**
  * \file calculResultats.h
- * \author    Dany Brégeon
- * \version   1.0
- * \date       4 juillet 2018
- * \brief       Calcul les résultats en faisant la moyenne et l'écart-type des pourcentages de modification par valeur de métrique proche
+ * \author Dany Brégeon
+ * \version 1.0
+ * \date 4 juillet 2018
+ * \brief Calcul les résultats en faisant la moyenne et l'écart-type des pourcentages de modification par valeur de métrique proche
  *
  */
 #ifndef CALCULRESULTATS_H_INCLUDED
@@ -19,7 +19,7 @@
  * \param vAnnotObs : les vecteurs représentant le tableau d'annotation
  */
 void calculPrevalence(std::vector<std::pair<float, std::vector<float>>> & vPrevalence, float valeurMetrique,
-                      std::vector<std::vector<int>> & vAnnotObs/*, int nbc, int nba, int nbobs*/);
+                      std::vector<std::vector<int>> & vAnnotObs);
 
 /** \brief calcul les résultats en faisant la moyenne et l'écart-type des pourcentages de modification par valeur de métrique proche
  *
@@ -29,7 +29,7 @@ void calculPrevalence(std::vector<std::pair<float, std::vector<float>>> & vPreva
  * \param vPrevalence : vecteur ayant la prévalence de chaque classe pour une certaine valeur de métrique
  */
 void resultatsPalier(std::map<std::pair<int, float>, std::vector<float>> & mapResultat,
-                      std::map<std::pair<int, float>, std::vector<float>> & mapResultat2, float palierPas, /*int nbc, int nba,*/
+                      std::map<std::pair<int, float>, std::vector<float>> & mapResultat2, float palierPas,
                       std::vector<std::pair<float, std::vector<float>>> & vPrevalence);
 
 #endif // CALCULRESULTATS_H_INCLUDED

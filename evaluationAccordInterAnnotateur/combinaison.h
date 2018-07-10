@@ -16,6 +16,6 @@
  * \param vObsAnnot : les vecteurs représentant le tableau d'annotation
  * \param vPourcentageErreur : les pourcentages de modification pour chaque nombre d'annotateurs
  */
-void calculDifference(std::vector<std::vector<int>> & vObsAnnot,/*int nbobs,int nba,int nbc,*/ std::vector<float> *vPourcentageErreur);
+void calculDifference(std::vector<std::vector<int>> & vObsAnnot, std::vector<float> *vPourcentageErreur);
 
 #endif // COMBINAISON_H_INCLUDED
