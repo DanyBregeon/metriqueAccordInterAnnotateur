@@ -10,6 +10,8 @@
 #include <sstream>
 #include <map>
 #include <iomanip>
+#include <stdio.h>
+#include <io.h>
 #include "lectureFichier.h"
 
 using namespace std;
@@ -39,7 +41,8 @@ void fichierSortie(string nomFichier, string choixMetrique, int nba, map<pair<in
     }else if(choixMetrique.compare("ap")==0){
         ss<<"_alphaPondéré";
     }
-    ss << nba;
+
+    mkdir("resultats");
     ofstream myfile;
     myfile.open ("resultats/"+ss.str()+".txt");
     //cout << ss.str();

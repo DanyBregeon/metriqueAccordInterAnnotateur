@@ -1,9 +1,9 @@
 /**
  * \file main.cpp
- * \author    Dany Brégeon
- * \version   1.0
- * \date       4 juillet 2018
- * \brief       Génération aléatoire de données
+ * \author Dany Brégeon
+ * \version 1.0
+ * \date 4 juillet 2018
+ * \brief Génération aléatoire de données
  *
  */
 #include <iostream>
@@ -12,11 +12,14 @@
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
-#include <cstring>
+#include <string>
+#include <algorithm>
 #include <fstream>
 #include <cstdio>
 #include <sstream>
 #include <ctime>
+#include <stdio.h>
+#include <io.h>
 #include "calculMetrique.h"
 #include "lectureFichier.h"
 
@@ -29,7 +32,8 @@ int nbc = 3; /**< \brief le nombre de classes */
 
 int choixClasseErreurParRapportAuDonneesrelles = 0;
 int choixIntervalleErreurAnnotateur = 0;
-int choixCalculP1 = 0;
+//int choixCalculP1 = 0;
+int nbAnnotParGeneration = 9;
 int choixGenerationAleatoire = 0;
 int choixCalculRepartitionP1DonneesGenerees = 0;
 
@@ -283,8 +287,9 @@ void repartitionP1(int nbNewAnnot, vector<int> & nbErreurObs){
         for(int obs=0; obs<nbobs; obs++){
             testOcc[nbErreurObs[obs]]++;
         }
+        cout << "nombre d'observables ayant X erreurs : " << endl;
         for(int i=0; i<taille; i++){
-            cout << /*i << "  " <<*/ testOcc[i] << endl;
+            cout << i << " erreurs : " << testOcc[i] << endl;
         }
         //avec palier
         /*int testOcc[11];
@@ -321,7 +326,7 @@ int main()
 
     if(reponse.compare("1")==0){ //mode avancée
         do{
-            cout << "choix de la méthode de generation aleatoire : 0 par defaut, 1 aleatoire, 2 aleatoire annot par annot, 3 aleatoire obs par obs : ";
+            cout << "choix de la methode de generation aleatoire : 0 par defaut, 1 aleatoire, 2 aleatoire annot par annot, 3 aleatoire obs par obs : ";
             cin >> reponse;
         }while(reponse != "0" && reponse != "1" && reponse != "2" && reponse != "3");
         choixGenerationAleatoire = atoi(reponse.c_str());
@@ -341,11 +346,15 @@ int main()
                 cin >> reponse;
             }while(reponse != "0" && reponse != "1");
             choixCalculRepartitionP1DonneesGenerees = atoi(reponse.c_str());
-            do{
+            /*do{
                 cout << "choix de la maniere dont p1 va inluencer les resultats : 0 ou 1 : ";
                 cin >> reponse;
             }while(reponse != "0" && reponse != "1");
-            choixCalculP1 = atoi(reponse.c_str());
+            choixCalculP1 = atoi(reponse.c_str());*/
+            do{
+                cout << "choix du nombre d'annotateurs par generation aleatoire : ";
+                cin >> nbAnnotParGeneration;
+            }while(nbAnnotParGeneration < 1);
         }
 
     }
@@ -366,6 +375,18 @@ int main()
         }
     }
     //testPrevalence(vAnnotObs, 1, 2, nbobs/2);
+
+    //pour plus tard pour nom ficheir en sortie
+    choixFichier = choixFichier.substr(0, choixFichier.size()-4);
+    replace(choixFichier.begin(), choixFichier.end(), '/', '_');
+
+    int nbGenerationAleatoire = 2000;
+    if(choixGenerationAleatoire == 0){
+        do{
+            cout << "choix du nombre de generation aleatoire : ";
+            cin >> nbGenerationAleatoire;
+        }while(nbGenerationAleatoire < 1);
+    }
 
 
     /*if(choix==0){
@@ -414,15 +435,15 @@ int main()
     cout << "Metrique: " << valeurMetriqueInit << endl;
 
     //premiers tests de générations aléatoires
+    if(choixGenerationAleatoire==1){
+        generationAleatoire1(vPasChoisi, vAnnotObs);
+    }else if(choixGenerationAleatoire==2){
+        generationAleatoire2(vAnnotObs);
+    }else if(choixGenerationAleatoire==3){
+        generationAleatoire3(vPasChoisi, vAnnotObs);
+    }else{
 
-    //generationAleatoire1(vPasChoisi, vAnnotObs);
-
-    //generationAleatoire2(vAnnotObs);
-
-    //generationAleatoire3(vPasChoisi, vAnnotObs);
-
-
-    /*(2) GENERATION ALEATOIRE
+    /*GENERATION ALEATOIRE
 
 Or donc, imaginons que nous ayons p annotateurs (a_i, i de 1 à p) qui ont donné chacun leur avis sur n observables (o_j, j de 1 à n)
 
@@ -505,7 +526,7 @@ Un exemple possible de protocole :
             nbErreurObs[obs] = nba - max - nbInfoManquante;
             nbInfoManquante = 0;
 
-            cout << pourcentageErreur[obs] << endl;
+            cout << pourcentageErreur[obs] << "%" << endl;
             moyenneErreurP1 += pourcentageErreur[obs];
 
             // !!! test sur données artificielles !!!
@@ -539,8 +560,10 @@ Un exemple possible de protocole :
             totalPossibiliteClasse[o]=0;
         }
 
+        if(choixClasseErreurParRapportAuDonneesrelles==1){
+            probaErreurAnnotateur(tNbOcc, voteMajoritaire, probaClasseErreur, totalPossibiliteClasse);
+        }
 
-        probaErreurAnnotateur(tNbOcc, voteMajoritaire, probaClasseErreur, totalPossibiliteClasse);
 
         // test répartition p1
         repartitionP1(nba, nbErreurObs);
@@ -574,15 +597,21 @@ Un exemple possible de protocole :
         //cout << "moyenne % P2= " << ((float) moyenneErreurP2/(float) nbobs)*100.0 << " min=" << ((float) nbErreurMin/(float) nbobs)*100.0 << " , max=" << ((float) nbErreurMax/(float) nbobs)*100.0 << endl;
 
     //création des groupes d'annotateurs
-    for(int occ=0; occ<130; occ++){
+    for(int occ=0; occ<nbGenerationAleatoire; occ++){
         //l'intervalle d'erreur des annotateurs (chaque annotateur fera entre intervalleMin et intervalleMax erreurs) (max exclu)
-        //cas où l'intervalle est de 1
-        int intervalleMin = occ%(int)((float)nbobs*sqrt((float)(nbc-1)/(float)(nbc)));//occ%(nbobs-1);//nbErreurMin;//occ;
-        int intervalleMax = intervalleMin+1;//nbErreurMax;//occ+1;
-        //cas où l'intervalle est le plus grand possible
-        /*int intervalleMin = 0;
-        int intervalleMax = (occ%(nbobs/2))*2;
-        if(intervalleMax==0) intervalleMax=1;*/
+        int intervalleMin;
+        int intervalleMax;
+        if(choixIntervalleErreurAnnotateur==0){
+            //cas où l'intervalle est de 1
+            intervalleMin = occ%(int)((float)nbobs*sqrt((float)(nbc-1)/(float)(nbc)));//occ%(nbobs-1);//nbErreurMin;//occ;
+            intervalleMax = intervalleMin+1;//nbErreurMax;//occ+1;
+        }else{
+            //cas où l'intervalle est le plus grand possible
+            intervalleMin = 0;
+            intervalleMax = (occ%(nbobs/2))*2;
+            if(intervalleMax==0) intervalleMax=1;
+        }
+
         //cout << occ << endl;
         //cout << endl << "P2= " << moyenneErreurP2 << "  (" << nbErreur << "/" << nba << ") , min=" << nbErreurMin << " , max=" << nbErreurMax << endl;
         /*cout << "choix intervalle :" << endl << "min=";
@@ -592,15 +621,7 @@ Un exemple possible de protocole :
 
         //generation des nouveaux annotateurs
 
-        //I-on les ajoute à ceux déjà existant
-        //ajouterNouveauAnnotateur(vAnnotObs, pourcentageErreur, voteMajoritaire);
-
-        //II-on les met à la place de ceux déjà existant
-        //remplacerParNouveauAnnotateur(vAnnotObs, pourcentageErreur, voteMajoritaire);
-
-        //III-on les crée à part
-
-        int nbNewAnnot = 9;//nba;
+        int nbNewAnnot = nbAnnotParGeneration;
         vector<vector<int>> vAnnotObs2;
         vAnnotObs2.resize(nbNewAnnot);
         for(int i=0; i<nbNewAnnot; i++){
@@ -657,9 +678,7 @@ Un exemple possible de protocole :
             for(int err=0; err<rng; err++){
                 //int rngObs = rand() % vObsErreur.size();
                 totalPossibilite = proba[proba.size()-1];
-                if(totalPossibilite == 0){
-                    cout << "BLBLLBLBBLLBLBLLBBBLLBLBLBBLBLLBLB";
-                }
+
                 int rngObs = rand() % (totalPossibilite);
 
                 int itObs = 0;
@@ -667,16 +686,21 @@ Un exemple possible de protocole :
                     itObs++;
                 }
                 //l'annotateur ann fait une erreur à l'observable vObsErreur[itObs]
-                //cas où l'erreur est choisi aléatoirement parmi les classes non majoritaire
-                vAnnotObs2[ann][vObsErreur[itObs]]+= 1 + (rand() % (nbc-1));
-                vAnnotObs2[ann][vObsErreur[itObs]] = vAnnotObs2[ann][vObsErreur[itObs]] % nbc;
-                //cas où la classe de l'erreur dépend des données de départ
-                /*int rngClasse = rand() % totalPossibiliteClasse[vObsErreur[itObs]];
-                int itClasse = 0;
-                while(rngClasse >= probaClasseErreur[vObsErreur[itObs]][itClasse]){
-                    itClasse++;
+                if(choixClasseErreurParRapportAuDonneesrelles==0){
+                    //cas où l'erreur est choisi aléatoirement parmi les classes non majoritaire
+                    vAnnotObs2[ann][vObsErreur[itObs]]+= 1 + (rand() % (nbc-1));
+                    vAnnotObs2[ann][vObsErreur[itObs]] = vAnnotObs2[ann][vObsErreur[itObs]] % nbc;
+                }else{
+                    //cas où la classe de l'erreur dépend des données de départ
+                    int rngClasse = rand() % totalPossibiliteClasse[vObsErreur[itObs]];
+                    int itClasse = 0;
+                    while(rngClasse >= probaClasseErreur[vObsErreur[itObs]][itClasse]){
+                        itClasse++;
+                    }
+                    vAnnotObs2[ann][vObsErreur[itObs]] = itClasse;
                 }
-                vAnnotObs2[ann][vObsErreur[itObs]] = itClasse;*/
+
+
                 //cas où l'erreur peut être choisi totalement au hasard (et peut donc ne pas en être une)
                 /*int aleatoire = rand()%2;
                 if(aleatoire==0){
@@ -740,58 +764,59 @@ Un exemple possible de protocole :
         cout << "Metrique: " << valeurMetrique << endl;
 
 
-        //affichage(vAnnotObs);
+        //crée les fichiers de sortie
         ostringstream ss;
-        ss << "generationAleatoireV2/generationAleatoire" << occ << ".csv";
+        mkdir("resultats");
+        ss << "resultats/" << choixFichier << occ << ".csv";
         ecrireFichier(nbNewAnnot, vAnnotObs2, ss.str());
 
-        // !!!!!!!!!!!!!!!!!!!!!!! WIP !!!!!!!!!!!!!!!!!!!!!!!
-
-        //le nombre d'erreur pour chaque observable
-        vector<int> nbErreurObs2;
-        nbErreurObs2.resize(nbobs);
-        //le nombre d'occurence des classes dans les annotations d'un observable
-        vector<vector<int>> tNbOcc2;
-        tNbOcc2.resize(nbobs);
-        for(int o=0; o<nbobs; o++){
-            tNbOcc2[o].resize(nbc);
-        }
-        //le nombre d'annotation manquante
-        int nbInfoManquante2 = 0;
-
-        //calcul des votes majoritaires et de P1
-        for(int obs=0; obs<nbobs; obs++){
-            for(int c=0; c<nbc; c++){
-                tNbOcc2[obs][c]=0;
+        //calcul de la répartition p1 sur les données générées
+        if(choixCalculRepartitionP1DonneesGenerees == 1){
+            //le nombre d'erreur pour chaque observable
+            vector<int> nbErreurObs2;
+            nbErreurObs2.resize(nbobs);
+            //le nombre d'occurence des classes dans les annotations d'un observable
+            vector<vector<int>> tNbOcc2;
+            tNbOcc2.resize(nbobs);
+            for(int o=0; o<nbobs; o++){
+                tNbOcc2[o].resize(nbc);
             }
-            for(int ann=0; ann<nbNewAnnot; ann++){
-                if(vObsAnnot[obs][ann]!=-1){
-                    tNbOcc2[obs][vObsAnnot2[obs][ann]]++;
-                }else{
-                    nbInfoManquante2++;
+            //le nombre d'annotation manquante
+            int nbInfoManquante2 = 0;
+
+            //calcul des votes majoritaires et de P1
+            for(int obs=0; obs<nbobs; obs++){
+                for(int c=0; c<nbc; c++){
+                    tNbOcc2[obs][c]=0;
                 }
-            }
-            int max=tNbOcc2[obs][0];
-            int voteMaj = 0;
-            for(int i=1; i<nbc; i++){
-                if(tNbOcc2[obs][i]>max){
-                    max = tNbOcc2[obs][i];
-                    voteMaj = i;
-                }else if(tNbOcc2[obs][i]==max){
-                    int rng = rand() % 2;
-                    if(rng == 0){
+                for(int ann=0; ann<nbNewAnnot; ann++){
+                    if(vObsAnnot[obs][ann]!=-1){
+                        tNbOcc2[obs][vObsAnnot2[obs][ann]]++;
+                    }else{
+                        nbInfoManquante2++;
+                    }
+                }
+                int max=tNbOcc2[obs][0];
+                int voteMaj = 0;
+                for(int i=1; i<nbc; i++){
+                    if(tNbOcc2[obs][i]>max){
                         max = tNbOcc2[obs][i];
                         voteMaj = i;
+                    }else if(tNbOcc2[obs][i]==max){
+                        int rng = rand() % 2;
+                        if(rng == 0){
+                            max = tNbOcc2[obs][i];
+                            voteMaj = i;
+                        }
                     }
-
                 }
+                nbErreurObs2[obs] = nbNewAnnot - max - nbInfoManquante2;
+                nbInfoManquante2 = 0;
             }
-            nbErreurObs2[obs] = nbNewAnnot - max - nbInfoManquante2;
-            nbInfoManquante2 = 0;
+            repartitionP1(nbNewAnnot, nbErreurObs2);
         }
-        repartitionP1(nbNewAnnot, nbErreurObs2);
     }
-
+    }
 
     return 0;
 }

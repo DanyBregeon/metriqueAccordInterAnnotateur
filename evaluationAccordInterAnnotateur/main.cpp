@@ -4,6 +4,7 @@
 #include <ctime>
 #include <cmath>
 #include <string>
+#include <algorithm>
 #include <fstream>
 #include <cstdio>
 #include <map>
@@ -129,8 +130,9 @@ int main()
                 for(int i=0; i<nba-1; i++){
                     cout << nba-i << ": " << mapResultat.at(pairNbcAlpha)[i] <<"%   ";
                 }
-
-                fichierSortie(""/*choixFichier.substr(0, choixFichier.size()-4)*/, choixMetrique, nba, mapResultat);
+                choixFichier = choixFichier.substr(0, choixFichier.size()-4);
+                replace(choixFichier.begin(), choixFichier.end(), '/', '_');
+                fichierSortie(choixFichier, choixMetrique, nba, mapResultat);
             }
         }else{ //cas plusieurs fichiers
 
@@ -159,6 +161,8 @@ int main()
                     }
                 }
                 closedir(rep);
+
+                replace(choixFichier.begin(), choixFichier.end(), '/', '_');
 
                 /////////////////////////////////////////////////////////////////////////
                 do{
@@ -243,9 +247,9 @@ int main()
                 map<pair<int, float>, vector<float>> mapResultat2;
                 if(!changement){
                     resultatsPalier(mapResultat, mapResultat2, 0.05f, vPrevalence);
-                    fichierSortie("", choixMetrique, nba, mapResultat2);
+                    fichierSortie(choixFichier, choixMetrique, nba, mapResultat2);
                 }else{
-                    fichierSortie("", choixMetrique, nba, mapResultat);
+                    fichierSortie(choixFichier, choixMetrique, nba, mapResultat);
                 }
 
             }

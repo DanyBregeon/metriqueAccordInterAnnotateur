@@ -135,7 +135,7 @@
 	<vector>
 	<map>
 
-1531130749 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\combinaison.cpp
+1531132274 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\combinaison.cpp
 	<iostream>
 	<vector>
 	<cstring>
@@ -147,10 +147,10 @@
 	<cstdio>
 	"combinaison.h"
 
-1530714381 c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\combinaison.h
+1531131990 c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\combinaison.h
 	<vector>
 
-1530865372 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\fichiersortie.cpp
+1531207793 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\fichiersortie.cpp
 	<iostream>
 	<vector>
 	<cstring>
@@ -163,6 +163,8 @@
 	<sstream>
 	<map>
 	<iomanip>
+	<stdio.h>
+	<io.h>
 	"lectureFichier.h"
 
 1530786910 c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\lecturefichier.h
@@ -181,13 +183,14 @@
 	<sstream>
 	"lectureFichier.h"
 
-1531130413 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\main.cpp
+1531207544 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\evaluationaccordinterannotateur\main.cpp
 	<iostream>
 	<vector>
 	<cstdlib>
 	<ctime>
 	<cmath>
 	<string>
+	<algorithm>
 	<fstream>
 	<cstdio>
 	<map>
