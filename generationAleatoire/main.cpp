@@ -318,6 +318,7 @@ int main()
     vector<vector<int>> vObsAnnot;
     vector<pair<int,int>> vPasChoisi;
 
+    //configuration des paramètres par l'utilisateur
     string reponse;
     do{
         cout << "1 pour activer le mode avancee, 0 sinon : ";
@@ -359,9 +360,6 @@ int main()
 
     }
 
-    /*int choix;
-    cout << "Choix ? (0 pour artificielle, 1 pour reelle)";
-    cin >> choix ;*/
     //initialise les vecteurs avec les données
     string choixFichier;
     do{
@@ -376,10 +374,11 @@ int main()
     }
     //testPrevalence(vAnnotObs, 1, 2, nbobs/2);
 
-    //pour plus tard pour nom ficheir en sortie
+    //pour plus tard pour nom fichier en sortie
     choixFichier = choixFichier.substr(0, choixFichier.size()-4);
     replace(choixFichier.begin(), choixFichier.end(), '/', '_');
 
+    //choix du nombre de génération aléatoire
     int nbGenerationAleatoire = 2000;
     if(choixGenerationAleatoire == 0){
         do{
@@ -389,7 +388,11 @@ int main()
     }
 
 
-    /*if(choix==0){
+    /*
+    int choix;
+    cout << "Choix ? (0 pour artificielle, 1 pour reelle)";
+    cin >> choix ;
+    if(choix==0){
         vAnnotObs.resize(nba);
         for(int i=0; i<nba; i++){
             vAnnotObs[i].resize(nbobs);
@@ -528,27 +531,9 @@ Un exemple possible de protocole :
 
             cout << pourcentageErreur[obs] << "%" << endl;
             moyenneErreurP1 += pourcentageErreur[obs];
-
-            // !!! test sur données artificielles !!!
-            //pourcentageErreur[obs] = ((float) (( (float)obs/(float)nbobs)*(float)nba) /(float) (nba))*100;
-            /*if(choix==0){
-                if((float)obs < ((float)nbobs)*((float)30/(float)100)){
-                    pourcentageErreur[obs] = ((nba/2) /(float) (nba))*100;
-                }else if((float)obs < ((float)nbobs)*((float)55/(float)100)){
-                    pourcentageErreur[obs] = ((nba/4) /(float) (nba))*100;
-                }
-                else if((float)obs < ((float)nbobs)*((float)75/(float)100)){
-                    pourcentageErreur[obs] = ((nba/8) /(float) (nba))*100;
-                }
-                else if((float)obs < ((float)nbobs)*((float)90/(float)100)){
-                    pourcentageErreur[obs] = ((nba/16) /(float) (nba))*100;
-                }else{
-                    pourcentageErreur[obs] = 0;
-                }
-            }*/
         }
 
-        //test erreur pas totalement aléatoire
+        //test classe des erreurs pas totalement aléatoire mais en fonction des données réelles
         //la probabilité de tomber sur tel classe lorsqu'un annotateur fait une erreur
         vector<vector<int>> probaClasseErreur;
         probaClasseErreur.resize(nbobs);
@@ -567,7 +552,6 @@ Un exemple possible de protocole :
 
         // test répartition p1
         repartitionP1(nba, nbErreurObs);
-        //fin test test répartition p1
 
         //calcul de P2
         int nbErreur = 0;
@@ -596,13 +580,14 @@ Un exemple possible de protocole :
         cout << "ecart type : " << ecartType << endl;
         //cout << "moyenne % P2= " << ((float) moyenneErreurP2/(float) nbobs)*100.0 << " min=" << ((float) nbErreurMin/(float) nbobs)*100.0 << " , max=" << ((float) nbErreurMax/(float) nbobs)*100.0 << endl;
 
+
     //création des groupes d'annotateurs
     for(int occ=0; occ<nbGenerationAleatoire; occ++){
         //l'intervalle d'erreur des annotateurs (chaque annotateur fera entre intervalleMin et intervalleMax erreurs) (max exclu)
         int intervalleMin;
         int intervalleMax;
         if(choixIntervalleErreurAnnotateur==0){
-            //cas où l'intervalle est de 1
+            //cas où l'intervalle est de 0
             intervalleMin = occ%(int)((float)nbobs*sqrt((float)(nbc-1)/(float)(nbc)));//occ%(nbobs-1);//nbErreurMin;//occ;
             intervalleMax = intervalleMin+1;//nbErreurMax;//occ+1;
         }else{
@@ -613,14 +598,13 @@ Un exemple possible de protocole :
         }
 
         //cout << occ << endl;
-        //cout << endl << "P2= " << moyenneErreurP2 << "  (" << nbErreur << "/" << nba << ") , min=" << nbErreurMin << " , max=" << nbErreurMax << endl;
         /*cout << "choix intervalle :" << endl << "min=";
         cin >> intervalleMin;
         cout << "max=";
         cin >> intervalleMax;*/
 
-        //generation des nouveaux annotateurs
 
+        //generation des nouveaux annotateurs
         int nbNewAnnot = nbAnnotParGeneration;
         vector<vector<int>> vAnnotObs2;
         vAnnotObs2.resize(nbNewAnnot);
@@ -644,8 +628,9 @@ Un exemple possible de protocole :
                 vAnnotObs2[ann][obs]=voteMajoritaire[obs];
                 vObsErreur[obs] = obs;
                 if(obs==0){
-                    // //proba[obs]= 1 + nbErreurObs[obs] * nbErreurObs[obs] * nbErreurObs[obs];
-                    //(pourcentageErreur[obs]/100)*(nbc/(nbc-1)) ->resultat entre 0 et 1, 0 entant tout le monde d'accord et 1 le plus de desaccord possible
+                    //plusieurs test de la prise en compte de p1 dans les proba
+
+                    //(pourcentageErreur[obs]/100)*(nbc/(nbc-1)) -> resultat entre 0 et 1, 0 entant tout le monde d'accord et 1 le plus de desaccord possible
                     //proba[obs]= 1.0 + ((pourcentageErreur[obs]/100.0)*((float) nbc/(float) (nbc-1))*10.0)*((pourcentageErreur[obs]/100.0)*((float) nbc/(float) (nbc-1))*10.0);
 
                     proba[obs]= 1.0 + (pourcentageErreur[obs]*((float) nbc/(float) (nbc-1)))*(pourcentageErreur[obs]*((float) nbc/(float) (nbc-1)))/100.0;
@@ -654,7 +639,6 @@ Un exemple possible de protocole :
                     }else{
                         proba[obs]=pourcentageErreur[obs];
                     }*/
-                    //cout << obs << " proba : " << proba[obs] <<  " : " << (pourcentageErreur[obs]/100.0)*((float) nbc/(float) (nbc-1)) << endl;
                 }else{
                     // //proba[obs]= proba[obs-1] + 1 + nbErreurObs[obs] * nbErreurObs[obs] * nbErreurObs[obs]; //1f/(float) nbobs;pourcentageErreur
                     //proba[obs]= proba[obs-1] + 1.0 + ((pourcentageErreur[obs]/100.0)*((float) nbc/(float) (nbc-1))*10.0)*((pourcentageErreur[obs]/100.0)*((float) nbc/(float) (nbc-1))*10.0);
@@ -665,18 +649,16 @@ Un exemple possible de protocole :
                     }else{
                         proba[obs]= proba[obs-1] + pourcentageErreur[obs];
                     }*/
-                    //cout << obs << " proba : " << proba[obs] <<  " : " << (pourcentageErreur[obs]/100.0)*((float) nbc/(float) (nbc-1)) << endl;
-                    //cout << 1 + nbErreurObs[obs] * nbErreurObs[obs] << endl;
-                    //cout << proba[obs] << endl;
                 }
             }
 
             totalPossibilite = proba[nbobs-1];
             //on choisi un nombre aléatoire d'erreur compris dans l'intervalle
             int rng = intervalleMin + (rand() % (intervalleMax - intervalleMin));
-            //cout << rng << ": ";
+
+            //pour chaque erreur, on choisi l'observable sur lequel elle va être ainsi que sa classe
             for(int err=0; err<rng; err++){
-                //int rngObs = rand() % vObsErreur.size();
+
                 totalPossibilite = proba[proba.size()-1];
 
                 int rngObs = rand() % (totalPossibilite);
@@ -710,48 +692,20 @@ Un exemple possible de protocole :
                     vAnnotObs2[ann][vObsErreur[itObs]] = vAnnotObs2[ann][vObsErreur[itObs]] % nbc;
                 }*/
 
-
-
-
-                //totalPossibilite -= (1 + nbErreurObs[itObs]*nbErreurObs[itObs]*nbErreurObs[itObs]);
-                //cout << "itObs : " << itObs << " , vObsErreur[itObs] : " << vObsErreur[itObs] << "  ";
-                //cout << proba[itObs] << " vs ";
-
-                //cout << "itObs-2 : " <<proba[itObs-2] << " itObs-1 : " <<proba[itObs-1] << " " << itObs << " : " << proba[itObs] <<
-                //" itObs+1 " << proba[itObs+1] << " " <<  proba.size()-1 << " : " << proba[proba.size()-1] << endl;
+                //les erreurs suivantes ne pourrons pas retomber sur cet observable
                 for(int i=itObs; i<proba.size()-1; i++){
-                    // //proba[i] = proba[i+1] - (1 + nbErreurObs[vObsErreur[itObs]]*nbErreurObs[vObsErreur[itObs]]*nbErreurObs[vObsErreur[itObs]]);
-                    //proba[i] = proba[i+1] - (int) (1.0 + ((pourcentageErreur[vObsErreur[itObs]]/100.0)*((float) nbc/(float) (nbc-1))*10.0)*((pourcentageErreur[vObsErreur[itObs]]/100.0)*((float) nbc/(float) (nbc-1))*10.0));
-
                     proba[i] = proba[i+1] - (int) (1.0 + (pourcentageErreur[vObsErreur[itObs]]*((float) nbc/(float) (nbc-1)))*(pourcentageErreur[vObsErreur[itObs]]*((float) nbc/(float) (nbc-1)))/100.0);
-                    /*if(pourcentageErreur[vObsErreur[itObs]]<1){
-                        proba[i]= proba[i+1] - 1;
-                    }else{
-                        proba[i]= proba[i+1] - (int)(pourcentageErreur[vObsErreur[itObs]]);
-                    }*/
                 }
                 proba.pop_back();
-                //cout << "itObs-2 : " <<proba[itObs-2] << " itObs-1 : " <<proba[itObs-1] << " " << itObs << " : " << proba[itObs] <<
-                //" itObs+1 " << proba[itObs+1] << " " <<  proba.size()-1 << " : " << proba[proba.size()-1] << endl;
-                //cout << proba[itObs] << endl;
-                //cout << "test5" << endl; //erreur ici
-                /*if(proba.begin()+ itObs == proba.end()){
-                    cout << "AAAAAAAAA" << endl;
-                }*/
-                //cout << "itObs-2 : " <<vObsErreur[itObs-2] << " itObs-1 : " <<vObsErreur[itObs-1] << " itObs : " << vObsErreur[itObs] << " itObs+1 " << vObsErreur[itObs+1] << endl;
-                //bilan : il ne faut pas mettre le -1 mais cela créer une erreur (proba.begin()+ itObs >= proba.end() -> pourquoi ?)
-                //proba.erase(proba.begin()+ itObs -1);
-                //cout << "test6" << endl;
 
-                //vObsErreur.erase(vObsErreur.begin()+ itObs-1);
                 for(int i=itObs; i<vObsErreur.size()-1; i++){
                     vObsErreur[i] = vObsErreur[i+1];
                 }
                 vObsErreur.pop_back();
-                //cout << "itObs-2 : " <<vObsErreur[itObs-2] << " itObs-1 : " << vObsErreur[itObs-1] << " itObs : " << vObsErreur[itObs] << " itObs+1 " << vObsErreur[itObs+1] << endl << endl;
             }
 
         }
+        //fin de cette génération aléatoire
 
         //transpose
         for (int i=0;i<nbNewAnnot;i++){
@@ -759,6 +713,7 @@ Un exemple possible de protocole :
                 vObsAnnot2[j][i]=vAnnotObs2[i][j];
             }
         }
+        //on calcul la métrique sur cette génération aléatoire
         float valeurMetrique;
         valeurMetrique = kappaAP(nbobs, nbc, nbNewAnnot, vObsAnnot2);
         cout << "Metrique: " << valeurMetrique << endl;
@@ -766,6 +721,7 @@ Un exemple possible de protocole :
 
         //crée les fichiers de sortie
         ostringstream ss;
+        //s'il n'y a pas de dossier resultats le crée
         mkdir("resultats");
         ss << "resultats/" << choixFichier << occ << ".csv";
         ecrireFichier(nbNewAnnot, vAnnotObs2, ss.str());

@@ -21,7 +21,7 @@ using namespace std;
 int nba, nbobs, nbc;//nb d'annotateurs, d'observables, de classes
 
 int choixGold = 0; //choix de la référence : 0 est pour la référence idéale au maximum d'annotateur
-int choixSortie = 0; //0 pour les pourcentages de modification pour chaque fichier, 1 pour la moyenne et l'écart type de ces pourcentages par palier, 2 pour les 2 en même temps
+//int choixSortie = 0; //0 pour les pourcentages de modification pour chaque fichier, 1 pour la moyenne et l'écart type de ces pourcentages par palier, 2 pour les 2 en même temps
 int choixErreurPondere = 0; //0 pour non, 1 pour oui
 
 int main()
@@ -55,11 +55,11 @@ int main()
             cin >> reponse;
         }while(reponse != "0" && reponse != "1");
         choixErreurPondere = atoi(reponse.c_str());
-        do{
+        /*do{
             cout << "resultats : 0 pour les pourcentages de modification pour chaque fichier, 1 pour la moyenne et l'ecart type de ces pourcentages par palier, 2 pour les 2 en meme temps : ";
             cin >> reponse;
         }while(reponse != "0" && reponse != "1" && reponse != "2");
-        choixSortie = atoi(reponse.c_str());
+        choixSortie = atoi(reponse.c_str());*/
     }
 
     bool erreur = false;

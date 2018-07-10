@@ -59,7 +59,7 @@ void fichierSortie(string nomFichier, string choixMetrique, int nba, map<pair<in
         }else{
             s = "alpha";
         }
-        if(m.first != 0){ //si = 0 ecart type
+        if(m.first != 0){ //si = 0 alors il s'agit de l'ecart type
             myfile << m.first <<" classes, "<< s << "=" << fixed << setprecision (3) << m.second << "   ";
             myfile << fixed << setprecision (3);
             for(int i=0; i<nba-1; i++){
