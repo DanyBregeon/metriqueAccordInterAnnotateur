@@ -108,7 +108,6 @@ void voteMajoritaire2( int *p, int n, vector<vector<int>> & vObsAnnot,
     int tNbOcc[nbc];
     //la moyenne des classes pour chaque observable
     //float tMoyenne[nbobs];
-
     for(int obs=0; obs<nbobs; obs++){
         float moyenne = 0;
         for(int ann=0; ann<n; ann++){
@@ -136,6 +135,7 @@ void voteMajoritaire2( int *p, int n, vector<vector<int>> & vObsAnnot,
         //voteMajoritaire[obs]=voteMaj;
         voteMajOcc[n][obs][voteMaj]++;
     }
+
 }
 
 
@@ -186,8 +186,8 @@ void calculDifference(vector<vector<int>> & vObsAnnot, vector<float> *vPourcenta
 
     vector<vector<vector<int> > > voteMajOcc;
 
-    voteMajOcc.resize(nba);
-    for (int i = 0; i < nba; ++i) {
+    voteMajOcc.resize(nba+1);
+    for (int i = 0; i < nba+1; ++i) {
         voteMajOcc[i].resize(nbobs);
 
         for (int j = 0; j < nbobs; ++j)
@@ -233,10 +233,9 @@ void calculDifference(vector<vector<int>> & vObsAnnot, vector<float> *vPourcenta
             }
             //cout << nbErreur << "/(" << nbCombinaison[i] << "*" << nblignes << ")    ";
             float pourcentage = ((float) nbErreur/(float) (nbCombinaison[i]*nbobs))*100;
-            cout << i << ": " << pourcentage << "%   ";
+            //cout << i << ": " << pourcentage << "%   ";
             vPourcentageErreur->push_back(pourcentage);
         }
-
     }else{
         //cout << "poucentage d'erreur :  ";
         for(int i=nba; i>1; i--){
