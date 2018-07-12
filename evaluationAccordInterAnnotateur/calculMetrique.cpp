@@ -20,7 +20,7 @@ using namespace std;
 
 
 //calcul de C[c1][c2] (C : tableau des coincidences)
-float calcul(vector<vector<int>> & vObsAnnot,int nbobs,int nbannot,int c1,int c2) {
+float calcul(vector<vector<int> > & vObsAnnot,int nbobs,int nbannot,int c1,int c2) {
   float temp,res=0;
   int nbannotvrai;
   for (int e=0;e<nbobs;e++) {//pour chaque observable
@@ -43,8 +43,8 @@ float calcul(vector<vector<int>> & vObsAnnot,int nbobs,int nbannot,int c1,int c2
 
 
 //nb est le nombre d'observations effectives (nbannot X nblignes si pas de données manquantes)
-void coincidences(vector<vector<int>> & vObsAnnot,int nblignes,int nbannot,
-		 vector<vector<float>> & C,int nbclasses,float & nb) {
+void coincidences(vector<vector<int> > & vObsAnnot,int nblignes,int nbannot,
+		 vector<vector<float> > & C,int nbclasses,float & nb) {
   int i,j;
   nb=0;
   for (i=0;i<nbclasses;i++)
@@ -59,7 +59,7 @@ void coincidences(vector<vector<int>> & vObsAnnot,int nblignes,int nbannot,
   //cout << "ici, nb="<< nb << endl;
 }
 
-void affiche_coincidences(vector<vector<float>> & C,int nbclasses) {
+void affiche_coincidences(vector<vector<float> > & C,int nbclasses) {
   int i,j;
   float S=0;
   for (i=0;i<nbclasses;i++) {
@@ -105,7 +105,7 @@ float delta_carEuclidienne(int i,int j, int classes)  {
 //Artmann Poesio
 
 //nb de fois où l'observable i est classé dans la catégorie k
-int xikres(int i,int k,int Nbareel,vector<vector<int>> & vObsAnnot){
+int xikres(int i,int k,int Nbareel,vector<vector<int> > & vObsAnnot){
   int j,res=0;
   for (j=0;j<Nbareel;j++)
     if (vObsAnnot[i][j]==k) res++;
@@ -113,7 +113,7 @@ int xikres(int i,int k,int Nbareel,vector<vector<int>> & vObsAnnot){
   return res;
 }
 //pkc=probas pour l'annotateur c de choisir la modalité k
-double pkc(int c,int k,int nblignes,vector<vector<int>> & vObsAnnot){
+double pkc(int c,int k,int nblignes,vector<vector<int> > & vObsAnnot){
   int i,nck=0;
   double res;
   for (i=0;i<nblignes;i++)
@@ -125,7 +125,7 @@ double pkc(int c,int k,int nblignes,vector<vector<int>> & vObsAnnot){
 
 //II -b : désaccord observé et désaccord attendu
 
-float Aepi(int nblignes,int nbclasses,int Nbareel, vector<vector<int>> & vObsAnnot){
+float Aepi(int nblignes,int nbclasses,int Nbareel, vector<vector<int> > & vObsAnnot){
   int i,j,Nbtemp[nbclasses];//pour stocker le nombre de votes pour chaque classe
   float res;
   for (i=0;i<nbclasses;i++)
@@ -142,7 +142,7 @@ float Aepi(int nblignes,int nbclasses,int Nbareel, vector<vector<int>> & vObsAnn
   return res;
 }
 
-double Aekappa(int nblignes,int nbclasses,int Nbareel, vector<vector<int>> & vObsAnnot){
+double Aekappa(int nblignes,int nbclasses,int Nbareel, vector<vector<int> > & vObsAnnot){
   int comb2Nba=(Nbareel*(Nbareel-1))/2;
   //printf("comb2Nba=%d\n",comb2Nba);
   double res=0,den=0;
@@ -155,7 +155,7 @@ double Aekappa(int nblignes,int nbclasses,int Nbareel, vector<vector<int>> & vOb
 }
 
 //on a nbclasses, exprimées dans le tableau T par un entier de 0 à nbclasses-1
-float Aokappa(int nblignes,int nbclasses,int Nbareel, vector<vector<int>> & vObsAnnot){
+float Aokappa(int nblignes,int nbclasses,int Nbareel, vector<vector<int> > & vObsAnnot){
   float res=0;
   int sum=0,i,nik;
   for (i=0;i<nblignes;i++) {
@@ -169,7 +169,7 @@ float Aokappa(int nblignes,int nbclasses,int Nbareel, vector<vector<int>> & vObs
 }
 
 // Désaccord observé
-float Do(float nb, vector<vector<float>> & C,int nbclasses, int pondere){
+float Do(float nb, vector<vector<float> > & C,int nbclasses, int pondere){
   float res=0;
   int i,j;
   for (i=0;i<nbclasses;i++)
@@ -186,7 +186,7 @@ float Do(float nb, vector<vector<float>> & C,int nbclasses, int pondere){
   return res;
 }
 
-float n_calc(vector<vector<float>> & C,int l,int nbclasses) {
+float n_calc(vector<vector<float> > & C,int l,int nbclasses) {
   float res=0;
   int i;
   for (i=0;i<nbclasses;i++) res=res+C[i][l];
@@ -194,7 +194,7 @@ float n_calc(vector<vector<float>> & C,int l,int nbclasses) {
 }
 
 //Désaccord attendu (expected)
-float De(float nb, vector<vector<float>> & C,int nbclasses, int pondere) {
+float De(float nb, vector<vector<float> > & C,int nbclasses, int pondere) {
   float res=0;
   int i,j;
    for (i=0;i<nbclasses;i++)
@@ -211,7 +211,7 @@ float De(float nb, vector<vector<float>> & C,int nbclasses, int pondere) {
    return res;
 }
 
-float piAP(int nblignes,int nbclasses,int Nbareel, vector<vector<int>> & vObsAnnot){
+float piAP(int nblignes,int nbclasses,int Nbareel, vector<vector<int> > & vObsAnnot){
    float Ao,Ae;
    Ao=Aokappa(nblignes,nbclasses,Nbareel,vObsAnnot);
    //printf("Ao=%f\n",Ao);
@@ -220,7 +220,7 @@ float piAP(int nblignes,int nbclasses,int Nbareel, vector<vector<int>> & vObsAnn
    return (Ao-Ae)/(1.0-Ae);
 }
 
-float kappaAP(int nblignes,int nbclasses,int Nbareel, vector<vector<int>> & vObsAnnot){
+float kappaAP(int nblignes,int nbclasses,int Nbareel, vector<vector<int> > & vObsAnnot){
    float Ao,Ae;
    Ao=Aokappa(nblignes,nbclasses,Nbareel,vObsAnnot);
    //printf("Ao=%f\n",Ao);
@@ -230,7 +230,7 @@ float kappaAP(int nblignes,int nbclasses,int Nbareel, vector<vector<int>> & vObs
 }
 
 //nb = nb d'observations effectives = nb_experts*nb_observables si pas de données manquantes
-float alpha(float nb, vector<vector<float>> & C, int nbclasses, int pondere) {
+float alpha(float nb, vector<vector<float> > & C, int nbclasses, int pondere) {
   float res=1-(Do(nb,C,nbclasses, pondere)/De(nb,C,nbclasses, pondere));
   if (res<0) return 0; else return res;
 }

@@ -22,7 +22,7 @@ const int Max_annot=30;//nb maximal d'annotateurs
 //Nbobs : nb d'observables, Nba : nb d'annotateurs, Nbc : nb de classes
 // Les classes sont numérotées 0, 1, ..., Nbc-1
 
-int lire(string nomfich,vector<vector<int>> & vAnnotObs,int & Nbobs,int & Nba,int & Nbc) {
+int lire(string nomfich,vector<vector<int> > & vAnnotObs,int & Nbobs,int & Nba,int & Nbc) {
    const char * nom_fichier=nomfich.c_str();
     ifstream file(nom_fichier);
     if (!file){
@@ -129,7 +129,7 @@ int lire(string nomfich,vector<vector<int>> & vAnnotObs,int & Nbobs,int & Nba,in
     return 1;
 }
 
-void choixTableau(int choix,vector<vector<int>> & vAnnotObs,int & Nbobs,int & Nba,int & Nbc) {
+void choixTableau(int choix,vector<vector<int> > & vAnnotObs,int & Nbobs,int & Nba,int & Nbc) {
   std::ostringstream ss;
   if(choix >= 1000){
     Nba=2;Nbobs=12;

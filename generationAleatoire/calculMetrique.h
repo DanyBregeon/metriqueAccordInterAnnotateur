@@ -11,7 +11,7 @@
 
 #include <vector>
 
-/*void kappa_pi_tableau(std::vector<std::vector<int>> & vAnnotObs,int nbannot, int nblignes, int nbclasses,
+/*void kappa_pi_tableau(std::vector<std::vector<int> > & vAnnotObs,int nbannot, int nblignes, int nbclasses,
                       float & res_kappa);*/
 
 
@@ -23,6 +23,6 @@
  * \param vAnnotObs : les vecteurs représentant le tableau d'annotation
  * \return la valeur du kappa
  */
-float kappaAP(int nblignes,int nbclasses,int Nbareel, std::vector<std::vector<int>> & vAnnotObs);
+float kappaAP(int nblignes,int nbclasses,int Nbareel, std::vector<std::vector<int> > & vAnnotObs);
 
 #endif // CALCULMETRIQUE_H_INCLUDED

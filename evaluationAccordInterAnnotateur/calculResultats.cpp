@@ -18,7 +18,7 @@ extern int nba;
 extern int nbobs;
 extern int nbc;
 
-void calculPrevalence(vector<pair<float, vector<float>>> & vPrevalence, float valeurMetrique, vector<vector<int>> & vAnnotObs){
+void calculPrevalence(vector<pair<float, vector<float> >> & vPrevalence, float valeurMetrique, vector<vector<int> > & vAnnotObs){
     int occClasse[nbc];
     for(int i=0; i<nbc; i++){
         occClasse[i]=0;
@@ -33,7 +33,7 @@ void calculPrevalence(vector<pair<float, vector<float>>> & vPrevalence, float va
     for(int i=0; i<nbc; i++){
         prevalences[i]=((float)occClasse[i]/(float)(nba*nbobs))*100;
     }
-    vPrevalence.push_back(pair<float, vector<float>>(valeurMetrique, prevalences));
+    vPrevalence.push_back(pair<float, vector<float> >(valeurMetrique, prevalences));
     //affichage
     /*for(int i=0; i<nbc; i++){
         cout << i << " : " << ((float)occClasse[i]/(float)(nba*nbobs))*100 << "%    ";
@@ -41,9 +41,9 @@ void calculPrevalence(vector<pair<float, vector<float>>> & vPrevalence, float va
     cout << endl;*/
 }
 
-void calculPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pair<int, float>, vector<float>> & mapResultat2, float palierPas,
-                  vector<vector<float>> & vResultats, vector<vector<float>> & vResultatsEcartType, int moyenneEcartType,
-                  vector<pair<float, vector<float>>> & vPrevalence, vector<vector<float>> & vPrevalencePalier){
+void calculPalier(map<pair<int, float>, vector<float> > & mapResultat, map<pair<int, float>, vector<float> > & mapResultat2, float palierPas,
+                  vector<vector<float> > & vResultats, vector<vector<float> > & vResultatsEcartType, int moyenneEcartType,
+                  vector<pair<float, vector<float> >> & vPrevalence, vector<vector<float> > & vPrevalencePalier){
     float palier = palierPas;
     int occPalier = 0;
     int indexPalier = 0;
@@ -63,7 +63,7 @@ void calculPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pair<i
                     }
                     cout << endl;
                     //pair<int, float> pairNbcAlpha(-1, palier-palierPas);
-                    //mapResultat2.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vPrevalencePalier[indexPalier]));
+                    //mapResultat2.insert(pair<pair<int, float>, vector<float> >(pairNbcAlpha, vPrevalencePalier[indexPalier]));
                 }
                 palier += palierPas;
                 occPalier = 0;
@@ -78,7 +78,7 @@ void calculPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pair<i
             }
             cout << endl;
             //pair<int, float> pairNbcAlpha(-1, palier-palierPas);
-            //mapResultat2.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vPrevalencePalier[indexPalier]));
+            //mapResultat2.insert(pair<pair<int, float>, vector<float> >(pairNbcAlpha, vPrevalencePalier[indexPalier]));
         }
     }
 
@@ -86,7 +86,7 @@ void calculPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pair<i
     palier = palierPas;
     occPalier = 0;
     indexPalier = 0;
-    for (map<pair<int, float>, vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
+    for (map<pair<int, float>, vector<float> >::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
         pair<int, float> m = it->first;
         vector<float> valeurs = it->second;
         //pour chaque génération aléatoire, on regarde s'il est dans le palier actuel: tant qu'il ne l'est pas on change de palier
@@ -106,10 +106,10 @@ void calculPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pair<i
                 }
                 if(moyenneEcartType == 0){
                     pair<int, float> pairNbcAlpha(nbc, palier-palierPas);
-                    mapResultat2.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vResultats[indexPalier]));
+                    mapResultat2.insert(pair<pair<int, float>, vector<float> >(pairNbcAlpha, vResultats[indexPalier]));
                 }else{
                     pair<int, float> pairNbcAlpha(0, palier-palierPas);
-                    mapResultat2.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vResultatsEcartType[indexPalier]));
+                    mapResultat2.insert(pair<pair<int, float>, vector<float> >(pairNbcAlpha, vResultatsEcartType[indexPalier]));
                 }
             }
             palier += palierPas;
@@ -138,10 +138,10 @@ void calculPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pair<i
         }
         if(moyenneEcartType == 0){
             pair<int, float> pairNbcAlpha(nbc, palier-palierPas);
-            mapResultat2.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vResultats[indexPalier]));
+            mapResultat2.insert(pair<pair<int, float>, vector<float> >(pairNbcAlpha, vResultats[indexPalier]));
         }else{
             pair<int, float> pairNbcAlpha(0, palier-palierPas);
-            mapResultat2.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vResultatsEcartType[indexPalier]));
+            mapResultat2.insert(pair<pair<int, float>, vector<float> >(pairNbcAlpha, vResultatsEcartType[indexPalier]));
         }
     }
 
@@ -167,8 +167,8 @@ void calculPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pair<i
     }
 }
 
-void resultatsPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pair<int, float>, vector<float>> & mapResultat2,
-                     float palierPas, vector<pair<float, vector<float>>> & vPrevalence){
+void resultatsPalier(map<pair<int, float>, vector<float> > & mapResultat, map<pair<int, float>, vector<float> > & mapResultat2,
+                     float palierPas, vector<pair<float, vector<float> >> & vPrevalence){
 
     int nbPalier = 2;
     nbPalier += (int)(1.0f/palierPas);
@@ -184,9 +184,9 @@ void resultatsPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pai
         cout << endl;
     }*/
 
-    vector<vector<float>> vResultats;
-    vector<vector<float>> vResultatsEcartType;
-    vector<vector<float>> vPrevalencePalier;
+    vector<vector<float> > vResultats;
+    vector<vector<float> > vResultatsEcartType;
+    vector<vector<float> > vPrevalencePalier;
     vResultats.resize(nbPalier);
     vResultatsEcartType.resize(nbPalier);
     vPrevalencePalier.resize(nbPalier);
@@ -213,7 +213,7 @@ void resultatsPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pai
     /*float palier = palierPas:
     int occPalier = 0;
     int indexPalier=0;
-    for (map<pair<int, float>, vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
+    for (map<pair<int, float>, vector<float> >::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
         pair<int, float> m = it->first;
         vector<float> valeurs = it->second;
         while(m.second>=palier){
@@ -223,8 +223,8 @@ void resultatsPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pai
                     //vResultatsEcartType[indexPalier][i] = sqrt(vResultatsEcartType[indexPalier][i] / (float) occPalier);
                 }
                 pair<int, float> pairNbcAlpha(nbc, palier-palierPas);
-                mapResultat2.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vResultats[indexPalier]));
-                //mapResultat2.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vResultatsEcartType[indexPalier]));
+                mapResultat2.insert(pair<pair<int, float>, vector<float> >(pairNbcAlpha, vResultats[indexPalier]));
+                //mapResultat2.insert(pair<pair<int, float>, vector<float> >(pairNbcAlpha, vResultatsEcartType[indexPalier]));
             }
             palier += palierPas;
             occPalier = 0;
@@ -243,8 +243,8 @@ void resultatsPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pai
             //vResultatsEcartType[indexPalier][i] = sqrt(vResultatsEcartType[indexPalier][i] / (float) occPalier);
         }
         pair<int, float> pairNbcAlpha(nbc, palier-0.05f);
-        mapResultat2.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vResultats[indexPalier]));
-        //mapResultat2.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vResultatsEcartType[indexPalier]));
+        mapResultat2.insert(pair<pair<int, float>, vector<float> >(pairNbcAlpha, vResultats[indexPalier]));
+        //mapResultat2.insert(pair<pair<int, float>, vector<float> >(pairNbcAlpha, vResultatsEcartType[indexPalier]));
     }
 
     //affichage
@@ -256,7 +256,7 @@ void resultatsPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pai
     }
 
     //ecart-type
-    vector<vector<float>> vResultatsEcartType;
+    vector<vector<float> > vResultatsEcartType;
     vResultatsEcartType.resize(nbPalier);
     for(int i=0; i<nbPalier; i++){
         vResultatsEcartType[i].resize(nba-1);
@@ -271,7 +271,7 @@ void resultatsPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pai
     palier = palierPas;
     occPalier = 0;
     indexPalier=0;
-    for (map<pair<int, float>, vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
+    for (map<pair<int, float>, vector<float> >::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
         pair<int, float> m = it->first;
         vector<float> valeurs = it->second;
         while(m.second>=palier){
@@ -280,7 +280,7 @@ void resultatsPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pai
                     vResultatsEcartType[indexPalier][i] = sqrt(vResultatsEcartType[indexPalier][i] / (float) occPalier);
                 }
                 pair<int, float> pairNbcAlpha(10, palier-0.05f);
-                mapResultat2.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vResultatsEcartType[indexPalier]));
+                mapResultat2.insert(pair<pair<int, float>, vector<float> >(pairNbcAlpha, vResultatsEcartType[indexPalier]));
             }
             palier += 0.05f;
             occPalier = 0;
@@ -297,7 +297,7 @@ void resultatsPalier(map<pair<int, float>, vector<float>> & mapResultat, map<pai
             vResultatsEcartType[indexPalier][i] = sqrt(vResultatsEcartType[indexPalier][i] / (float) occPalier);
         }
         pair<int, float> pairNbcAlpha(10, palier-0.05f);
-        mapResultat2.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vResultatsEcartType[indexPalier]));
+        mapResultat2.insert(pair<pair<int, float>, vector<float> >(pairNbcAlpha, vResultatsEcartType[indexPalier]));
     }*/
 
 }

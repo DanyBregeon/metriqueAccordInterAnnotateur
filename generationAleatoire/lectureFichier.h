@@ -20,7 +20,7 @@
  * \param Nbc : le nombre de classe
  * \return 1 si le fichier a bien été lu, 0 sinon
  */
-int lire(std::string nomfich,std::vector<std::vector<int>> & vAnnotObs,int & Nbobs,int & Nba,int & Nbc);
+int lire(std::string nomfich,std::vector<std::vector<int> > & vAnnotObs,int & Nbobs,int & Nba,int & Nbc);
 
 /** \brief va lire le fichier correpondant au choix
  *
@@ -30,6 +30,6 @@ int lire(std::string nomfich,std::vector<std::vector<int>> & vAnnotObs,int & Nbo
  * \param Nba : le nombre d'annotateur
  * \param Nbc : le nombre de classe
  */
-void choixTableau(int choix,std::vector<std::vector<int>> & vAnnotObs,int & Nbobs,int & Nba,int & Nbc);
+void choixTableau(int choix,std::vector<std::vector<int> > & vAnnotObs,int & Nbobs,int & Nba,int & Nbc);
 
 #endif // LECTUREFICHIER_H_INCLUDED

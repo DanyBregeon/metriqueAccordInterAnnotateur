@@ -11,8 +11,14 @@
 #include <map>
 #include <iomanip>
 #include <stdio.h>
-#include <io.h>
 #include "lectureFichier.h"
+
+#ifdef _WIN32
+    #include <io.h>
+    #define OS_Windows
+#else
+    #include <sys/stat.h>
+#endif
 
 using namespace std;
 
@@ -27,7 +33,7 @@ const std::string currentDateTime() {
     return buf;
 }
 
-void fichierSortie(string nomFichier, string choixMetrique, int nba, map<pair<int, float>, vector<float>> mapResultat){
+void fichierSortie(string nomFichier, string choixMetrique, int nba, map<pair<int, float>, vector<float> > mapResultat){
     //création fichier de sortie
     ostringstream ss;
     ss << "resultats_";
@@ -42,12 +48,16 @@ void fichierSortie(string nomFichier, string choixMetrique, int nba, map<pair<in
         ss<<"_alphaPondéré";
     }
 
-    mkdir("resultats");
+    #ifdef OS_Windows
+        mkdir("resultats");
+    #else
+        mkdir("resultats", S_IRUSR | S_IWUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IWGRP | S_IROTH | S_IWOTH | S_IWOTH);
+    #endif
     ofstream myfile;
     myfile.open ("resultats/"+ss.str()+".txt");
     //cout << ss.str();
 
-    for (map<pair<int, float>, vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
+    for (map<pair<int, float>, vector<float> >::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
         pair<int, float> m = it->first;
         string s;
         if(choixMetrique.compare("k")==0){
@@ -76,7 +86,7 @@ void fichierSortie(string nomFichier, string choixMetrique, int nba, map<pair<in
 
 //deprecated, ne sert plus
 void fichierSortieCorpus (int choixCorpus, int choixNbClasse, string choixMetrique, int choixGold,
-                   int nba, map<pair<int, float>, vector<float>> mapResultat)
+                   int nba, map<pair<int, float>, vector<float> > mapResultat)
 {
     //création fichier de sortie
     ostringstream ss;
@@ -132,7 +142,7 @@ void fichierSortieCorpus (int choixCorpus, int choixNbClasse, string choixMetriq
 
     //myfile << currentDateTime() << endl << endl;
 
-    for (map<pair<int, float>, vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
+    for (map<pair<int, float>, vector<float> >::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
         pair<int, float> m = it->first;
         string s;
         if(choixMetrique.compare("k")==0){

@@ -20,6 +20,6 @@
  * \param nba : le nombre d'annotateurs
  * \param mapResultat : les résultats finaux (% de modification pour chaque nombre d'annotateurs et valeur de métrique)
  */
-void fichierSortie(std::string nomFichier, std::string choixMetrique, int nba, std::map<std::pair<int, float>, std::vector<float>> mapResultat);
+void fichierSortie(std::string nomFichier, std::string choixMetrique, int nba, std::map<std::pair<int, float>, std::vector<float> > mapResultat);
 
 #endif // FICHIERSORTIE_H_INCLUDED

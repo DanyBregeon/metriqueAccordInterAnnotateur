@@ -27,16 +27,16 @@ int choixErreurPondere = 0; //0 pour non, 1 pour oui
 int main()
 {
     //int tAnnotObs[Max_annot][Max_obs],tObsAnnot[Max_obs][Max_annot];
-    vector<vector<int>> vAnnotObs;
-    vector<vector<int>> vObsAnnot;
+    vector<vector<int> > vAnnotObs;
+    vector<vector<int> > vObsAnnot;
     //float C[Max_classes][Max_classes];
-    vector<vector<float>> C;
+    vector<vector<float> > C;
     //int nba, nbobs, nbc;//nb d'annotateurs, d'observables, de classes
     float nb;//observation réellement prises en compte
 
     //tableau final avec les pourcentages de différences de votes majoritaires par rapport à la référence
     //en fonction du nombre de classes et de la valeur de la métrique
-    std::map<std::pair<int, float>, std::vector<float>> mapResultat;
+    std::map<std::pair<int, float>, std::vector<float> > mapResultat;
 
     string reponse;
     do{
@@ -125,7 +125,7 @@ int main()
                 calculDifference(vObsAnnot, &vPourcentageErreur);
 
                 pair<int, float> pairNbcAlpha(nbc, metrique);
-                mapResultat.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vPourcentageErreur));
+                mapResultat.insert(pair<pair<int, float>, vector<float> >(pairNbcAlpha, vPourcentageErreur));
                 //affichage résultats
                 for(int i=0; i<nba-1; i++){
                     cout << nba-i << ": " << mapResultat.at(pairNbcAlpha)[i] <<"%   ";
@@ -170,7 +170,7 @@ int main()
                     cin >> choixMetrique;
                 }while(choixMetrique != "a" && choixMetrique != "k" && choixMetrique != "pi" && choixMetrique != "ap");
                 //prevalence
-                vector<pair<float, vector<float>>> vPrevalence;
+                vector<pair<float, vector<float> >> vPrevalence;
                 //vPrevalence.resize(files.size());
                 for(int i=0; i<files.size(); i++){
                     cout << (i+1) << " / " << files.size() << endl;
@@ -215,13 +215,13 @@ int main()
                         //cout << " pairNbcAlpha: " << pairNbcAlpha.first << "/" << pairNbcAlpha.second;
                         //cout<< "combinaisons de n-p annotateurs :" <<endl;
                         calculDifference(vObsAnnot, &vPourcentageErreur);
-                        mapResultat.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vPourcentageErreur));
+                        mapResultat.insert(pair<pair<int, float>, vector<float> >(pairNbcAlpha, vPourcentageErreur));
                     }
                 }
 
                 //affichage résultats
                 bool changement = false; //si le nombre de classes change
-                for (map<std::pair<int, float>, vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
+                for (map<std::pair<int, float>, vector<float> >::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
                     pair<int, float> m = it->first;
                     string s;
                     if(choixMetrique.compare("k")==0){
@@ -244,7 +244,7 @@ int main()
                     cout << endl;
                     cout << endl;
                 }
-                map<pair<int, float>, vector<float>> mapResultat2;
+                map<pair<int, float>, vector<float> > mapResultat2;
                 if(!changement){
                     resultatsPalier(mapResultat, mapResultat2, 0.05f, vPrevalence);
                     fichierSortie(choixFichier, choixMetrique, nba, mapResultat2);
@@ -285,7 +285,7 @@ int main()
 
     //tableau final avec les pourcentages de différences de votes majoritaires par rapport à la référence
     //en fonction du nombre de classes et de la valeur de la métrique
-    std::map<std::pair<int, float>, std::vector<float>> mapResultat;
+    std::map<std::pair<int, float>, std::vector<float> > mapResultat;
 
 
 
@@ -324,7 +324,7 @@ int main()
             }
         }
         //prevalence
-        vector<pair<float, vector<float>>> vPrevalence;
+        vector<pair<float, vector<float> >> vPrevalence;
         //vPrevalence.resize(lesChoix.size());
         for(int i=0; i<lesChoix.size(); i++){
             //if(i%2000==0) cout << i << endl; //affichage
@@ -368,11 +368,11 @@ int main()
             //cout << " pairNbcAlpha: " << pairNbcAlpha.first << "/" << pairNbcAlpha.second;
             //cout<< "combinaisons de n-p annotateurs :" <<endl;
             calculDifference(vObsAnnot, &vPourcentageErreur, choixGold);
-            mapResultat.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vPourcentageErreur));
+            mapResultat.insert(pair<pair<int, float>, vector<float> >(pairNbcAlpha, vPourcentageErreur));
         }
 
         //affichage résultats
-        for (map<std::pair<int, float>, vector<float>>::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
+        for (map<std::pair<int, float>, vector<float> >::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
             pair<int, float> m = it->first;
             string s;
             if(choixMetrique.compare("k")==0){
@@ -392,7 +392,7 @@ int main()
             cout << endl;
             cout << endl;
         }
-        map<pair<int, float>, vector<float>> mapResultat2;
+        map<pair<int, float>, vector<float> > mapResultat2;
         resultatsPalier(mapResultat, mapResultat2, 0.05f, vPrevalence);
         fichierSortie(choix, choixNbClasse, choixMetrique, choixGold, nba, mapResultat2);
     }else{ //on test sur un seul fichier
@@ -438,7 +438,7 @@ int main()
 
         if(choixGold == 3){
             cout << "prevalence :  ";
-            vector<pair<float, vector<float>>> vPrevalence;
+            vector<pair<float, vector<float> >> vPrevalence;
             calculPrevalence(vPrevalence, metrique, vAnnotObs);
             for(int c=0; c<nbc; c++){
                 cout << c << " : " << (vPrevalence[0].second)[c] << endl;
@@ -451,7 +451,7 @@ int main()
             calculDifference(vObsAnnot, &vPourcentageErreur, choixGold);
 
             pair<int, float> pairNbcAlpha(nbc, metrique);
-            mapResultat.insert(pair<pair<int, float>, vector<float>>(pairNbcAlpha, vPourcentageErreur));
+            mapResultat.insert(pair<pair<int, float>, vector<float> >(pairNbcAlpha, vPourcentageErreur));
             //affichage résultats
             for(int i=0; i<nba-1; i++){
                 cout << nba-i << ": " << mapResultat.at(pairNbcAlpha)[i] <<"%   ";

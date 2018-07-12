@@ -19,9 +19,15 @@
 #include <sstream>
 #include <ctime>
 #include <stdio.h>
-#include <io.h>
 #include "calculMetrique.h"
 #include "lectureFichier.h"
+
+#ifdef _WIN32
+    #include <io.h>
+    #define OS_Windows
+#else
+    #include <sys/stat.h>
+#endif
 
 
 using namespace std;
@@ -41,7 +47,7 @@ int choixCalculRepartitionP1DonneesGenerees = 0;
  *
  * \param vAnnotObs : les vecteurs représentant le tableau d'annotation
  */
-void affichage(vector<vector<int>> & vAnnotObs){
+void affichage(vector<vector<int> > & vAnnotObs){
     for (int i=0;i<nba;i++) {
         for (int j=0;j<nbobs;j++)
             printf("%3d",vAnnotObs[i][j]);
@@ -55,9 +61,9 @@ void affichage(vector<vector<int>> & vAnnotObs){
  * \param vAnnotObs : les vecteurs représentant le tableau d'annotation
  * \param ss : le nom du fichier crée
  */
-void ecrireFichier(int nba, vector<vector<int>> & vAnnotObs, string ss){
+void ecrireFichier(int nba, vector<vector<int> > & vAnnotObs, string ss){
     ofstream file;
-    file.open(ss);
+    file.open(ss.c_str());
 
     file << "Nbannotateurs=" << nba << endl;
     file << "Nbclasses=" << nbc << endl;
@@ -80,7 +86,7 @@ void ecrireFichier(int nba, vector<vector<int>> & vAnnotObs, string ss){
  * \param vPasChoisi : toutes lse annotations pas encore modifiées
  * \param vAnnotObs : les vecteurs représentant le tableau d'annotation
  */
-void generationAleatoire1(vector<pair<int,int>> & vPasChoisi, vector<vector<int>> & vAnnotObs){
+void generationAleatoire1(vector<pair<int,int> > & vPasChoisi, vector<vector<int> > & vAnnotObs){
     srand(time(0));
     int it = 0;
     while(vPasChoisi.size() > 0){
@@ -121,7 +127,7 @@ void generationAleatoire1(vector<pair<int,int>> & vPasChoisi, vector<vector<int>
  *
  * \param vAnnotObs : les vecteurs représentant le tableau d'annotation
  */
-void generationAleatoire2(vector<vector<int>> & vAnnotObs){
+void generationAleatoire2(vector<vector<int> > & vAnnotObs){
     for (int i=0;i<nba;i++){
         for (int j=0;j<nbobs;j++){
             //for (int i=0;i<nba;i++){
@@ -146,7 +152,7 @@ void generationAleatoire2(vector<vector<int>> & vAnnotObs){
  *
  * \param vAnnotObs : les vecteurs représentant le tableau d'annotation
  */
-void generationAleatoire3(vector<pair<int,int>> & vPasChoisi, vector<vector<int>> & vAnnotObs){
+void generationAleatoire3(vector<pair<int,int> > & vPasChoisi, vector<vector<int> > & vAnnotObs){
     srand(time(0));
     int tChoisi[nbobs][nba];
     for (int j=0;j<nbobs;j++){
@@ -191,7 +197,7 @@ void generationAleatoire3(vector<pair<int,int>> & vPasChoisi, vector<vector<int>
 }
 
 /*
-void ajouterNouveauAnnotateur(vector<vector<int>> & vAnnotObs, vector<float> & pourcentageErreur, vector<int> & voteMajoritaire){
+void ajouterNouveauAnnotateur(vector<vector<int> > & vAnnotObs, vector<float> & pourcentageErreur, vector<int> & voteMajoritaire){
     int nbNewAnnot = nba;
     nba += nbNewAnnot;
     vAnnotObs.resize(nba);
@@ -212,7 +218,7 @@ void ajouterNouveauAnnotateur(vector<vector<int>> & vAnnotObs, vector<float> & p
     }
 }
 
-void remplacerParNouveauAnnotateur(vector<vector<int>> & vAnnotObs, vector<float> & pourcentageErreur, vector<int> & voteMajoritaire){
+void remplacerParNouveauAnnotateur(vector<vector<int> > & vAnnotObs, vector<float> & pourcentageErreur, vector<int> & voteMajoritaire){
     for(int ann=0; ann<nba; ann++){
         for(int obs=0; obs<nbobs; obs++){
             //on compare un nombre aleatoire entre 0 et 100 avec le pourcentage d'erreur
@@ -233,7 +239,7 @@ void remplacerParNouveauAnnotateur(vector<vector<int>> & vAnnotObs, vector<float
  * \param classe1 : la classe majoritaire
  * \param classe2 : la classe la moins majoritaire
  */
-void testPrevalence(vector<vector<int>> & vAnnotObs, int classe1, int classe2, int taille){
+void testPrevalence(vector<vector<int> > & vAnnotObs, int classe1, int classe2, int taille){
     for(int ann=0; ann<nba; ann++){
         for(int obs=0; obs<taille; obs++){
             if(vAnnotObs[ann][obs]==classe1){
@@ -252,7 +258,7 @@ void testPrevalence(vector<vector<int>> & vAnnotObs, int classe1, int classe2, i
  * \param probaClasseErreur : la probabilité de tomber sur telle classe en cas d'erreur sur tel observable
  * \param totalPossibiliteClasse : le nombre total de possibilité par observable
  */
-void probaErreurAnnotateur(vector<vector<int>> & tNbOcc, vector<int> & voteMajoritaire, vector<vector<int>> & probaClasseErreur, vector<int> & totalPossibiliteClasse){
+void probaErreurAnnotateur(vector<vector<int> > & tNbOcc, vector<int> & voteMajoritaire, vector<vector<int> > & probaClasseErreur, vector<int> & totalPossibiliteClasse){
     for(int obs=0; obs<nbobs; obs++){
         for(int c=0; c<nbc; c++){
             if(c != voteMajoritaire[obs]){
@@ -314,9 +320,9 @@ void repartitionP1(int nbNewAnnot, vector<int> & nbErreurObs){
 int main()
 {
     srand(time(NULL));
-    vector<vector<int>> vAnnotObs;
-    vector<vector<int>> vObsAnnot;
-    vector<pair<int,int>> vPasChoisi;
+    vector<vector<int> > vAnnotObs;
+    vector<vector<int> > vObsAnnot;
+    vector<pair<int,int> > vPasChoisi;
 
     //configuration des paramètres par l'utilisateur
     string reponse;
@@ -483,7 +489,7 @@ Un exemple possible de protocole :
     vector<int> voteMajoritaire;
     voteMajoritaire.resize(nbobs);
     //le nombre d'occurence des classes dans les annotations d'un observable
-    vector<vector<int>> tNbOcc;
+    vector<vector<int> > tNbOcc;
     tNbOcc.resize(nbobs);
     for(int o=0; o<nbobs; o++){
         tNbOcc[o].resize(nbc);
@@ -535,7 +541,7 @@ Un exemple possible de protocole :
 
         //test classe des erreurs pas totalement aléatoire mais en fonction des données réelles
         //la probabilité de tomber sur tel classe lorsqu'un annotateur fait une erreur
-        vector<vector<int>> probaClasseErreur;
+        vector<vector<int> > probaClasseErreur;
         probaClasseErreur.resize(nbobs);
         //le total de possibilité pour choisir de quelle classe est l'erreur
         vector<int> totalPossibiliteClasse;
@@ -606,12 +612,12 @@ Un exemple possible de protocole :
 
         //generation des nouveaux annotateurs
         int nbNewAnnot = nbAnnotParGeneration;
-        vector<vector<int>> vAnnotObs2;
+        vector<vector<int> > vAnnotObs2;
         vAnnotObs2.resize(nbNewAnnot);
         for(int i=0; i<nbNewAnnot; i++){
             vAnnotObs2[i].resize(nbobs);
         }
-        vector<vector<int>> vObsAnnot2;
+        vector<vector<int> > vObsAnnot2;
         vObsAnnot2.resize(nbobs);
         for(int i=0; i<nbobs; i++){
             vObsAnnot2[i].resize(nbNewAnnot);
@@ -722,7 +728,11 @@ Un exemple possible de protocole :
         //crée les fichiers de sortie
         ostringstream ss;
         //s'il n'y a pas de dossier resultats le crée
-        mkdir("resultats");
+        #ifdef OS_Windows
+            mkdir("resultats");
+        #else
+            mkdir("resultats", S_IRUSR | S_IWUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IWGRP | S_IROTH | S_IWOTH | S_IWOTH);
+        #endif
         ss << "resultats/" << choixFichier << occ << ".csv";
         ecrireFichier(nbNewAnnot, vAnnotObs2, ss.str());
 
@@ -732,7 +742,7 @@ Un exemple possible de protocole :
             vector<int> nbErreurObs2;
             nbErreurObs2.resize(nbobs);
             //le nombre d'occurence des classes dans les annotations d'un observable
-            vector<vector<int>> tNbOcc2;
+            vector<vector<int> > tNbOcc2;
             tNbOcc2.resize(nbobs);
             for(int o=0; o<nbobs; o++){
                 tNbOcc2[o].resize(nbc);
