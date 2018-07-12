@@ -18,7 +18,7 @@ extern int nba;
 extern int nbobs;
 extern int nbc;
 
-void calculPrevalence(vector<pair<float, vector<float> >> & vPrevalence, float valeurMetrique, vector<vector<int> > & vAnnotObs){
+void calculPrevalence(vector<pair<float, vector<float> > > & vPrevalence, float valeurMetrique, vector<vector<int> > & vAnnotObs){
     int occClasse[nbc];
     for(int i=0; i<nbc; i++){
         occClasse[i]=0;
@@ -43,7 +43,7 @@ void calculPrevalence(vector<pair<float, vector<float> >> & vPrevalence, float v
 
 void calculPalier(map<pair<int, float>, vector<float> > & mapResultat, map<pair<int, float>, vector<float> > & mapResultat2, float palierPas,
                   vector<vector<float> > & vResultats, vector<vector<float> > & vResultatsEcartType, int moyenneEcartType,
-                  vector<pair<float, vector<float> >> & vPrevalence, vector<vector<float> > & vPrevalencePalier){
+                  vector<pair<float, vector<float> > > & vPrevalence, vector<vector<float> > & vPrevalencePalier){
     float palier = palierPas;
     int occPalier = 0;
     int indexPalier = 0;
@@ -169,7 +169,7 @@ void calculPalier(map<pair<int, float>, vector<float> > & mapResultat, map<pair<
 }
 
 void resultatsPalier(map<pair<int, float>, vector<float> > & mapResultat, map<pair<int, float>, vector<float> > & mapResultat2,
-                     float palierPas, vector<pair<float, vector<float> >> & vPrevalence){
+                     float palierPas, vector<pair<float, vector<float> > > & vPrevalence){
 
     int nbPalier = 2;
     nbPalier += (int)(1.0f/palierPas);

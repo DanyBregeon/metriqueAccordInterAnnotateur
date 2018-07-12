@@ -18,7 +18,7 @@
  * \param valeurMetrique : la valeur de la métrique
  * \param vAnnotObs : les vecteurs représentant le tableau d'annotation
  */
-void calculPrevalence(std::vector<std::pair<float, std::vector<float> >> & vPrevalence, float valeurMetrique,
+void calculPrevalence(std::vector<std::pair<float, std::vector<float> > > & vPrevalence, float valeurMetrique,
                       std::vector<std::vector<int> > & vAnnotObs);
 
 /** \brief calcul les résultats en faisant la moyenne et l'écart-type des pourcentages de modification par valeur de métrique proche
@@ -30,6 +30,6 @@ void calculPrevalence(std::vector<std::pair<float, std::vector<float> >> & vPrev
  */
 void resultatsPalier(std::map<std::pair<int, float>, std::vector<float> > & mapResultat,
                       std::map<std::pair<int, float>, std::vector<float> > & mapResultat2, float palierPas,
-                      std::vector<std::pair<float, std::vector<float> >> & vPrevalence);
+                      std::vector<std::pair<float, std::vector<float> > > & vPrevalence);
 
 #endif // CALCULRESULTATS_H_INCLUDED

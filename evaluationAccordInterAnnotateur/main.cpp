@@ -170,7 +170,7 @@ int main()
                     cin >> choixMetrique;
                 }while(choixMetrique != "a" && choixMetrique != "k" && choixMetrique != "pi" && choixMetrique != "ap");
                 //prevalence
-                vector<pair<float, vector<float> >> vPrevalence;
+                vector<pair<float, vector<float> > > vPrevalence;
                 //vPrevalence.resize(files.size());
                 cout << "calcul des fichiers en cours  (X/" << files.size() << ") : " << endl;
                 for(int i=0; i<files.size(); i++){
@@ -261,7 +261,9 @@ int main()
         }
     }while(erreur);
 
-    system("PAUSE");
+    #ifdef OS_Windows
+        system("PAUSE");
+    #endif // OS_Windows
 
     /*
     int choix;

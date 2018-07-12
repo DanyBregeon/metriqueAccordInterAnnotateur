@@ -51,10 +51,11 @@ void fichierSortie(string nomFichier, string choixMetrique, int nba, map<pair<in
     #ifdef OS_Windows
         mkdir("resultats");
     #else
-        mkdir("resultats", S_IRUSR | S_IWUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IWGRP | S_IROTH | S_IWOTH | S_IWOTH);
+        mkdir("resultats", S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IWOTH | S_IXOTH);
     #endif
     ofstream myfile;
-    myfile.open ("resultats/"+ss.str()+".txt");
+	string s = "resultats/"+ss.str()+".txt";
+    myfile.open (s.c_str());
     //cout << ss.str();
 
     for (map<pair<int, float>, vector<float> >::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
@@ -138,7 +139,8 @@ void fichierSortieCorpus (int choixCorpus, int choixNbClasse, string choixMetriq
 
     ss << nba;
     ofstream myfile;
-    myfile.open ("resultats/"+ss.str()+".txt");
+	string s = "resultats/"+ss.str()+".txt";
+    myfile.open (s.c_str());
 
     //myfile << currentDateTime() << endl << endl;
 

@@ -400,7 +400,7 @@ int main()
     #ifdef OS_Windows
         mkdir("resultats");
     #else
-        mkdir("resultats", S_IRUSR | S_IWUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IWGRP | S_IROTH | S_IWOTH | S_IWOTH);
+        mkdir("resultats", S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IWOTH | S_IXOTH);
     #endif
     choixFichier = choixFichier.substr(0, choixFichier.size()-4);
     string dossier = "resultats/";
@@ -413,7 +413,7 @@ int main()
             mkdir(dossier.c_str());
             cout << dossier.c_str() << endl;
         #else
-            mkdir(dossier.c_str(), S_IRUSR | S_IWUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IWGRP | S_IROTH | S_IWOTH | S_IWOTH);
+            mkdir(dossier.c_str(), S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IWOTH | S_IXOTH);
         #endif
     }
     choixFichier = dossier + choixFichier;

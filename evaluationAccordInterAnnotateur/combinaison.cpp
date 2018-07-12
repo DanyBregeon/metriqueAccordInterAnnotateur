@@ -100,7 +100,7 @@ void voteMajoritaire( int *p, int n, vector<vector<int> > & vObsAnnot,
 
 //vote maj pour le gold en fonction du nombre d'annotateur de la combinaison
 void voteMajoritaire2( int *p, int n, vector<vector<int> > & vObsAnnot,
-		  vector<int> & erreurVoteMaj, vector<int> & voteMajReference, vector<vector<vector<int> >> & voteMajOcc) {
+		  vector<int> & erreurVoteMaj, vector<int> & voteMajReference, vector<vector<vector<int> > > & voteMajOcc) {
 
     //le vote majoritaire pour chaque observable
     //int voteMajoritaire[nbobs];
