@@ -86,6 +86,7 @@ void calculPalier(map<pair<int, float>, vector<float> > & mapResultat, map<pair<
     palier = palierPas;
     occPalier = 0;
     indexPalier = 0;
+    if(moyenneEcartType == 0) cout << endl << "nombre de resultats par palier : " << endl;
     for (map<pair<int, float>, vector<float> >::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
         pair<int, float> m = it->first;
         vector<float> valeurs = it->second;
@@ -172,7 +173,7 @@ void resultatsPalier(map<pair<int, float>, vector<float> > & mapResultat, map<pa
 
     int nbPalier = 2;
     nbPalier += (int)(1.0f/palierPas);
-    cout << "nbPalier : " << nbPalier << endl;
+    cout << "prevalence des classes par palier : " << endl;
 
     sort(vPrevalence.begin(), vPrevalence.end());
     //affichage pérvalence

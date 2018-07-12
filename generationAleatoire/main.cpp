@@ -18,6 +18,7 @@
 #include <cstdio>
 #include <sstream>
 #include <ctime>
+#include <iomanip>
 #include <stdio.h>
 #include "calculMetrique.h"
 #include "lectureFichier.h"
@@ -42,6 +43,7 @@ int choixIntervalleErreurAnnotateur = 0;
 int nbAnnotParGeneration = 9;
 int choixGenerationAleatoire = 0;
 int choixCalculRepartitionP1DonneesGenerees = 0;
+string choixFichier;
 
 /** \brief affiche le tableau d'annotation
  *
@@ -62,6 +64,7 @@ void affichage(vector<vector<int> > & vAnnotObs){
  * \param ss : le nom du fichier crée
  */
 void ecrireFichier(int nba, vector<vector<int> > & vAnnotObs, string ss){
+
     ofstream file;
     file.open(ss.c_str());
 
@@ -259,6 +262,7 @@ void testPrevalence(vector<vector<int> > & vAnnotObs, int classe1, int classe2, 
  * \param totalPossibiliteClasse : le nombre total de possibilité par observable
  */
 void probaErreurAnnotateur(vector<vector<int> > & tNbOcc, vector<int> & voteMajoritaire, vector<vector<int> > & probaClasseErreur, vector<int> & totalPossibiliteClasse){
+    cout << "probabilites de la classe des erreurs des annotateurs pour chaque observable : " << endl;
     for(int obs=0; obs<nbobs; obs++){
         for(int c=0; c<nbc; c++){
             if(c != voteMajoritaire[obs]){
@@ -272,9 +276,21 @@ void probaErreurAnnotateur(vector<vector<int> > & tNbOcc, vector<int> & voteMajo
             }else{
                 probaClasseErreur[obs][c]=0;
             }
-            cout << c << " : " << probaClasseErreur[obs][c] << "(" << tNbOcc[obs][c] <<")        ";
         }
-        cout << "   / " << totalPossibiliteClasse[obs] << endl;
+        //affichage
+        cout << 0 << " : " << probaClasseErreur[obs][0] << "/" << totalPossibiliteClasse[obs] << " (" << tNbOcc[obs][0] <<")        ";
+        for(int c=1; c<nbc; c++){
+            int chance = 0;
+            if(c != voteMajoritaire[obs]){
+                if(tNbOcc[obs][c]==0){
+                    chance = 1;
+                }else{
+                    chance = tNbOcc[obs][c]*2;
+                }
+            }
+            cout << c << " : " << chance << "/" << totalPossibiliteClasse[obs] << " (" << tNbOcc[obs][c] <<")        ";
+        }
+        cout << endl;
     }
 }
 
@@ -327,7 +343,7 @@ int main()
     //configuration des paramètres par l'utilisateur
     string reponse;
     do{
-        cout << "1 pour activer le mode avancee, 0 sinon : ";
+        cout << "1 pour activer le mode avance, 0 sinon : ";
         cin >> reponse;
     }while(reponse != "0" && reponse != "1");
 
@@ -339,7 +355,7 @@ int main()
         choixGenerationAleatoire = atoi(reponse.c_str());
         if(choixGenerationAleatoire==0){
             do{
-                cout << "choix intervalle du nombre d'erreurs des annotateurs : 0 pour minimal, 1 pour maximal : ";
+                cout << "choix intervalle du nombre d'erreurs des annotateurs : 0 pour minimal ou 1 pour maximal : ";
                 cin >> reponse;
             }while(reponse != "0" && reponse != "1");
             choixIntervalleErreurAnnotateur = atoi(reponse.c_str());
@@ -349,7 +365,7 @@ int main()
             }while(reponse != "0" && reponse != "1");
             choixClasseErreurParRapportAuDonneesrelles = atoi(reponse.c_str());
             do{
-                cout << "choix calcul de la repartition du nombre d'erreurs par observable : 0 pour non, 1 pour oui : ";
+                cout << "choix calcul de la repartition du nombre d'erreurs par observable sur les donnees generees : 0 pour non, 1 pour oui : ";
                 cin >> reponse;
             }while(reponse != "0" && reponse != "1");
             choixCalculRepartitionP1DonneesGenerees = atoi(reponse.c_str());
@@ -359,7 +375,7 @@ int main()
             }while(reponse != "0" && reponse != "1");
             choixCalculP1 = atoi(reponse.c_str());*/
             do{
-                cout << "choix du nombre d'annotateurs par generation aleatoire : ";
+                cout << "choix du nombre d'annotateurs par generation aleatoire (par defaut : 9) : ";
                 cin >> nbAnnotParGeneration;
             }while(nbAnnotParGeneration < 1);
         }
@@ -367,9 +383,8 @@ int main()
     }
 
     //initialise les vecteurs avec les données
-    string choixFichier;
     do{
-        cout << "Chemin du fichier ou dossier des donnees de depart : ";
+        cout << "Chemin du fichier ou dossier des donnees de depart (ex: nomDossier/nomFichier.csv) : ";
         cin >> choixFichier;
     }while(lire(choixFichier, vAnnotObs, nbobs, nba, nbc) == 0);
 
@@ -380,15 +395,34 @@ int main()
     }
     //testPrevalence(vAnnotObs, 1, 2, nbobs/2);
 
-    //pour plus tard pour nom fichier en sortie
+    //prepare le chemin des fichiers de sorties
+    //s'il n'y a pas de dossier resultats le crée
+    #ifdef OS_Windows
+        mkdir("resultats");
+    #else
+        mkdir("resultats", S_IRUSR | S_IWUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IWGRP | S_IROTH | S_IWOTH | S_IWOTH);
+    #endif
     choixFichier = choixFichier.substr(0, choixFichier.size()-4);
-    replace(choixFichier.begin(), choixFichier.end(), '/', '_');
+    string dossier = "resultats/";
+    size_t index;
+    while (choixFichier.find("/") != string::npos) {
+        index = choixFichier.find("/");
+        dossier += choixFichier.substr(0, index+1);
+        choixFichier = choixFichier.substr(index+1);
+        #ifdef OS_Windows
+            mkdir(dossier.c_str());
+            cout << dossier.c_str() << endl;
+        #else
+            mkdir(dossier.c_str(), S_IRUSR | S_IWUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IWGRP | S_IROTH | S_IWOTH | S_IWOTH);
+        #endif
+    }
+    choixFichier = dossier + choixFichier;
 
     //choix du nombre de génération aléatoire
     int nbGenerationAleatoire = 2000;
     if(choixGenerationAleatoire == 0){
         do{
-            cout << "choix du nombre de generation aleatoire : ";
+            cout << "choix du nombre de generation aleatoire (ex: 500) : ";
             cin >> nbGenerationAleatoire;
         }while(nbGenerationAleatoire < 1);
     }
@@ -498,6 +532,7 @@ Un exemple possible de protocole :
     int nbInfoManquante = 0;
 
         //calcul des votes majoritaires et de P1
+        cout << "calcul des votes majoritaires et du nombre d'erreurs par observables : " << endl;
         for(int obs=0; obs<nbobs; obs++){
             for(int c=0; c<nbc; c++){
                 tNbOcc[obs][c]=0;
@@ -535,7 +570,7 @@ Un exemple possible de protocole :
             nbErreurObs[obs] = nba - max - nbInfoManquante;
             nbInfoManquante = 0;
 
-            cout << pourcentageErreur[obs] << "%" << endl;
+            cout << pourcentageErreur[obs] << "% d'erreurs" << endl;
             moyenneErreurP1 += pourcentageErreur[obs];
         }
 
@@ -583,11 +618,12 @@ Un exemple possible de protocole :
         }
         ecartType = ecartType/(float) nbobs;
         ecartType = sqrt(ecartType);
-        cout << "ecart type : " << ecartType << endl;
+        cout << "ecart type P1 : " << ecartType << endl;
         //cout << "moyenne % P2= " << ((float) moyenneErreurP2/(float) nbobs)*100.0 << " min=" << ((float) nbErreurMin/(float) nbobs)*100.0 << " , max=" << ((float) nbErreurMax/(float) nbobs)*100.0 << endl;
 
 
     //création des groupes d'annotateurs
+    cout << "Creation des " << nbGenerationAleatoire << " generations aleatoires et calcul du kappa de Cohen pour chaque generation aleatoire : " << endl;
     for(int occ=0; occ<nbGenerationAleatoire; occ++){
         //l'intervalle d'erreur des annotateurs (chaque annotateur fera entre intervalleMin et intervalleMax erreurs) (max exclu)
         int intervalleMin;
@@ -727,13 +763,8 @@ Un exemple possible de protocole :
 
         //crée les fichiers de sortie
         ostringstream ss;
-        //s'il n'y a pas de dossier resultats le crée
-        #ifdef OS_Windows
-            mkdir("resultats");
-        #else
-            mkdir("resultats", S_IRUSR | S_IWUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IWGRP | S_IROTH | S_IWOTH | S_IWOTH);
-        #endif
-        ss << "resultats/" << choixFichier << occ << ".csv";
+
+        ss << choixFichier << "_" << occ << ".csv";
         ecrireFichier(nbNewAnnot, vAnnotObs2, ss.str());
 
         //calcul de la répartition p1 sur les données générées
@@ -783,6 +814,8 @@ Un exemple possible de protocole :
         }
     }
     }
-    system("PAUSE");
+    #ifdef OS_Windows
+        system("PAUSE");
+    #endif // OS_Windows
     return 0;
 }

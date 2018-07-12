@@ -40,7 +40,7 @@ int main()
 
     string reponse;
     do{
-        cout << "1 pour activer le mode avancee, 0 sinon : ";
+        cout << "1 pour activer le mode avance, 0 sinon : ";
         cin >> reponse;
     }while(reponse != "0" && reponse != "1");
 
@@ -67,7 +67,7 @@ int main()
         string choixFichier;
         string choixMetrique;
 
-        cout << "Chemin du fichier ou dossier : ";
+        cout << "Chemin du fichier ou dossier (ex: nomDossier/nomFichier.csv) : ";
         cin >> choixFichier;
 
         if(choixFichier.size() > 4 && choixFichier.substr(choixFichier.size()-4).compare(".csv")==0){ //cas un seul fichier
@@ -151,7 +151,7 @@ int main()
                 }
 
                 struct dirent * ent;
-
+                cout << "liste des fichiers trouves : " << endl;
                 while ((ent = readdir(rep)) != NULL)
                 {
                     string f = choixFichier + ent->d_name;
@@ -172,6 +172,7 @@ int main()
                 //prevalence
                 vector<pair<float, vector<float> >> vPrevalence;
                 //vPrevalence.resize(files.size());
+                cout << "calcul des fichiers en cours  (X/" << files.size() << ") : " << endl;
                 for(int i=0; i<files.size(); i++){
                     cout << (i+1) << " / " << files.size() << endl;
                     //if(i%2000==0) cout << i << endl; //affichage
@@ -192,6 +193,7 @@ int main()
                                 vObsAnnot[j][i]=vAnnotObs[i][j];
                             }
                         }
+
                         //cout << "Tableau des coincidences :\n";
                         coincidences(vObsAnnot,nbobs,nba,C,nbc,nb);
                         //affiche_coincidences(C,nbc);
@@ -220,6 +222,9 @@ int main()
                 }
 
                 //affichage résultats
+                cout << "pourcentages de modification : (le pourcentage de votes majoritaires different avec k<" << nba;
+                cout << " annotateurs par rapport a " << nba << " annotateurs)" << endl << endl;
+
                 bool changement = false; //si le nombre de classes change
                 for (map<std::pair<int, float>, vector<float> >::iterator it=mapResultat.begin(); it!=mapResultat.end(); ++it){
                     pair<int, float> m = it->first;
