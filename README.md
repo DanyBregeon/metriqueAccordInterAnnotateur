@@ -4,7 +4,7 @@ Dans les dossiers "corpusAA" et "odsTocsv" se trouvent des programmes qui permet
 
 Dans le dossier "evaluationAccordInterAnnotateur" se trouve le programme d'évaluation de métriques d'estimation de l'accord inter-annotateur (evaluationAccordInterAnnotateur.exe et evaluationAccordInterAnnotateur).
 
-Dans le dossier "generationAleatoire" se trouve le programme de génération aléatoire de données (generationAleatoire.exe et generationaleatoire).
+Dans le dossier "generationAleatoire" se trouve le programme de génération aléatoire de données (generationAleatoire.exe et generationAleatoire).
 
 Pour des informations sur le fonctionnement de ces programmes, lire la documentation utilisateur (docUtilisateur.odt).
 
