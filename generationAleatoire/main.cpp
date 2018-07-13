@@ -37,13 +37,13 @@ int nba = 25; /**< \brief le nombre d'annotateurs */
 int nbobs = 100; /**< \brief le nombre d'observables */
 int nbc = 3; /**< \brief le nombre de classes */
 
-int choixClasseErreurParRapportAuDonneesrelles = 0;
-int choixIntervalleErreurAnnotateur = 0;
+int choixClasseErreurParRapportAuDonneesrelles = 0; /**< \brief la classe des erreurs des annotateurs créés (0 aléatoire or classe majoritaire, 1 en fonction des erreurs des vrais annotateurs)*/
+int choixIntervalleErreurAnnotateur = 0; /**< \brief l'intervalle du nombre d'erreurs des annotateurs (0 pour minimal ou 1 pour maximal) */
 //int choixCalculP1 = 0;
-int nbAnnotParGeneration = 9;
-int choixGenerationAleatoire = 0;
-int choixCalculRepartitionP1DonneesGenerees = 0;
-string choixFichier;
+int nbAnnotParGeneration = 9; /**< \brief le nombre d'annotateurs par génération aléatoire */
+int choixGenerationAleatoire = 0; /**< \brief la méthode de génération aléatoire */
+int choixCalculRepartitionP1DonneesGenerees = 0; /**< \brief le calcul de la répartition du nombre d'erreurs par observable sur les données générées (0 pour non, 1 pour oui) */
+string choixFichier; /**< \brief le chemin du fichier d'entrée */
 
 /** \brief affiche le tableau d'annotation
  *
@@ -86,7 +86,7 @@ void ecrireFichier(int nba, vector<vector<int> > & vAnnotObs, string ss){
 
 /** \brief génération aléatoire qui consiste à changer aléatoirement les annotations une à une
  *
- * \param vPasChoisi : toutes lse annotations pas encore modifiées
+ * \param vPasChoisi : toutes les annotations pas encore modifiées
  * \param vAnnotObs : les vecteurs représentant le tableau d'annotation
  */
 void generationAleatoire1(vector<pair<int,int> > & vPasChoisi, vector<vector<int> > & vAnnotObs){
@@ -261,7 +261,7 @@ void testPrevalence(vector<vector<int> > & vAnnotObs, int classe1, int classe2, 
     }
 }
 
-/** \brief établit les probabilités de tomber sur telle ou telle classe lorq'un annotateur fait une erreur en fonction des erreurs des vrais annotateurs
+/** \brief établit les probabilités de tomber sur telle ou telle classe lorsq'un annotateur fait une erreur en fonction des erreurs des vrais annotateurs
  *
  * \param tNbOcc : le nombre d'annotation de telle classe pour tel observable
  * \param voteMajoritaire : le vote majoritaire de chaque observable

@@ -1,9 +1,9 @@
 /**
  * \file lectureFichier.h
- * \author    Dany Brégeon et Jeanne Villaneau
- * \version   1.0
- * \date       4 juillet 2018
- * \brief       Lecture de fichier .csv
+ * \author Dany Brégeon et Jeanne Villaneau
+ * \version 1.0
+ * \date 4 juillet 2018
+ * \brief Lecture de fichier .csv
  *
  */
 #ifndef LECTUREFICHIER_H_INCLUDED

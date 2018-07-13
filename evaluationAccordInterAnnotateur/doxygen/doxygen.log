@@ -1,3 +1,2 @@
-C:/Users/Admin/Documents/GitHub/metriqueAccordInterAnnotateur/evaluationAccordInterAnnotateur/main.cpp:300: warning: Reached end of file while still inside a (nested) comment. Nesting level 2 (probable line reference: 65, 65)
-C:/Users/Admin/Documents/GitHub/metriqueAccordInterAnnotateur/evaluationAccordInterAnnotateur/calculMetrique.h:46: warning: The following parameters of alpha(float nb, std::vector< std::vector< float >> &C, int nbclasses, int pondere) are not documented:
+C:/Users/Admin/Documents/GitHub/metriqueAccordInterAnnotateur/evaluationAccordInterAnnotateur/calculMetrique.h:46: warning: The following parameters of alpha(float nb, std::vector< std::vector< float > > &C, int nbclasses, int pondere) are not documented:
   parameter 'nbclasses'

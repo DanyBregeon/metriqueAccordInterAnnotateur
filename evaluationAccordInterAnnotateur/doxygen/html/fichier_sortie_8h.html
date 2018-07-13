@@ -102,9 +102,9 @@ $(document).ready(function(){initNavTree('fichier_sortie_8h.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a73fa77480de1caef449d72fde1ad77e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fichier_sortie_8h.html#a73fa77480de1caef449d72fde1ad77e8">fichierSortie</a> (int choixCorpus, int choixNbClasse, std::string choixMetrique, int choixGold, int nba, std::map&lt; std::pair&lt; int, float &gt;, std::vector&lt; float &gt;&gt; mapResultat)</td></tr>
-<tr class="memdesc:a73fa77480de1caef449d72fde1ad77e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">crée un fichier comportant les résultats finaux (pourcentage de modification par rapport au nombre de classe, la valeur de la métrique et le nombre d'annotateurs)  <a href="#a73fa77480de1caef449d72fde1ad77e8">More...</a><br /></td></tr>
-<tr class="separator:a73fa77480de1caef449d72fde1ad77e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a215631349299138bbc8fc7cbfd74d3e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fichier_sortie_8h.html#a215631349299138bbc8fc7cbfd74d3e1">fichierSortie</a> (std::string nomFichier, std::string choixMetrique, int nba, std::map&lt; std::pair&lt; int, float &gt;, std::vector&lt; float &gt; &gt; mapResultat)</td></tr>
+<tr class="memdesc:a215631349299138bbc8fc7cbfd74d3e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">crée un fichier comportant les résultats finaux (pourcentage de modification par rapport au nombre de classe, la valeur de la métrique et le nombre d'annotateurs)  <a href="#a215631349299138bbc8fc7cbfd74d3e1">More...</a><br /></td></tr>
+<tr class="separator:a215631349299138bbc8fc7cbfd74d3e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Crée un fichier comportant les résultats. </p>
@@ -112,8 +112,8 @@ Functions</h2></td></tr>
 <dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>4 juillet 2018 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a73fa77480de1caef449d72fde1ad77e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73fa77480de1caef449d72fde1ad77e8">&#9670;&nbsp;</a></span>fichierSortie()</h2>
+<a id="a215631349299138bbc8fc7cbfd74d3e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a215631349299138bbc8fc7cbfd74d3e1">&#9670;&nbsp;</a></span>fichierSortie()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -121,14 +121,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void fichierSortie </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>choixCorpus</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>choixNbClasse</em>, </td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>nomFichier</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -140,18 +134,12 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>choixGold</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>nba</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::map&lt; std::pair&lt; int, float &gt;, std::vector&lt; float &gt;&gt;&#160;</td>
+          <td class="paramtype">std::map&lt; std::pair&lt; int, float &gt;, std::vector&lt; float &gt; &gt;&#160;</td>
           <td class="paramname"><em>mapResultat</em>&#160;</td>
         </tr>
         <tr>
@@ -165,10 +153,8 @@ Functions</h2></td></tr>
 <p>crée un fichier comportant les résultats finaux (pourcentage de modification par rapport au nombre de classe, la valeur de la métrique et le nombre d'annotateurs) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">choixCorpus</td><td>: les corpus choisi (opinion, émotion, coréférence...) </td></tr>
-    <tr><td class="paramname">choixNbClasse</td><td>: le nombre de classe </td></tr>
+    <tr><td class="paramname">nomFichier</td><td>: le nom du fichier de sortie </td></tr>
     <tr><td class="paramname">choixMetrique</td><td>: le choix de la métrique (kappa, pi, alpha, alpha pondéré) </td></tr>
-    <tr><td class="paramname">choixGold</td><td>: le choix de la référence (idéale ou non) </td></tr>
     <tr><td class="paramname">nba</td><td>: le nombre d'annotateurs </td></tr>
     <tr><td class="paramname">mapResultat</td><td>: les résultats finaux (% de modification pour chaque nombre d'annotateurs et valeur de métrique) </td></tr>
   </table>
@@ -183,7 +169,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="fichier_sortie_8h.html">fichierSortie.h</a></li>
-    <li class="footer">Generated on Wed Jul 4 2018 15:27:20 for evaluationAccordInterAnnotateur by
+    <li class="footer">Generated on Fri Jul 13 2018 16:31:06 for evaluationAccordInterAnnotateur by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

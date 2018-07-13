@@ -1,4 +1,4 @@
-C:/Users/Admin/Documents/GitHub/metriqueAccordInterAnnotateur/generationAleatoire/main.cpp:139: warning: The following parameters of generationAleatoire3(vector< pair< int, int >> &vPasChoisi, vector< vector< int >> &vAnnotObs) are not documented:
+C:/Users/Admin/Documents/GitHub/metriqueAccordInterAnnotateur/generationAleatoire/main.cpp:163: warning: The following parameters of generationAleatoire3(vector< pair< int, int > > &vPasChoisi, vector< vector< int > > &vAnnotObs) are not documented:
   parameter 'vPasChoisi'
-C:/Users/Admin/Documents/GitHub/metriqueAccordInterAnnotateur/generationAleatoire/main.cpp:226: warning: The following parameters of testPrevalence(vector< vector< int >> &vAnnotObs, int classe1, int classe2, int taille) are not documented:
+C:/Users/Admin/Documents/GitHub/metriqueAccordInterAnnotateur/generationAleatoire/main.cpp:252: warning: The following parameters of testPrevalence(vector< vector< int > > &vAnnotObs, int classe1, int classe2, int taille) are not documented:
   parameter 'taille'

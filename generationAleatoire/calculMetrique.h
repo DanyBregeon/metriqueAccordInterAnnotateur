@@ -1,9 +1,9 @@
 /**
  * \file calculMetrique.h
- * \author    Dany Brégeon et Jeanne Villaneau
- * \version   1.0
- * \date       4 juillet 2018
- * \brief       Calcul le kappa de Cohen
+ * \author Dany Brégeon et Jeanne Villaneau
+ * \version 1.0
+ * \date 4 juillet 2018
+ * \brief Calcul le kappa de Cohen
  *
  */
 #ifndef CALCULMETRIQUE_H_INCLUDED

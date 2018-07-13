@@ -100,9 +100,12 @@ $(document).ready(function(){initNavTree('lecture_fichier_8h.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aed4b501d54e6b40dbf106651012a508e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lecture_fichier_8h.html#aed4b501d54e6b40dbf106651012a508e">choixTableau</a> (int choix, std::vector&lt; std::vector&lt; int &gt;&gt; &amp;vAnnotObs, int &amp;Nbobs, int &amp;Nba, int &amp;Nbc)</td></tr>
-<tr class="memdesc:aed4b501d54e6b40dbf106651012a508e"><td class="mdescLeft">&#160;</td><td class="mdescRight">va lire le fichier correpondant au choix  <a href="#aed4b501d54e6b40dbf106651012a508e">More...</a><br /></td></tr>
-<tr class="separator:aed4b501d54e6b40dbf106651012a508e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f3e0eed5a6cf9cf3103b8d11cbd5e7a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lecture_fichier_8h.html#a0f3e0eed5a6cf9cf3103b8d11cbd5e7a">lire</a> (std::string nomfich, std::vector&lt; std::vector&lt; int &gt; &gt; &amp;vAnnotObs, int &amp;Nbobs, int &amp;Nba, int &amp;Nbc)</td></tr>
+<tr class="memdesc:a0f3e0eed5a6cf9cf3103b8d11cbd5e7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">va lire le fichier et récupérer toutes les informations  <a href="#a0f3e0eed5a6cf9cf3103b8d11cbd5e7a">More...</a><br /></td></tr>
+<tr class="separator:a0f3e0eed5a6cf9cf3103b8d11cbd5e7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b5f6d2a243b33a725836608a7bc5bd8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lecture_fichier_8h.html#a7b5f6d2a243b33a725836608a7bc5bd8">choixTableau</a> (int choix, std::vector&lt; std::vector&lt; int &gt; &gt; &amp;vAnnotObs, int &amp;Nbobs, int &amp;Nba, int &amp;Nbc)</td></tr>
+<tr class="memdesc:a7b5f6d2a243b33a725836608a7bc5bd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">va choisir le fichier à lire par rapport au choix, puis va lire le fichier et récupérer toutes les informations  <a href="#a7b5f6d2a243b33a725836608a7bc5bd8">More...</a><br /></td></tr>
+<tr class="separator:a7b5f6d2a243b33a725836608a7bc5bd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Lecture de fichier .csv. </p>
@@ -110,8 +113,8 @@ Functions</h2></td></tr>
 <dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>4 juillet 2018 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="aed4b501d54e6b40dbf106651012a508e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed4b501d54e6b40dbf106651012a508e">&#9670;&nbsp;</a></span>choixTableau()</h2>
+<a id="a7b5f6d2a243b33a725836608a7bc5bd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b5f6d2a243b33a725836608a7bc5bd8">&#9670;&nbsp;</a></span>choixTableau()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -125,7 +128,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; std::vector&lt; int &gt;&gt; &amp;&#160;</td>
+          <td class="paramtype">std::vector&lt; std::vector&lt; int &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>vAnnotObs</em>, </td>
         </tr>
         <tr>
@@ -154,7 +157,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>va lire le fichier correpondant au choix </p>
+<p>va choisir le fichier à lire par rapport au choix, puis va lire le fichier et récupérer toutes les informations </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">choix</td><td>: le fichier à lire </td></tr>
@@ -165,7 +168,65 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>la valeur du kappa </dd></dl>
+
+</div>
+</div>
+<a id="a0f3e0eed5a6cf9cf3103b8d11cbd5e7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f3e0eed5a6cf9cf3103b8d11cbd5e7a">&#9670;&nbsp;</a></span>lire()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int lire </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>nomfich</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::vector&lt; int &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vAnnotObs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>Nbobs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>Nba</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>Nbc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>va lire le fichier et récupérer toutes les informations </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nomfich</td><td>: le chemin du fichier à lire </td></tr>
+    <tr><td class="paramname">vAnnotObs</td><td>: les vecteurs représentant le tableau d'annotation </td></tr>
+    <tr><td class="paramname">Nbobs</td><td>: le nombre d'observable </td></tr>
+    <tr><td class="paramname">Nba</td><td>: le nombre d'annotateur </td></tr>
+    <tr><td class="paramname">Nbc</td><td>: le nombre de classe </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 si le fichier a bien été lu, 0 sinon </dd></dl>
 
 </div>
 </div>
@@ -175,7 +236,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="lecture_fichier_8h.html">lectureFichier.h</a></li>
-    <li class="footer">Generated on Wed Jul 4 2018 15:27:20 for evaluationAccordInterAnnotateur by
+    <li class="footer">Generated on Fri Jul 13 2018 16:31:06 for evaluationAccordInterAnnotateur by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

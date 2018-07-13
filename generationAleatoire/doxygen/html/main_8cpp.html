@@ -101,35 +101,40 @@ $(document).ready(function(){initNavTree('main_8cpp.html','');});
 <code>#include &lt;cstdlib&gt;</code><br />
 <code>#include &lt;ctime&gt;</code><br />
 <code>#include &lt;cmath&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;fstream&gt;</code><br />
 <code>#include &lt;cstdio&gt;</code><br />
 <code>#include &lt;sstream&gt;</code><br />
+<code>#include &lt;iomanip&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="calcul_metrique_8h_source.html">calculMetrique.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="lecture_fichier_8h_source.html">lectureFichier.h</a>&quot;</code><br />
+<code>#include &lt;sys/stat.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a8a2f23a9c3ce08bea58270d7b808c047"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a8a2f23a9c3ce08bea58270d7b808c047">affichage</a> (vector&lt; vector&lt; int &gt;&gt; &amp;vAnnotObs)</td></tr>
-<tr class="memdesc:a8a2f23a9c3ce08bea58270d7b808c047"><td class="mdescLeft">&#160;</td><td class="mdescRight">affiche le tableau d'annotation  <a href="#a8a2f23a9c3ce08bea58270d7b808c047">More...</a><br /></td></tr>
-<tr class="separator:a8a2f23a9c3ce08bea58270d7b808c047"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1e815b3a8ec537a5d2d08a2eab52d8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#aa1e815b3a8ec537a5d2d08a2eab52d8a">ecrireFichier</a> (int <a class="el" href="main_8cpp.html#a03f6391c89a0f4ace61e97787f026940">nba</a>, vector&lt; vector&lt; int &gt;&gt; &amp;vAnnotObs, string ss)</td></tr>
-<tr class="memdesc:aa1e815b3a8ec537a5d2d08a2eab52d8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">crée des fichiers .csv avec le nombre d'annotateurs, d'observables, de classes ainsi que le tableau d'annotation. Ces fichiers peuvent etre utilisés en entrée par le programme "evaluationAccordInterAnnotateur"  <a href="#aa1e815b3a8ec537a5d2d08a2eab52d8a">More...</a><br /></td></tr>
-<tr class="separator:aa1e815b3a8ec537a5d2d08a2eab52d8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c740c2e22cbfc8c2f403403330cb60a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a5c740c2e22cbfc8c2f403403330cb60a">generationAleatoire1</a> (vector&lt; pair&lt; int, int &gt;&gt; &amp;vPasChoisi, vector&lt; vector&lt; int &gt;&gt; &amp;vAnnotObs)</td></tr>
-<tr class="memdesc:a5c740c2e22cbfc8c2f403403330cb60a"><td class="mdescLeft">&#160;</td><td class="mdescRight">génération aléatoire qui consiste à changer aléatoirement les annotations une à une  <a href="#a5c740c2e22cbfc8c2f403403330cb60a">More...</a><br /></td></tr>
-<tr class="separator:a5c740c2e22cbfc8c2f403403330cb60a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30803aa977b9dd6d3fa0ab7e0254d5d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a30803aa977b9dd6d3fa0ab7e0254d5d4">generationAleatoire2</a> (vector&lt; vector&lt; int &gt;&gt; &amp;vAnnotObs)</td></tr>
-<tr class="memdesc:a30803aa977b9dd6d3fa0ab7e0254d5d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">génération aléatoire qui consiste à changer les annotations une à une par annotateur  <a href="#a30803aa977b9dd6d3fa0ab7e0254d5d4">More...</a><br /></td></tr>
-<tr class="separator:a30803aa977b9dd6d3fa0ab7e0254d5d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74485ca158eaaf8e0424610d099d3fe0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a74485ca158eaaf8e0424610d099d3fe0">generationAleatoire3</a> (vector&lt; pair&lt; int, int &gt;&gt; &amp;vPasChoisi, vector&lt; vector&lt; int &gt;&gt; &amp;vAnnotObs)</td></tr>
-<tr class="memdesc:a74485ca158eaaf8e0424610d099d3fe0"><td class="mdescLeft">&#160;</td><td class="mdescRight">génération aléatoire qui consiste à changer les annotations une à une par observable  <a href="#a74485ca158eaaf8e0424610d099d3fe0">More...</a><br /></td></tr>
-<tr class="separator:a74485ca158eaaf8e0424610d099d3fe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebd3ea3f8962fa701e5e00b0ab5af042"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#aebd3ea3f8962fa701e5e00b0ab5af042">testPrevalence</a> (vector&lt; vector&lt; int &gt;&gt; &amp;vAnnotObs, int classe1, int classe2, int taille)</td></tr>
-<tr class="memdesc:aebd3ea3f8962fa701e5e00b0ab5af042"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de modifier la prévalence des classes sans changer p1  <a href="#aebd3ea3f8962fa701e5e00b0ab5af042">More...</a><br /></td></tr>
-<tr class="separator:aebd3ea3f8962fa701e5e00b0ab5af042"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab810c5f376a5580a9dd37df49c3dfa92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ab810c5f376a5580a9dd37df49c3dfa92">probaErreurAnnotateur</a> (vector&lt; vector&lt; int &gt;&gt; &amp;tNbOcc, vector&lt; int &gt; &amp;voteMajoritaire, vector&lt; vector&lt; int &gt;&gt; &amp;probaClasseErreur, vector&lt; int &gt; &amp;totalPossibiliteClasse)</td></tr>
-<tr class="memdesc:ab810c5f376a5580a9dd37df49c3dfa92"><td class="mdescLeft">&#160;</td><td class="mdescRight">établit les probabilités de tomber sur telle ou telle classe lorq'un annotateur fait une erreur en fonction des erreurs des vrais annotateurs.  <a href="#ab810c5f376a5580a9dd37df49c3dfa92">More...</a><br /></td></tr>
-<tr class="separator:ab810c5f376a5580a9dd37df49c3dfa92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4450ea14d6676bcca6cceb0fb5b0faf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ad4450ea14d6676bcca6cceb0fb5b0faf">affichage</a> (vector&lt; vector&lt; int &gt; &gt; &amp;vAnnotObs)</td></tr>
+<tr class="memdesc:ad4450ea14d6676bcca6cceb0fb5b0faf"><td class="mdescLeft">&#160;</td><td class="mdescRight">affiche le tableau d'annotation  <a href="#ad4450ea14d6676bcca6cceb0fb5b0faf">More...</a><br /></td></tr>
+<tr class="separator:ad4450ea14d6676bcca6cceb0fb5b0faf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16b6c048918dad2cd4f6edd76da20d32"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a16b6c048918dad2cd4f6edd76da20d32">ecrireFichier</a> (int <a class="el" href="main_8cpp.html#a03f6391c89a0f4ace61e97787f026940">nba</a>, vector&lt; vector&lt; int &gt; &gt; &amp;vAnnotObs, string ss)</td></tr>
+<tr class="memdesc:a16b6c048918dad2cd4f6edd76da20d32"><td class="mdescLeft">&#160;</td><td class="mdescRight">crée des fichiers .csv avec le nombre d'annotateurs, d'observables, de classes ainsi que le tableau d'annotation. Ces fichiers peuvent etre utilisés en entrée par le programme "evaluationAccordInterAnnotateur"  <a href="#a16b6c048918dad2cd4f6edd76da20d32">More...</a><br /></td></tr>
+<tr class="separator:a16b6c048918dad2cd4f6edd76da20d32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18c7ceb70769d24dbe233c51ccafa468"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a18c7ceb70769d24dbe233c51ccafa468">generationAleatoire1</a> (vector&lt; pair&lt; int, int &gt; &gt; &amp;vPasChoisi, vector&lt; vector&lt; int &gt; &gt; &amp;vAnnotObs)</td></tr>
+<tr class="memdesc:a18c7ceb70769d24dbe233c51ccafa468"><td class="mdescLeft">&#160;</td><td class="mdescRight">génération aléatoire qui consiste à changer aléatoirement les annotations une à une  <a href="#a18c7ceb70769d24dbe233c51ccafa468">More...</a><br /></td></tr>
+<tr class="separator:a18c7ceb70769d24dbe233c51ccafa468"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a072dd99fdfe408b29ab0bc0bd8a9b928"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a072dd99fdfe408b29ab0bc0bd8a9b928">generationAleatoire2</a> (vector&lt; vector&lt; int &gt; &gt; &amp;vAnnotObs)</td></tr>
+<tr class="memdesc:a072dd99fdfe408b29ab0bc0bd8a9b928"><td class="mdescLeft">&#160;</td><td class="mdescRight">génération aléatoire qui consiste à changer les annotations une à une par annotateur  <a href="#a072dd99fdfe408b29ab0bc0bd8a9b928">More...</a><br /></td></tr>
+<tr class="separator:a072dd99fdfe408b29ab0bc0bd8a9b928"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e9bee53c3c232c5f1fac190a62a652e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a0e9bee53c3c232c5f1fac190a62a652e">generationAleatoire3</a> (vector&lt; pair&lt; int, int &gt; &gt; &amp;vPasChoisi, vector&lt; vector&lt; int &gt; &gt; &amp;vAnnotObs)</td></tr>
+<tr class="memdesc:a0e9bee53c3c232c5f1fac190a62a652e"><td class="mdescLeft">&#160;</td><td class="mdescRight">génération aléatoire qui consiste à changer les annotations une à une par observable  <a href="#a0e9bee53c3c232c5f1fac190a62a652e">More...</a><br /></td></tr>
+<tr class="separator:a0e9bee53c3c232c5f1fac190a62a652e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61d32ba27a0f5675ccc136f33877a62f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a61d32ba27a0f5675ccc136f33877a62f">testPrevalence</a> (vector&lt; vector&lt; int &gt; &gt; &amp;vAnnotObs, int classe1, int classe2, int taille)</td></tr>
+<tr class="memdesc:a61d32ba27a0f5675ccc136f33877a62f"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de modifier la prévalence des classes sans changer p1  <a href="#a61d32ba27a0f5675ccc136f33877a62f">More...</a><br /></td></tr>
+<tr class="separator:a61d32ba27a0f5675ccc136f33877a62f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add6a0084333fd7f22fc0a407ae7b7ff9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#add6a0084333fd7f22fc0a407ae7b7ff9">probaErreurAnnotateur</a> (vector&lt; vector&lt; int &gt; &gt; &amp;tNbOcc, vector&lt; int &gt; &amp;voteMajoritaire, vector&lt; vector&lt; int &gt; &gt; &amp;probaClasseErreur, vector&lt; int &gt; &amp;totalPossibiliteClasse)</td></tr>
+<tr class="memdesc:add6a0084333fd7f22fc0a407ae7b7ff9"><td class="mdescLeft">&#160;</td><td class="mdescRight">établit les probabilités de tomber sur telle ou telle classe lorsq'un annotateur fait une erreur en fonction des erreurs des vrais annotateurs.  <a href="#add6a0084333fd7f22fc0a407ae7b7ff9">More...</a><br /></td></tr>
+<tr class="separator:add6a0084333fd7f22fc0a407ae7b7ff9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae54a390823ccd69bc6e2f1f729588954"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ae54a390823ccd69bc6e2f1f729588954">repartitionP1</a> (int nbNewAnnot, vector&lt; int &gt; &amp;nbErreurObs)</td></tr>
 <tr class="memdesc:ae54a390823ccd69bc6e2f1f729588954"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de calculer la répartition de p1  <a href="#ae54a390823ccd69bc6e2f1f729588954">More...</a><br /></td></tr>
 <tr class="separator:ae54a390823ccd69bc6e2f1f729588954"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,6 +156,30 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a965672cdeaba5c5352e804c1ac4bdb91">nbc</a> = 3</td></tr>
 <tr class="memdesc:a965672cdeaba5c5352e804c1ac4bdb91"><td class="mdescLeft">&#160;</td><td class="mdescRight">le nombre de classes <br /></td></tr>
 <tr class="separator:a965672cdeaba5c5352e804c1ac4bdb91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81bf3f5742df7804dd40d9cfc4885f49"><td class="memItemLeft" align="right" valign="top"><a id="a81bf3f5742df7804dd40d9cfc4885f49"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a81bf3f5742df7804dd40d9cfc4885f49">choixClasseErreurParRapportAuDonneesrelles</a> = 0</td></tr>
+<tr class="memdesc:a81bf3f5742df7804dd40d9cfc4885f49"><td class="mdescLeft">&#160;</td><td class="mdescRight">la classe des erreurs des annotateurs créés (0 aléatoire or classe majoritaire, 1 en fonction des erreurs des vrais annotateurs) <br /></td></tr>
+<tr class="separator:a81bf3f5742df7804dd40d9cfc4885f49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8955d13382fe434fdfee590d9a16390"><td class="memItemLeft" align="right" valign="top"><a id="ae8955d13382fe434fdfee590d9a16390"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ae8955d13382fe434fdfee590d9a16390">choixIntervalleErreurAnnotateur</a> = 0</td></tr>
+<tr class="memdesc:ae8955d13382fe434fdfee590d9a16390"><td class="mdescLeft">&#160;</td><td class="mdescRight">l'intervalle du nombre d'erreurs des annotateurs (0 pour minimal ou 1 pour maximal) <br /></td></tr>
+<tr class="separator:ae8955d13382fe434fdfee590d9a16390"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af626be60a0c9eedb7909feee3fe9bed1"><td class="memItemLeft" align="right" valign="top"><a id="af626be60a0c9eedb7909feee3fe9bed1"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#af626be60a0c9eedb7909feee3fe9bed1">nbAnnotParGeneration</a> = 9</td></tr>
+<tr class="memdesc:af626be60a0c9eedb7909feee3fe9bed1"><td class="mdescLeft">&#160;</td><td class="mdescRight">le nombre d'annotateurs par génération aléatoire <br /></td></tr>
+<tr class="separator:af626be60a0c9eedb7909feee3fe9bed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8b84374a4bc8ca0379e859ec88ac78e"><td class="memItemLeft" align="right" valign="top"><a id="ad8b84374a4bc8ca0379e859ec88ac78e"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ad8b84374a4bc8ca0379e859ec88ac78e">choixGenerationAleatoire</a> = 0</td></tr>
+<tr class="memdesc:ad8b84374a4bc8ca0379e859ec88ac78e"><td class="mdescLeft">&#160;</td><td class="mdescRight">la méthode de génération aléatoire <br /></td></tr>
+<tr class="separator:ad8b84374a4bc8ca0379e859ec88ac78e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c18deb4598117c67d71d158a5a5b33c"><td class="memItemLeft" align="right" valign="top"><a id="a0c18deb4598117c67d71d158a5a5b33c"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a0c18deb4598117c67d71d158a5a5b33c">choixCalculRepartitionP1DonneesGenerees</a> = 0</td></tr>
+<tr class="memdesc:a0c18deb4598117c67d71d158a5a5b33c"><td class="mdescLeft">&#160;</td><td class="mdescRight">le calcul de la répartition du nombre d'erreurs par observable sur les données générées (0 pour non, 1 pour oui) <br /></td></tr>
+<tr class="separator:a0c18deb4598117c67d71d158a5a5b33c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4106d53768edb4fa66f8b0f8185d5a9f"><td class="memItemLeft" align="right" valign="top"><a id="a4106d53768edb4fa66f8b0f8185d5a9f"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a4106d53768edb4fa66f8b0f8185d5a9f">choixFichier</a></td></tr>
+<tr class="memdesc:a4106d53768edb4fa66f8b0f8185d5a9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">le chemin du fichier d'entrée <br /></td></tr>
+<tr class="separator:a4106d53768edb4fa66f8b0f8185d5a9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Génération aléatoire de données. </p>
@@ -158,8 +187,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_
 <dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>4 juillet 2018 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a8a2f23a9c3ce08bea58270d7b808c047"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a2f23a9c3ce08bea58270d7b808c047">&#9670;&nbsp;</a></span>affichage()</h2>
+<a id="ad4450ea14d6676bcca6cceb0fb5b0faf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4450ea14d6676bcca6cceb0fb5b0faf">&#9670;&nbsp;</a></span>affichage()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -167,7 +196,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_
         <tr>
           <td class="memname">void affichage </td>
           <td>(</td>
-          <td class="paramtype">vector&lt; vector&lt; int &gt;&gt; &amp;&#160;</td>
+          <td class="paramtype">vector&lt; vector&lt; int &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>vAnnotObs</em></td><td>)</td>
           <td></td>
         </tr>
@@ -184,8 +213,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_
 
 </div>
 </div>
-<a id="aa1e815b3a8ec537a5d2d08a2eab52d8a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1e815b3a8ec537a5d2d08a2eab52d8a">&#9670;&nbsp;</a></span>ecrireFichier()</h2>
+<a id="a16b6c048918dad2cd4f6edd76da20d32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16b6c048918dad2cd4f6edd76da20d32">&#9670;&nbsp;</a></span>ecrireFichier()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -199,7 +228,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">vector&lt; vector&lt; int &gt;&gt; &amp;&#160;</td>
+          <td class="paramtype">vector&lt; vector&lt; int &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>vAnnotObs</em>, </td>
         </tr>
         <tr>
@@ -228,8 +257,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_
 
 </div>
 </div>
-<a id="a5c740c2e22cbfc8c2f403403330cb60a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c740c2e22cbfc8c2f403403330cb60a">&#9670;&nbsp;</a></span>generationAleatoire1()</h2>
+<a id="a18c7ceb70769d24dbe233c51ccafa468"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18c7ceb70769d24dbe233c51ccafa468">&#9670;&nbsp;</a></span>generationAleatoire1()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -237,13 +266,13 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_
         <tr>
           <td class="memname">void generationAleatoire1 </td>
           <td>(</td>
-          <td class="paramtype">vector&lt; pair&lt; int, int &gt;&gt; &amp;&#160;</td>
+          <td class="paramtype">vector&lt; pair&lt; int, int &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>vPasChoisi</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">vector&lt; vector&lt; int &gt;&gt; &amp;&#160;</td>
+          <td class="paramtype">vector&lt; vector&lt; int &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>vAnnotObs</em>&#160;</td>
         </tr>
         <tr>
@@ -257,7 +286,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_
 <p>génération aléatoire qui consiste à changer aléatoirement les annotations une à une </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">vPasChoisi</td><td>: toutes lse annotations pas encore modifiées </td></tr>
+    <tr><td class="paramname">vPasChoisi</td><td>: toutes les annotations pas encore modifiées </td></tr>
     <tr><td class="paramname">vAnnotObs</td><td>: les vecteurs représentant le tableau d'annotation </td></tr>
   </table>
   </dd>
@@ -265,8 +294,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_
 
 </div>
 </div>
-<a id="a30803aa977b9dd6d3fa0ab7e0254d5d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a30803aa977b9dd6d3fa0ab7e0254d5d4">&#9670;&nbsp;</a></span>generationAleatoire2()</h2>
+<a id="a072dd99fdfe408b29ab0bc0bd8a9b928"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a072dd99fdfe408b29ab0bc0bd8a9b928">&#9670;&nbsp;</a></span>generationAleatoire2()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -274,7 +303,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_
         <tr>
           <td class="memname">void generationAleatoire2 </td>
           <td>(</td>
-          <td class="paramtype">vector&lt; vector&lt; int &gt;&gt; &amp;&#160;</td>
+          <td class="paramtype">vector&lt; vector&lt; int &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>vAnnotObs</em></td><td>)</td>
           <td></td>
         </tr>
@@ -291,8 +320,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_
 
 </div>
 </div>
-<a id="a74485ca158eaaf8e0424610d099d3fe0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a74485ca158eaaf8e0424610d099d3fe0">&#9670;&nbsp;</a></span>generationAleatoire3()</h2>
+<a id="a0e9bee53c3c232c5f1fac190a62a652e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e9bee53c3c232c5f1fac190a62a652e">&#9670;&nbsp;</a></span>generationAleatoire3()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -300,13 +329,13 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_
         <tr>
           <td class="memname">void generationAleatoire3 </td>
           <td>(</td>
-          <td class="paramtype">vector&lt; pair&lt; int, int &gt;&gt; &amp;&#160;</td>
+          <td class="paramtype">vector&lt; pair&lt; int, int &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>vPasChoisi</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">vector&lt; vector&lt; int &gt;&gt; &amp;&#160;</td>
+          <td class="paramtype">vector&lt; vector&lt; int &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>vAnnotObs</em>&#160;</td>
         </tr>
         <tr>
@@ -347,8 +376,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_
 
 </div>
 </div>
-<a id="ab810c5f376a5580a9dd37df49c3dfa92"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab810c5f376a5580a9dd37df49c3dfa92">&#9670;&nbsp;</a></span>probaErreurAnnotateur()</h2>
+<a id="add6a0084333fd7f22fc0a407ae7b7ff9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add6a0084333fd7f22fc0a407ae7b7ff9">&#9670;&nbsp;</a></span>probaErreurAnnotateur()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -356,7 +385,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_
         <tr>
           <td class="memname">void probaErreurAnnotateur </td>
           <td>(</td>
-          <td class="paramtype">vector&lt; vector&lt; int &gt;&gt; &amp;&#160;</td>
+          <td class="paramtype">vector&lt; vector&lt; int &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>tNbOcc</em>, </td>
         </tr>
         <tr>
@@ -368,7 +397,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">vector&lt; vector&lt; int &gt;&gt; &amp;&#160;</td>
+          <td class="paramtype">vector&lt; vector&lt; int &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>probaClasseErreur</em>, </td>
         </tr>
         <tr>
@@ -385,7 +414,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_
       </table>
 </div><div class="memdoc">
 
-<p>établit les probabilités de tomber sur telle ou telle classe lorq'un annotateur fait une erreur en fonction des erreurs des vrais annotateurs. </p>
+<p>établit les probabilités de tomber sur telle ou telle classe lorsq'un annotateur fait une erreur en fonction des erreurs des vrais annotateurs. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tNbOcc</td><td>: le nombre d'annotation de telle classe pour tel observable </td></tr>
@@ -435,8 +464,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_
 
 </div>
 </div>
-<a id="aebd3ea3f8962fa701e5e00b0ab5af042"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aebd3ea3f8962fa701e5e00b0ab5af042">&#9670;&nbsp;</a></span>testPrevalence()</h2>
+<a id="a61d32ba27a0f5675ccc136f33877a62f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61d32ba27a0f5675ccc136f33877a62f">&#9670;&nbsp;</a></span>testPrevalence()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -444,7 +473,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_
         <tr>
           <td class="memname">void testPrevalence </td>
           <td>(</td>
-          <td class="paramtype">vector&lt; vector&lt; int &gt;&gt; &amp;&#160;</td>
+          <td class="paramtype">vector&lt; vector&lt; int &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>vAnnotObs</em>, </td>
         </tr>
         <tr>
@@ -491,7 +520,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="main_8cpp.html">main.cpp</a></li>
-    <li class="footer">Generated on Wed Jul 4 2018 11:40:00 for generationAleatoire by
+    <li class="footer">Generated on Fri Jul 13 2018 16:32:40 for generationAleatoire by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>
