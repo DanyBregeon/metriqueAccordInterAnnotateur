@@ -76,18 +76,23 @@
 1531385174 c:\users\admin\documents\github\metriqueaccordinterannotateur\generationaleatoire\lecturefichier.h
 	<vector>
 
-1531148636 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\generationaleatoire\main.cpp
+1531476128 source:c:\users\admin\documents\github\metriqueaccordinterannotateur\generationaleatoire\main.cpp
 	<iostream>
 	<vector>
 	<cstring>
 	<cstdlib>
 	<ctime>
 	<cmath>
-	<cstring>
+	<string>
+	<algorithm>
 	<fstream>
 	<cstdio>
 	<sstream>
 	<ctime>
+	<iomanip>
+	<stdio.h>
 	"calculMetrique.h"
 	"lectureFichier.h"
+	<io.h>
+	<sys/stat.h>
 

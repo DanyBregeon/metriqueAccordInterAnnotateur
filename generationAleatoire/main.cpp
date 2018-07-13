@@ -422,6 +422,12 @@ int main()
             mkdir(dossier.c_str(), S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IWOTH | S_IXOTH);
         #endif
     }
+    dossier += choixFichier + "/";
+    #ifdef OS_Windows
+            mkdir(dossier.c_str());
+        #else
+            mkdir(dossier.c_str(), S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IWOTH | S_IXOTH);
+        #endif
     choixFichier = dossier + choixFichier;
 
     //choix du nombre de génération aléatoire
