@@ -102,8 +102,11 @@ void generationAleatoire1(vector<pair<int,int> > & vPasChoisi, vector<vector<int
         ostringstream ss;
 
             //cout << "i: " << i << " j: " << j << " " << (i*nbobs + j) << endl;
-            ss << "generationAleatoireDonneesReelles/generationAleatoire" << it << ".csv";
+            //ss << "generationAleatoireDonneesReelles/generationAleatoire" << it << ".csv";
 
+            //ecrireFichier(nba, vAnnotObs, ss.str());
+
+            ss << choixFichier << "_methode1_" << it << ".csv";
             ecrireFichier(nba, vAnnotObs, ss.str());
             /*ofstream file;
             file.open(ss.str());
@@ -143,8 +146,10 @@ void generationAleatoire2(vector<vector<int> > & vAnnotObs){
                 ostringstream ss;
 
                 //cout << "i: " << i << " j: " << j << " " << (i*nbobs + j) << endl;
-                ss << "generationAleatoireDonneesReelles3/generationAleatoire" << (i*nbobs + j) << ".csv";
+                //ss << "generationAleatoireDonneesReelles3/generationAleatoire" << (i*nbobs + j) << ".csv";
 
+                //ecrireFichier(nba, vAnnotObs, ss.str());
+                ss << choixFichier << "_methode2_" << (i*nbobs + j) << ".csv";
                 ecrireFichier(nba, vAnnotObs, ss.str());
             //}
         }
@@ -193,8 +198,10 @@ void generationAleatoire3(vector<pair<int,int> > & vPasChoisi, vector<vector<int
         ostringstream ss;
 
         //cout << "i: " << i << " j: " << j << " " << (i*nbobs + j) << endl;
-        ss << "generationAleatoire4/generationAleatoire" << occ << ".csv";
+        //ss << "generationAleatoire4/generationAleatoire" << occ << ".csv";
 
+        //ecrireFichier(nba, vAnnotObs, ss.str());
+        ss << choixFichier << "_methode3_" << occ << ".csv";
         ecrireFichier(nba, vAnnotObs, ss.str());
     }
 }
@@ -411,7 +418,6 @@ int main()
         choixFichier = choixFichier.substr(index+1);
         #ifdef OS_Windows
             mkdir(dossier.c_str());
-            cout << dossier.c_str() << endl;
         #else
             mkdir(dossier.c_str(), S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IWOTH | S_IXOTH);
         #endif
